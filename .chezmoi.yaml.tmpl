@@ -1,0 +1,31 @@
+{{- $workconf := false -}}
+
+{{- if (env "WORKCONF") -}}
+{{- $workconf = true -}}
+{{- end -}}
+
+{{- $name := "Lars Martin" -}}
+{{- $email := "lars.martin@smb-tec.com" -}}
+{{- $gpg_keyid := "2D29A054A1A10BEC" -}}
+{{- $github_user := "CrystalMethod" -}}
+{{- $gitlab_user := "CrystalMethod" -}}
+
+sourceDir: {{ .chezmoi.sourceDir }}
+
+data:
+  email: {{ $email }}
+  name: {{ $name }}
+  gpg_keyid: {{ $gpg_keyid }}
+  github_user: {{ $github_user }}
+  gitlab_user: {{ $gitlab_user }}
+  bitwarden:
+    codestats_api_key: 694d802b-98a7-48c4-aeaa-51022f5a14da
+    github_access_token: 420cc448-d73c-4559-bfe6-1937b806b38a
+    main:
+      id: 1d2b3681-d815-4cdb-84bf-5f500e5ee41d
+    work:
+      id: 62cd6294-d1b3-440e-bcf5-91badbbc438e
+      machine: 16c0db27-43c2-442f-b9ab-d1433a63713d
+    work2:
+      id: 01d7c1b1-9b26-478c-b214-4caf569d0af6
+      machine: 8c182706-b5c5-4212-ab63-7c11e95b1965
