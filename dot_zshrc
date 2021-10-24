@@ -11,6 +11,8 @@ if [[ "$ZPROF" = true ]]; then
         zmodload zsh/zprof
 fi
 
+source $HOME/.zsh/exports.zsh
+
 if [ -f "$HOME/.zsh_plugins.sh" ]; then
         source $HOME/.zsh_plugins.sh
 else

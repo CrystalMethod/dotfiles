@@ -1,0 +1,18 @@
+#!/usr/local/bin/zsh
+
+if (( ${+commands[nvim]} )); then
+    export EDITOR=nvim
+elif (( ${+commands[emacs]} )); then
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        emacsclient=/usr/bin/emacsclient
+        emacs=/usr/bin/emacs
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        emacsclient=/usr/local/bin/emacsclient
+        emacs=/usr/local/bin/emacs
+    fi
+    export EDITOR='$emacsclient -c -a ""'
+else
+    export EDITOR=vim
+fi
+
+eval $EDITOR '$@'
