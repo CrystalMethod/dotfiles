@@ -11,6 +11,8 @@ if [[ "$ZPROF" = true ]]; then
         zmodload zsh/zprof
 fi
 
+eval "$(direnv hook zsh)"
+
 source $HOME/.zsh/exports.zsh
 
 if [ -f "$HOME/.zsh_plugins.sh" ]; then
@@ -20,6 +22,8 @@ else
         antibody bundle <$HOME/.zsh/plugins.txt >$HOME/.zsh_plugins.sh
         source $HOME/.zsh_plugins.sh
 fi
+
+source $HOME/.zsh/init.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
