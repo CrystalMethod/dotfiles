@@ -24,6 +24,11 @@ else
 fi
 
 source $HOME/.zsh/init.zsh
+source $HOME/.zsh/aliases.zsh
+
+# base16 theme
+base16_gruvbox-dark-hard
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+(( ! ${+functions[p10k]} )) || p10k finalize
