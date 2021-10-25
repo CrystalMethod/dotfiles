@@ -24,6 +24,8 @@ else
 fi
 
 source $HOME/.zsh/init.zsh
+source $HOME/.zsh/history.zsh
+source $HOME/.zsh/stack.zsh
 source $HOME/.zsh/aliases.zsh
 
 # base16 theme
