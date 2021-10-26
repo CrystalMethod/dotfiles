@@ -1,0 +1,15 @@
+[General]
+  snippetfile = "/Users/lars/.config/pet/snippet.toml"
+  editor = "nvim"
+  column = 40
+  selectcmd = "fzf --ansi"
+  backend = "gist"
+  sortby = ""
+
+[Gist]
+  file_name = "snippet.toml"
+  access_token = "{{ (bitwardenFields "item" .bitwarden.github).pet_access_token.value }}"
+  gist_id = "{{ (bitwardenFields "item" .bitwarden.github).pet_gist_id.value }}"
+  public = false
+  auto_sync = false
+
