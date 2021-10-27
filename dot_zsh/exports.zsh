@@ -39,6 +39,10 @@ else
 	export TMUX_AUTOSTART="true"
 fi
 
+if [ -f "$HOME/.env-secrets" ]; then
+	source "$HOME/.env-secrets"
+fi
+
 # FZF
 export FZF_DEFAULT_OPTS='--height 30% --layout=reverse --border'
 
