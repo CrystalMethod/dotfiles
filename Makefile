@@ -91,12 +91,12 @@ install-homebrew:
 	bash ./scripts/install_homebrew.sh | tee -a $(LOGFILE) || exit 1
 
 ensure-dirs:
-	@echo "Ensuring directories.."
-	bash ./scripts/ensure_directories.sh | tee -a $(LOGFILE) || exit 1
+	#@echo "Ensuring directories.."
+	#bash ./scripts/ensure_directories.sh | tee -a $(LOGFILE) || exit 1
 
 install-go-deps:
-	@echo "Installing go packages.."
-	bash ./scripts/install_go_packages.sh | tee -a $(LOGFILE) || exit 1
+	#@echo "Installing go packages.."
+	#bash ./scripts/install_go_packages.sh | tee -a $(LOGFILE) || exit 1
 
 ensure-deps:
 	@echo "Ensuring dependencies.."
@@ -133,12 +133,12 @@ run:
 
 post-chezmoi:
 	$(MAKE) start-services
-	#$(MAKE) git-repos
+	$(MAKE) git-repos
 	$(MAKE) conf-sys
 	$(MAKE) ssh-perms
 	$(MAKE) gnupg-perms
 	$(MAKE) ensure-dirs
-	#$(MAKE) pyenv
+	$(MAKE) pyenv
 	@echo "Done"
 
 install-rust:
