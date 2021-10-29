@@ -6,6 +6,7 @@ coreutils
 diff-so-fancy
 diffutils
 exa
+gist
 git
 glibc
 grep
@@ -15,6 +16,7 @@ less
 man-db
 man-pages
 neofetch
+neovim
 pacman
 pacman-contrib
 patch
