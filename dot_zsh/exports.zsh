@@ -43,6 +43,10 @@ if [ -f "$HOME/.env-secrets" ]; then
 	source "$HOME/.env-secrets"
 fi
 
+# Krew path
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+
 # FZF
 export FZF_DEFAULT_OPTS='--height 30% --layout=reverse --border'
 

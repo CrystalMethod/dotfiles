@@ -21,6 +21,7 @@ pacman
 pacman-contrib
 patch
 sed
+skopeo
 sudo
 tar
 tmux
