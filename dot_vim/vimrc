@@ -1,0 +1,153 @@
+" ==============================================================================
+" # LOAD PLUGINS
+" ==============================================================================
+
+source $HOME/.vim/plugins.vim
+
+" ==============================================================================
+" # EDITOR SETTINGS
+" ==============================================================================
+
+" General
+syntax on
+filetype plugin indent on
+set autoindent
+set scrolloff=2
+set linebreak
+set breakindent
+set showbreak="..."
+set nojoinspaces
+set signcolumn=yes
+
+" Splits
+set splitright
+set splitbelow
+
+" Undo files
+set undofile
+
+" Command line completion
+set wildmenu
+set wildmode=list:longest
+set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor
+
+" Tab
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+set noexpandtab
+
+" Search
+set incsearch
+set ignorecase
+set smartcase
+set gdefault
+
+" Center search results
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+
+" Simplified regex
+nnoremap ? ?\v
+nnoremap / /\v
+cnoremap %s/ %sm/
+
+" ==============================================================================
+" # COLOR SETTINGS
+" ==============================================================================
+
+set termguicolors
+set background=dark
+let base16colorspace=256
+colorscheme base16-gruvbox-dark-hard
+
+" ==============================================================================
+" # UI SETTINGS
+" ==============================================================================
+
+" Disable error noises
+set noerrorbells visualbell t_vb=
+
+" Backspace over newlines
+set backspace=2
+
+" Always show status line
+set laststatus=2
+
+" Better display for messages
+set cmdheight=2
+
+" Update events time
+set updatetime=200
+
+" Show current and relative line numbers
+set number
+set relativenumber
+
+" Enable mouse
+set mouse=a
+
+" Don't give |ins-completion-menu| messages
+set shortmess+=c
+
+" Show hidden characters
+set listchars=nbsp:¬,extends:»,precedes:«,trail:•
+
+" ==============================================================================
+" # KEYBOARD SHORTCUTS
+" ==============================================================================
+
+" Set space as <leader>
+let mapleader = "\<Space>"
+
+" Quick save and exit
+nmap <leader>w :w<CR>
+nmap <leader>q :q<CR>
+
+" Jump to start and end of line using the home row keys
+map H ^
+map L $
+
+" (Shift)Tab (de)indents code
+vnoremap <Tab> >
+vnoremap <S-Tab> <(
+
+" Ctrl+h to stop searching
+vnoremap <C-h> :nohlsearch<cr>
+nnoremap <C-h> :nohlsearch<cr>
+
+" Open new file from same folder as current file
+nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+
+" No arrow keys for movement
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" Left and right can switch buffers
+nnoremap <left> :bp<CR>
+nnoremap <right> :bn<CR>
+
+" Move between windows with Meta
+tnoremap <A-h> <C-\><C-n><C-w>h
+tnoremap <A-j> <C-\><C-n><C-w>j
+tnoremap <A-k> <C-\><C-n><C-w>k
+tnoremap <A-l> <C-\><C-n><C-w>l
+inoremap <A-h> <Esc><C-w>h
+inoremap <A-j> <Esc><C-w>j
+inoremap <A-k> <Esc><C-w>k
+inoremap <A-l> <Esc><C-w>l
+vnoremap <A-h> <Esc><C-w>h
+vnoremap <A-j> <Esc><C-w>j
+vnoremap <A-k> <Esc><C-w>k
+vnoremap <A-l> <Esc><C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
