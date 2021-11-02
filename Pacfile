@@ -17,6 +17,8 @@ man-db
 man-pages
 neofetch
 neovim
+nodejs-lts-fermium
+npm
 pacman
 pacman-contrib
 patch
