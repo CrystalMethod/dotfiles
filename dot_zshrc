@@ -28,6 +28,7 @@ source $HOME/.zsh/history.zsh
 source $HOME/.zsh/stack.zsh
 source $HOME/.zsh/aliases.zsh
 source $HOME/.zsh/sdkman.zsh
+source $HOME/.zsh/nvm.zsh
 
 # base16 theme
 base16_gruvbox-dark-hard

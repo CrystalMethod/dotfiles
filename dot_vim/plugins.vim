@@ -1,4 +1,4 @@
-" ================================================================================ 
+" ================================================================================
 " # PLUGIN LIST
 " ================================================================================
 
@@ -27,6 +27,8 @@ Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-startify'
 Plug 'luochen1990/rainbow'
 Plug 'preservim/tagbar'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -50,7 +52,7 @@ Plug 'https://gitlab.com/code-stats/code-stats-vim.git'
 
 call plug#end()
 
-" ================================================================================ 
+" ================================================================================
 " # PLUGIN CONFIGURATIONS
 " ================================================================================
 
@@ -68,8 +70,8 @@ let g:rust_clip_command = 'xclip -selection clipboard'
 " Coc "
 
 call coc#add_extension(
-	\'coc-rust-analyzer',
 	\'coc-yaml',
+	\'coc-java',
 	\'coc-json',
 	\'coc-vimlsp',
 	\'coc-snippets',

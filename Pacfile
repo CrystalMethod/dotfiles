@@ -3,6 +3,7 @@ binutils
 bzip2
 chezmoi
 coreutils
+ctags
 diff-so-fancy
 diffutils
 exa
