@@ -6,6 +6,7 @@ brew "antibody"
 brew "gist"
 brew "neofetch"
 brew "skopeo"
+brew "vifm"
 
 cask "bitwarden"
 cask "alacritty"
