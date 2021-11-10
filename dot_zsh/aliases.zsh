@@ -1,6 +1,6 @@
 ## aliases
 
-source $HOME/.zsh/git_aliases.zsh 
+#source $HOME/.zsh/git_aliases.zsh
 
 alias init-completion="rm -f $HOME/.zcompdump; compinit"
 alias dotfiles="cd ~/dotfiles"
