@@ -5,3 +5,7 @@ tap "getantibody/tap"
 brew "antibody"
 brew "gist"
 brew "neofetch"
+brew "skopeo"
+
+cask "bitwarden"
+cask "alacritty"
