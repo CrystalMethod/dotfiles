@@ -9,5 +9,6 @@ brew "neofetch"
 brew "skopeo"
 brew "vifm"
 
-cask "bitwarden"
 cask "alacritty"
+cask "bitwarden"
+cask "maccy"
