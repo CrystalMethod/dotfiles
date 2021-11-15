@@ -14,12 +14,16 @@ grep
 gzip
 httpie
 less
+libexif
+libgsf
+libxss
 man-db
 man-pages
 neofetch
 neovim
 nodejs-lts-fermium
 npm
+orc
 pacman
 pacman-contrib
 patch
