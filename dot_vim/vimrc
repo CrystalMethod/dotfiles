@@ -1,153 +1,134 @@
-" ==============================================================================
-" # LOAD PLUGINS
-" ==============================================================================
+set nocompatible                " must be first line
+set background=dark
 
-source $HOME/.vim/plugins.vim
+" nvim support
+if !has('nvim')
+" Make arrow and other keys work
+  set term=$TERM
+endif
 
-" ==============================================================================
-" # EDITOR SETTINGS
-" ==============================================================================
+" highlight current line
+"set cursorline
 
-" General
-syntax on
-filetype plugin indent on
-set autoindent
-set scrolloff=2
-set linebreak
-set breakindent
-set showbreak="..."
-set nojoinspaces
-set signcolumn=yes
+set backspace=indent,eol,start  " backspace for dummies
+set linespace=0                 " No extra spaces between rows
+set number                      " Line numbers on
+set showmatch                   " show matching brackets/parenthesis
+set incsearch                   " find as you type search
+set hlsearch                    " highlight search terms
 
-" Splits
-set splitright
-set splitbelow
-
-" Undo files
-set undofile
-
-" Command line completion
-set wildmenu
-set wildmode=list:longest
-set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor
-
-" Tab
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
-set noexpandtab
-
-" Search
-set incsearch
+" Search is NOT case sensitive when the searched text is all lowercase
+" Search becomes case sensitive when at least an uppercase letter is present
 set ignorecase
 set smartcase
-set gdefault
 
-" Center search results
-nnoremap <silent> n nzz
-nnoremap <silent> N Nzz
-nnoremap <silent> * *zz
-nnoremap <silent> # #zz
-nnoremap <silent> g* g*zz
+set smartindent                 " for indentation
+set shiftwidth=4                " use indents of 4 spaces
+set expandtab                   " tabs are spaces, not tabs
+set tabstop=4                   " an indentation every four columns
+set softtabstop=4               " let backspace delete indent
 
-" Simplified regex
-nnoremap ? ?\v
-nnoremap / /\v
-cnoremap %s/ %sm/
+set ttyfast
 
-" ==============================================================================
-" # COLOR SETTINGS
-" ==============================================================================
+set hidden                      " A buffer becomes hidden when it is abandoned
 
-set termguicolors
-set background=dark
-let base16colorspace=256
-colorscheme base16-gruvbox-dark-hard
+set mouse=a                     " Enable mouse scroll wheel
 
-" ==============================================================================
-" # UI SETTINGS
-" ==============================================================================
+set signcolumn=yes              "Display the signcolumn (leftmost column with gutters & errs...)
 
-" Disable error noises
-set noerrorbells visualbell t_vb=
+"Show hidden characters
+" set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+" set listchars=tab:>-,trail:-
+" set listchars=tab:»·
+set listchars=tab:··
+set list
 
-" Backspace over newlines
-set backspace=2
+" Make the Search Wrap message EXPLICIT Again!
+" I.e.: "Search hit BOTTOM, continuing at TOP"
+set shortmess+=S
 
-" Always show status line
+"" Alternate screen (when backgrounding vim)
+" set t_ti= t_te=
+
+"set previewwindow
+
+"  "set wildmenu" enables a menu at the bottom of the vim/gvim window.
+"  The meaning of "list:longest,full" is so that when you do completion in the
+"  command line via tab, these events will happen:
+"  1. (on the first tab) a list of completions will be shown and the command will
+"  be completed to the longest common command.
+"  2. (on second tab) the wildmenu will show up with all the completions that were
+"  listed before.
+"  To test it out, type ":spe" and then hit tab once to see 1 and hit tab again
+"  to see 2.
+set wildmenu
+set wildmode=list:longest,full
+
+"Always show a bottom status line
 set laststatus=2
 
-" Better display for messages
-set cmdheight=2
+" Padding lines b/w cursor line and top / bottom of the window
+set scrolloff=5
 
-" Update events time
-set updatetime=200
+" Make switching back to Normal mode (using ESC) fast.
+" 'ttimeoutlen': time in ms to wait for a key code sequence to complete
+"
+set ttimeoutlen=50
 
-" Show current and relative line numbers
-set number
-set relativenumber
+" Make the timeout to disambiguate b/w a start of a command and a mapped
+" sequence shorter.
+" E.g. after pressin '/' once, I don't want to wait the default timeout of 1s
+" before doing a search
+" - / => search
+" - // => nohlsearch
+" 'timeoutlen': Time in milliseconds to wait for a mapped sequence to complete.
+set timeoutlen=250
 
-" Enable mouse
-set mouse=a
+" Do not delete % when joining lines starting with %
+set formatoptions-=j
 
-" Don't give |ins-completion-menu| messages
-set shortmess+=c
+set diffopt+=vertical
 
-" Show hidden characters
-set listchars=nbsp:¬,extends:»,precedes:«,trail:•
+"" Global tags
+set tags+=tags,.tags
 
-" ==============================================================================
-" # KEYBOARD SHORTCUTS
-" ==============================================================================
+"" Leader key
+let mapleader="'"
 
-" Set space as <leader>
-let mapleader = "\<Space>"
+" netrw show tree mode
+let g:netrw_liststyle = 3
 
-" Quick save and exit
-nmap <leader>w :w<CR>
-nmap <leader>q :q<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Plug plugins manager
+"
+call plug#begin(stdpath('data') . '/plugged')
 
-" Jump to start and end of line using the home row keys
-map H ^
-map L $
+" status line
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
-" (Shift)Tab (de)indents code
-vnoremap <Tab> >
-vnoremap <S-Tab> <(
+Plug 'ryanoasis/vim-devicons'
 
-" Ctrl+h to stop searching
-vnoremap <C-h> :nohlsearch<cr>
-nnoremap <C-h> :nohlsearch<cr>
+"Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Open new file from same folder as current file
-nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+" fuzzy finder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
 
-" No arrow keys for movement
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+" treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-" Left and right can switch buffers
-nnoremap <left> :bp<CR>
-nnoremap <right> :bn<CR>
 
-" Move between windows with Meta
-tnoremap <A-h> <C-\><C-n><C-w>h
-tnoremap <A-j> <C-\><C-n><C-w>j
-tnoremap <A-k> <C-\><C-n><C-w>k
-tnoremap <A-l> <C-\><C-n><C-w>l
-inoremap <A-h> <Esc><C-w>h
-inoremap <A-j> <Esc><C-w>j
-inoremap <A-k> <Esc><C-w>k
-inoremap <A-l> <Esc><C-w>l
-vnoremap <A-h> <Esc><C-w>h
-vnoremap <A-j> <Esc><C-w>j
-vnoremap <A-k> <Esc><C-w>k
-vnoremap <A-l> <Esc><C-w>l
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
+"All of your Plugins must be added before the following line
+call plug#end()
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Configs
+
+
+source $HOME/.vim/configs/airline.vim
+
+source $HOME/.vim/configs/fzf.vim
