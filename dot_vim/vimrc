@@ -179,3 +179,5 @@ source $HOME/.vim/configs/tagbar.vim
 source $HOME/.vim/configs/nerdtree.vim
 
 source $HOME/.vim/configs/coc.vim
+
+source $HOME/.vim/configs/fugitive.vim
