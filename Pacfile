@@ -7,6 +7,7 @@ ctags
 diff-so-fancy
 diffutils
 exa
+fd
 gist
 git
 glibc
@@ -15,6 +16,7 @@ gzip
 httpie
 less
 libexif
+libgit2
 libgsf
 libxss
 man-db
@@ -27,11 +29,13 @@ orc
 pacman
 pacman-contrib
 patch
+ripgrep
 sed
 skopeo
 sops
 sudo
 tar
+the_silver_searcher
 tmux
 ttf-hack
 ttf-nerd-fonts-symbols
