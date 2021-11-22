@@ -93,7 +93,8 @@ set diffopt+=vertical
 set tags+=tags,.tags
 
 "" Leader key
-let mapleader="'"
+"let mapleader="'"
+let mapleader = ","
 
 " netrw show tree mode
 let g:netrw_liststyle = 3
@@ -104,9 +105,31 @@ let g:netrw_liststyle = 3
 "
 call plug#begin(stdpath('data') . '/plugged')
 
+Plug 'gruvbox-community/gruvbox'
+
+" start screen
+Plug 'mhinz/vim-startify'
+
 " status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+" git <3
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git'
+
+Plug 'preservim/nerdcommenter'
+Plug 'preservim/nerdtree'
+Plug 'preservim/tagbar'
+Plug 'tpope/vim-eunuch'
+Plug 'airblade/vim-rooter'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'Yggdroot/indentLine'
 
 Plug 'ryanoasis/vim-devicons'
 
@@ -120,6 +143,7 @@ Plug 'junegunn/fzf.vim'
 " treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+Plug 'https://gitlab.com/code-stats/code-stats-vim.git'
 
 "All of your Plugins must be added before the following line
 call plug#end()
@@ -128,7 +152,30 @@ call plug#end()
 "
 " Configs
 
+colorscheme gruvbox
+set background=dark
+set termguicolors
+
+" buffer switching
+nnoremap gt :bnext<CR>
+nnoremap gT :bprevious<CR>
+nnoremap <C-S-Right> :bnext<CR>
+nnoremap <C-S-Left> :bprevious<CR>
+" new buffer
+nnoremap <Leader>bn :enew<cr>
+" close buffer
+nnoremap <Leader>bq :bp <bar> bd! #<cr>
+" close all buffers
+nnoremap <Leader>bQ :bufdo bd! #<cr>
+" list buffers
+nnoremap <silent> <space>b :<C-u>Buffers<cr>
 
 source $HOME/.vim/configs/airline.vim
 
 source $HOME/.vim/configs/fzf.vim
+
+source $HOME/.vim/configs/tagbar.vim
+
+source $HOME/.vim/configs/nerdtree.vim
+
+source $HOME/.vim/configs/coc.vim
