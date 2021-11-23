@@ -28,6 +28,8 @@ set expandtab                   " tabs are spaces, not tabs
 set tabstop=4                   " an indentation every four columns
 set softtabstop=4               " let backspace delete indent
 
+set guicursor=
+
 set ttyfast
 
 set hidden                      " A buffer becomes hidden when it is abandoned
@@ -153,7 +155,8 @@ call plug#end()
 
 colorscheme gruvbox
 set background=dark
-set termguicolors
+"set termguicolors
+highlight Comment cterm=italic
 
 " buffer switching
 nnoremap gt :bnext<CR>
