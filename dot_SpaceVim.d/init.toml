@@ -33,6 +33,8 @@
     autocomplete_method = "coc"
     enable_vimfiler_gitstatus = true
     enable_os_fileformat_icon = true
+    bootstrap_before = 'myspacevim#before'
+    bootstrap_after = 'myspacevim#after'
 
 # Enable autocomplete layer
 [[layers]]
