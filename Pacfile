@@ -14,6 +14,7 @@ glibc
 grep
 gzip
 httpie
+k9s
 less
 libexif
 libgit2
