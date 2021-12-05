@@ -23,8 +23,7 @@
     buffer_index_type = 4
     enable_tabline_filetype_icon = true
     enable_statusline_mode = false
-    filemanager = "nerdtree"
-    enable_filetree_gitstatus = true
+    # filemanager = "nerdtree"
     enable_filetree_gitstatus = true
     filetree_direction = "left"
     filemanager = "coc-explorer"
@@ -35,11 +34,11 @@
     enable_os_fileformat_icon = true
     bootstrap_before = 'myspacevim#before'
     bootstrap_after = 'myspacevim#after'
+    snippet_engine = "ultisnips"
 
 # Enable autocomplete layer
 [[layers]]
     name = 'autocomplete'
-    # autocomplete_method = "coc"
     auto_completion_return_key_behavior = "complete"
     auto_completion_tab_key_behavior = "smart"
 
@@ -136,6 +135,12 @@
 
 [[custom_plugins]]
     name = "yuki-ycino/fzf-preview.vim"
+
+[[custom_plugins]]
+    name = "honza/vim-snippets"
+
+[[custom_plugins]]
+name = "rhysd/git-messenger.vim"
 
 # [[custom_plugins]]
     # repo = "separatorbirshrestha/vim-lsp"

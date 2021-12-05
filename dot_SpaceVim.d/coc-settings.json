@@ -23,7 +23,7 @@
   "java.configuration.maven.userSettings": "~/.m2/settings.xml",
   "java.codeGeneration.useBlocks": true,
   "java.configuration.updateBuildConfiguration": "interactive",
-  "java.autobuild.enabled": false,
+  "java.autobuild.enabled": true,
   "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
   "java.format.enabled": true,
   "java.format.onType.enabled": true,
