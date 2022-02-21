@@ -26,13 +26,13 @@ fi
 
 # if exa exist, alias to ls
 if (( ${+commands[exa]} )); then
-    alias ls='exa'
+    alias ls='exa --icons'
     alias l='ls'
-    alias ll='exa -l'
-    alias lll='exa -l | less'
-    alias lla='exa -la'
-    alias llt='exa -T'
-    alias llfu='exa -bghHliS --git'
+    alias ll='exa -l --icons --group --git'
+    alias lll='exa -l --icons --group --git | less'
+    alias lla='exa -la --icons --group --git'
+    alias llt='exa -T --icons'
+    alias llfu='exa -bghHliS --icons --git'
 else
     alias l='ls -1A'         # Lists in one column, hidden files.
     alias ll='ls -lh'        # Lists human readable sizes.
