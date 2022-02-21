@@ -1,5 +1,6 @@
 alacritty
 binutils
+bitwarden-cli
 bzip2
 chezmoi
 coreutils
@@ -13,8 +14,11 @@ git
 glibc
 grep
 gzip
+helmfile
 httpie
 k9s
+kubectl
+kubie
 less
 libexif
 libgit2
@@ -34,6 +38,7 @@ ripgrep
 sed
 skopeo
 sops
+stern
 sudo
 tar
 the_silver_searcher
