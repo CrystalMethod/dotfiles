@@ -15,8 +15,12 @@ packer.startup(function(use)
   use { 'jessarcher/vim-heritage' } -- Automatically create parent dirs when saving
   use { 'nelstrom/vim-visual-star-search' }
 
-  use { 'itchyny/lightline.vim' }
   use { 'towolf/vim-helm' }
+
+  use {
+    'junegunn/fzf.vim',
+    requires = { 'junegunn/fzf' }
+  }
 
   use {
     'tpope/vim-projectionist',
@@ -38,6 +42,14 @@ packer.startup(function(use)
     end
   }
 
+  use { 'fannheyward/telescope-coc.nvim' }
+  use {
+    'fhill2/telescope-ultisnips.nvim',
+    config = function()
+      require('user.plugins.ultisnips')
+    end
+  }
+
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -53,11 +65,7 @@ packer.startup(function(use)
     end
   }
 
-  use {
-    'tpope/vim-fugitive',
-    requires = 'tpope/vim-rhubarb',
-    cmd = 'G',
-  }
+  use 'tpope/vim-fugitive'
 
   use {
     'lewis6991/gitsigns.nvim',
@@ -65,6 +73,13 @@ packer.startup(function(use)
     config = function()
       require('gitsigns').setup { sign_priority = 20 }
     end,
+  }
+
+  use {
+    'akinsho/nvim-bufferline.lua',
+    config = function()
+      require('user.plugins.nvim-bufferline')
+    end
   }
 
   use {
@@ -79,13 +94,28 @@ packer.startup(function(use)
 
   use {
     'neoclide/coc.nvim',
-    branch = 'release'
+    branch = 'release',
+    config = function()
+      require('user.plugins.coc-nvim')
+    end
   }
+
+  use { 'SirVer/ultisnips' }
 
   use {
     'glepnir/dashboard-nvim',
     config = function()
       require('user.plugins.dashboard')
+    end
+  }
+
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 
+      'kyazdani42/nvim-web-devicons', opt = true
+    },
+    config = function()
+      require('user.plugins.lualine')
     end
   }
 
