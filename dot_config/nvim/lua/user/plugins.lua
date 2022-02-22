@@ -30,6 +30,13 @@ packer.startup(function(use)
   }
 
   use {
+    'miyakogi/conoline.vim',
+    config = function()
+      require('user.plugins.conoline')
+    end
+  }
+
+  use {
     'nvim-telescope/telescope.nvim',
     requires = {
       { 'nvim-lua/plenary.nvim' },
