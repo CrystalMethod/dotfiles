@@ -17,6 +17,7 @@ brew "slides"
 brew "vifm"
 
 cask "alacritty"
+cask "amethyst"
 cask "bitwarden"
 cask "maccy"
 cask "rancher"
