@@ -1,5 +1,5 @@
 require('lualine').setup {
-    options = { 
+    options = {
         theme  = 'auto',
         disabled_filetypes = {
             'coc-explorer',
