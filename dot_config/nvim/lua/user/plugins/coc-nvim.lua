@@ -10,6 +10,7 @@ vim.g.coc_global_extensions = {
         "coc-java-intellicode",
         "coc-java-lombok",
         "coc-json",
+        "coc-lua",
         "coc-marketplace",
         "coc-sh",
         "coc-sql",
@@ -64,6 +65,9 @@ map('n', 'gy', '<Plug>(coc-type-definition)', {})
 
 -- Remap for rename current word
 map('n', '<leader>rn', '<Plug>(coc-rename)', {})
+
+map("n", "<leader>e", "<cmd>CocCommand explorer<CR>", {})
+map("n", "<leader><leader>", "<cmd>CocCommand explorer --position floating<CR>", {})
 
 -- Close all floating windows if any
 map('n', '<Esc>', ':call coc#float#close_all() <CR>', { noremap = true, silent = true })
