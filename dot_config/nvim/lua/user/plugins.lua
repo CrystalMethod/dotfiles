@@ -17,6 +17,10 @@ packer.startup(function(use)
 
   use { 'towolf/vim-helm' }
 
+  use({
+   "editorconfig/editorconfig-vim",
+  })
+
   use {
     'junegunn/fzf.vim',
     requires = { 'junegunn/fzf' }
@@ -72,6 +76,15 @@ packer.startup(function(use)
     end
   }
 
+  use {
+    'ThePrimeagen/git-worktree.nvim',
+    requires = { 'nvim-telescope/telescope.nvim' },
+    config = function()
+      -- require('user.plugins.git-worktree')
+      require('git-worktree').setup{ autopush = false }
+    end
+  }
+
   use 'tpope/vim-fugitive'
 
   use {
@@ -90,7 +103,7 @@ packer.startup(function(use)
   }
 
   use {
-    'ellisonleao/gruvbox.nvim', 
+    'ellisonleao/gruvbox.nvim',
     requires = {
       'rktjmp/lush.nvim'
     },
@@ -118,7 +131,7 @@ packer.startup(function(use)
 
   use {
     'nvim-lualine/lualine.nvim',
-    requires = { 
+    requires = {
       'kyazdani42/nvim-web-devicons', opt = true
     },
     config = function()

@@ -71,6 +71,7 @@ require('telescope').load_extension('fzf')
 -- require('telescope').load_extension('media_files')
 require('telescope').load_extension('ultisnips')
 require('telescope').load_extension('coc')
+require('telescope').load_extension('git_worktree')
 
 keymap('n', '<leader>f', [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
 keymap('n', '<leader>F', [[<cmd>lua require('telescope.builtin').find_files({ no_ignore = true, prompt_title = 'All Files' })<CR>]]) -- luacheck: no max line length
