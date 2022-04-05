@@ -13,6 +13,7 @@ fd
 gist
 git
 glibc
+go-yq
 grep
 gzip
 helmfile
@@ -31,6 +32,7 @@ neofetch
 neovim
 nodejs-lts-fermium
 npm
+ntp
 orc
 pacman
 pacman-contrib
@@ -44,10 +46,13 @@ sudo
 tar
 the_silver_searcher
 tmux
+traceroute
+tree
 ttf-hack
 ttf-nerd-fonts-symbols
 unzip
 vifm
 wget
+xdg-utils
 zsh
 
