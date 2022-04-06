@@ -1,82 +1,195 @@
-local telescope = require 'telescope'
-local actions = require 'telescope.actions'
-local builtin = require 'telescope.builtin'
-local previewers = require 'telescope.previewers'
-local utils = require 'telescope.utils'
-local keymap = require 'lib.utils'.keymap
+local telescope = require('telescope')
 
--- Taken from the Config recipes
-local new_maker = function(filepath, bufnr, opts)
-  opts = opts or {}
+local builtin = require('telescope.builtin')
+local actions = require('telescope.actions')
+local action_layout = require('telescope.actions.layout')
+local previewers = require('telescope.previewers')
+local themes = require('telescope.themes')
 
-  filepath = vim.fn.expand(filepath)
-  vim.loop.fs_stat(filepath, function(_, stat)
-    if not stat then return end
-    if stat.size > 100000 then
-      return
-    else
-      previewers.buffer_previewer_maker(filepath, bufnr, opts)
-    end
-  end)
+local function get_border(opts)
+  return vim.tbl_deep_extend("force", opts or {}, {
+    borderchars = {
+      { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+      preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    },
+  })
 end
 
-telescope.setup {
+---@param opts table
+---@return table
+local function dropdown(opts)
+  return themes.get_dropdown(get_border(opts))
+end
+
+----------------------------------------------------------------------
+-- NOTE: setup {{{
+----------------------------------------------------------------------
+telescope.setup({
   defaults = {
-    buffer_previewer_maker = new_maker,
-    path_display = { truncate = 1 },
-    prompt_prefix = '   ',
-    selection_caret = '  ',
-    layout_config = {
-      prompt_position = 'top',
+    vimgrep_arguments = {
+      "rg",
+      "--hidden",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "--trim",
     },
-    sorting_strategy = 'ascending',
+    prompt_prefix = "  ",
+    selection_strategy = "reset",
+    sorting_strategy = "ascending",
+    scroll_strategy = "cycle",
+    color_devicons = true,
+    dynamic_preview_title = true,
+    path_display = {
+      "absolute",
+      -- "smart",
+    },
+    history = {
+      path = vim.fn.stdpath("data") .. "/telescope_history.sqlite3",
+    },
+
+    set_env = {
+      ["COLORTERM"] = "truecolor",
+    }, -- default = nil,
+
     mappings = {
       i = {
-        ['<esc>'] = actions.close,
-        ['<C-Down>'] = actions.cycle_history_next,
-        ['<C-Up>'] = actions.cycle_history_prev,
+        ["<C-e>"] = actions.move_to_bottom,
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+        ["<C-n>"] = actions.move_selection_next,
+        ["<C-o>"] = actions.send_selected_to_qflist + actions.open_qflist,
+        ["<C-p>"] = actions.move_selection_previous,
+--        ["<C-s>"] = R("telescope").extensions.hop.hop,
+        ["<C-u>"] = false,
+        ["<C-y>"] = actions.move_to_top,
+        ["<M-p>"] = action_layout.toggle_preview,
+        ["<esc>"] = actions.close,
+      },
+      n = {
+        ["e"] = actions.move_to_bottom,
+        ["j"] = actions.move_selection_next,
+        ["k"] = actions.move_selection_previous,
+        ["o"] = actions.send_selected_to_qflist + actions.open_qflist,
+--        ["s"] = R("telescope").extensions.hop.hop,
+        ["u"] = false,
+        ["y"] = actions.move_to_top,
+        ["p"] = action_layout.toggle_preview,
+        ["<esc>"] = actions.close,
       },
     },
-    file_ignore_patterns = { '.git/' },
+    borderchars = {
+      { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+      preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    },
+    file_ignore_patterns = {
+      "%.otf",
+      "%.ttf",
+      "%.DS_Store",
+      "%.git",
+      "build",
+      "node_modules",
+    },
+    layout_config = {
+      width = 0.90,
+      height = 0.90,
+      prompt_position = "top",
+      horizontal = {
+        width_padding = 0.11,
+        height_padding = 0.13,
+        preview_width = 0.56,
+      },
+      vertical = {
+        width_padding = 0.4,
+        height_padding = 0.8,
+        preview_height = 0.5,
+      },
+      flex = {
+        horizontal = {
+          preview_width = 0.8,
+        },
+      },
+    },
+    file_previewer = previewers.vim_buffer_cat.new,
+    grep_previewer = previewers.vim_buffer_vimgrep.new,
+    qflist_previewer = previewers.vim_buffer_qflist.new,
   },
   pickers = {
+    buffers = dropdown({
+      path_display = { "absolute", "smart" },
+      previewer = false,
+      sort_mru = true,
+      sort_lastused = true,
+      show_all_buffers = true,
+      ignore_current_buffer = true,
+      mappings = {
+        i = { ["<c-d>"] = "delete_buffer" },
+        n = { ["d"] = "delete_buffer" },
+      },
+    }),
+    live_grep = {
+      file_ignore_patterns = { ".git/" },
+    },
+    current_buffer_fuzzy_find = dropdown({
+      previewer = false,
+    }),
+    lsp_code_actions = {
+      theme = "cursor",
+    },
+    colorscheme = {
+      enable_preview = true,
+    },
     find_files = {
+      find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
       hidden = true,
     },
-    buffers = {
-      previewer = false,
+    git_bcommits = {
       layout_config = {
-        width = 80,
+        horizontal = {
+          preview_width = 0.55,
+        },
       },
     },
-    oldfiles = {
-      prompt_title = 'History',
+    git_commits = {
+      layout_config = {
+        horizontal = {
+          preview_width = 0.55,
+        },
+      },
     },
-    lsp_references = {
-      previewer = false,
-    },
+    reloader = dropdown(),
   },
   extensions = {
-    fzf = {
-      fuzzy = true, -- false will only do exact matching
-      override_generic_sorter = true, -- override the generic sorter
-      override_file_sorter = true, -- override the file sorter
-      case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
-      -- the default case_mode is "smart_case"
+    hop = {
+      sign_hl = { "Title" },
+      line_hl = { "CursorLine" },
+    },
+--    media_files = { find_cmd = "rg" },
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown({}),
+    },
+    frecency = {
+      show_unindexed = true,
+      ignore_patterns = { "*.git/*", "*/node_modules/*" },
+      workspaces = {
+--        ["nvim"] = "/home/lalitmee/.config/nvim/plugged",
+        ["dotf"] = "~/dotfiles",
+--        ["work"] = "/home/lalitmee/Desktop/koinearth",
+--        ["git"] = "/home/lalitmee/Desktop/Github",
+--        ["conf"] = "/home/lalitmee/.config",
+--        ["data"] = "/home/lalitmee/.local/share",
+      },
+    },
+    project = {
+      base_dirs = {
+        { "~/", max_depth = 7 },
+      },
+      hidden_files = true,
     },
   },
-}
-
-require('telescope').load_extension('fzf')
--- require('telescope').load_extension('media_files')
-require('telescope').load_extension('ultisnips')
-require('telescope').load_extension('coc')
-require('telescope').load_extension('git_worktree')
-
-keymap('n', '<leader>f', [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
-keymap('n', '<leader>F', [[<cmd>lua require('telescope.builtin').find_files({ no_ignore = true, prompt_title = 'All Files' })<CR>]]) -- luacheck: no max line length
--- keymap('n', '<leader>r', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]])
-keymap('n', '<leader>b', [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
-keymap('n', '<leader>r', [[<cmd>lua require('telescope').extensions.live_grep_raw.live_grep_raw()<CR>]])
-keymap('n', '<leader>h', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]])
--- keymap('n', '<leader>m', [[<cmd>lua require('telescope').extensions.media_files.media_files()<CR>]])
+})
+-- }}}
+----------------------------------------------------------------------

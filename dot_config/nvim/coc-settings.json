@@ -7,7 +7,7 @@
   "explorer.file.reveal.auto": false,
   "explorer.icon.enableNerdfont": true,
   "explorer.previewAction.onHover": false,
-  "explorer.keyMappings": {
+  "explorer.keyMappings.global": {
     "s": "open:vsplit",
     "mm": "rename",
     "mc": "copyFile",
