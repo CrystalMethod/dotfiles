@@ -47,6 +47,8 @@ local leader_key_maps = {
     ["r"] = { ":NvimTreeRefresh<CR>", "nvim-tree-refresh" },
     -- t.b.d
     ["s"] = { ":StartupTime<CR>", "run-startup-time" },
+    ["z"] = { ":ZenMode<CR>", "toggle-zen-mode" },
+    ["t"] = { ":Twilight<CR>", "toggle-twilight-mode" },
   },
   -- }}}
   ----------------------------------------------------------------------

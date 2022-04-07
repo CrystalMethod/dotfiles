@@ -110,6 +110,7 @@ packer.startup({
     use({ "dracula/vim" })
     use({ "folke/tokyonight.nvim" })
     use({ "rebelot/kanagawa.nvim" })
+    use({ "glepnir/zephyr-nvim" })
     -- }}}
     ----------------------------------------------------------------------------
 
@@ -271,6 +272,7 @@ packer.startup({
     ---------------------------------------------------------------------------
     -- NOTE: VERSION CONTROL STYSTEM {{{
     ---------------------------------------------------------------------------
+    use({ "tpope/vim-fugitive"})
     -- git worktree
     use({
       'ThePrimeagen/git-worktree.nvim',
@@ -338,7 +340,7 @@ packer.startup({
     ---------------------------------------------------------------------------
     use({
         "neovim/nvim-lspconfig",
-        -- ft = vim.g.enable_lspconfig_ft,
+        ft = vim.g.enable_lspconfig_ft,
         config = function()
             require("user.plugins.lsp")
         end,
@@ -368,7 +370,7 @@ packer.startup({
                     { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp", ft = { "lua" } },
                     { "hrsh7th/cmp-path", after = "nvim-cmp" },
                     { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
-                    { "tzachar/cmp-tabnine", run = "./install.sh", after = "nvim-cmp" },
+                    -- { "tzachar/cmp-tabnine", run = "./install.sh", after = "nvim-cmp" },
                 },
             },
  --       {
@@ -378,11 +380,11 @@ packer.startup({
  --         end,
  --         after = 'nvim-lspconfig',
  --       },
- --       {
- --         'onsails/diaglist.nvim',
- --         after = 'nvim-lspconfig',
- --         cmd = { 'DiagList', 'DiagListAll' },
- --       },
+            {
+                "onsails/diaglist.nvim",
+                after = "nvim-lspconfig",
+                cmd = { "DiagList", "DiagListAll" },
+            },
             { "williamboman/nvim-lsp-installer" },
             {
                 "folke/lua-dev.nvim",
@@ -392,7 +394,7 @@ packer.startup({
         },
     })
 
-    use {
+    use({
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
         config = function()
@@ -402,7 +404,15 @@ packer.startup({
                 -- refer to the configuration section below
             }
         end
-    }
+    })
+
+    use({
+        "tami5/lspsaga.nvim",
+        event = "BufRead",
+        config = function()
+            require("user.plugins.lsp.lspsaga")
+        end,
+    })
     -- }}}
     ---------------------------------------------------------------------------
     -- }}}
@@ -508,8 +518,8 @@ packer.startup({
       end
     })
 
-    -- 
-    use({ 'towolf/vim-helm' })
+    --
+    use({ "towolf/vim-helm" })
 
     use({
       'glepnir/dashboard-nvim',
