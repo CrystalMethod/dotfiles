@@ -309,6 +309,7 @@ packer.startup({
     use({
       'akinsho/nvim-bufferline.lua',
       event = { 'BufRead' },
+      branch = "main",
       config = function()
         require('user.plugins.bufferline')
       end,
@@ -495,6 +496,7 @@ packer.startup({
       config = function()
         require('user.plugins.toggleterm')
       end,
+      branch = "main",
       keys = { "n", [[<C-\>]] },
       cmd = {
         "ToggleTerm",
