@@ -26,6 +26,12 @@ cmp.setup({
         { name = "buffer" },
     }),
 
+    snippet = {
+        expand = function(args)
+            require("luasnip").lsp_expand(args.body)
+        end,
+    },
+
     formatting = {
         format = lspkind.cmp_format({
             with_text = true,
@@ -33,14 +39,13 @@ cmp.setup({
                 buffer = "[BUF]",
                 cmdline = "[CMD]",
                 cmp_git = "[GIT]",
-                cmp_tabnine = "[TBN]",
                 emoji = "[EMJ]",
+                luasnip = "[SNIP]",
                 nvim_lsp = "[LSP]",
                 nvim_lua = "[API]",
                 path = "[PATH]",
                 spell = "[SPELL]",
                 treesitter = "[TREE]",
-                luasnip = "[SNIP]",
             },
         }),
     },

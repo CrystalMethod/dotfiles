@@ -317,6 +317,25 @@ packer.startup({
     -- }}}
     ---------------------------------------------------------------------------
 
+    ------------------------------------------------------------------------
+    -- NOTE: Snippets {{{
+    ------------------------------------------------------------------------
+    -- -- snippets engine
+    use({
+        "L3MON4D3/LuaSnip",
+        after = { "nvim-cmp" },
+        requires = {
+            "rafamadriz/friendly-snippets",
+            "honza/vim-snippets",
+            "molleweide/LuaSnip-snippets.nvim",
+        },
+        config = function()
+            require("user.plugins.luasnip")
+        end,
+    })
+    -- }}}
+    ------------------------------------------------------------------------
+
     ---------------------------------------------------------------------------
     -- NOTE: Format {{{
     ---------------------------------------------------------------------------
@@ -559,8 +578,6 @@ packer.startup({
 --  use { 'tpope/vim-sleuth' } -- Indent autodetection with editorconfig support
 --  use { 'jessarcher/vim-heritage' } -- Automatically create parent dirs when saving
 --  use { 'nelstrom/vim-visual-star-search' }
---
---  use { 'towolf/vim-helm' }
 --
 --  use({
 --    "editorconfig/editorconfig-vim",
