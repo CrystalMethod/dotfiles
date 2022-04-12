@@ -69,12 +69,36 @@ local leader_key_maps = {
     ["l"] = { ":Telescope current_buffer_fuzzy_find<CR>", "search-buffer-lines" },
     ["L"] = { ":blast<CR>", "first-buffer" },
     ["m"] = { ":delm!<CR>", "delete-marks" },
-    -- t.b.d.
+    ["n"] = { ":BufferLineCycleNext<CR>", "next-buffer" },
+    ["N"] = { ":BufferLineMoveNext<CR>", "move-next-buffer" },
+    ["o"] = { ":BufferLineSorByDirectory<CR>", "order-by-direcoty" },
+    ["O"] = { ":BufferLineSortByExtension<CR>", "order-by-language" },
+    ["p"] = { ":BufferLineCyclePrev<CR>", "previous-buffer" },
+    ["P"] = { ":BufferLineMovePrev<CR>", "move-previous-buffer" },
     ["r"] = { ":e<CR>", "refresh-buffer" },
     ["R"] = { ":bufdo :e<CR>", "refresh-loaded-buffers" },
     ["s"] = { ":new<CR>", "new-empty-buffer" },
     ["u"] = { ":BDelete nameless<CR>", "delete-nameless-buffers" },
     ["w"] = { ":BDelete all<CR>", "close-buffer-and-window" },
+  },
+  -- }}}
+  ----------------------------------------------------------------------
+
+  ----------------------------------------------------------------------
+  -- NOTE: c is for telescope with lspconfig {{{
+  ----------------------------------------------------------------------
+  ["c"] = {
+    ["name"] = "+telescope-lsp",
+    ["a"] = { ":Telescope lsp_code_actions<CR>", "code-action" },
+    ["c"] = { ":Telescope lsp_ranger_code_actions<CR>", "range-code-action" },
+    ["d"] = { ":Telescope lsp_definitions<CR>", "definitions" },
+    ["e"] = { ":Telescope diagnostic<CR>", "diagnostic" },
+    ["f"] = { ":Telescope lsp_references<CR>", "references" },
+    ["i"] = { ":Telescope lsp_implementations<CR>", "implementations" },
+    ["s"] = { ":Telescope lsp_dynamic_workspace_symbols<CR>", "dynamic-workspace-symbols" },
+    ["t"] = { ":Telescope lsp_type_definitions<CR>", "type-definitions" },
+    ["w"] = { ":Telescope lsp_document_symbols<CR>", "document-symbols" },
+    ["W"] = { ":Telescope lsp_workspace_symbols<CR>", "workspace-symbols" },
   },
   -- }}}
   ----------------------------------------------------------------------
