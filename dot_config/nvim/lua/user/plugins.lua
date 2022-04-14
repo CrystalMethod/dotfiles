@@ -110,6 +110,7 @@ packer.startup({
     use({ "dracula/vim" })
     use({ "folke/tokyonight.nvim" })
     use({ "rebelot/kanagawa.nvim" })
+    use({ "ajmwagar/vim-deus" })
     --use({ "glepnir/zephyr-nvim" })
     -- }}}
     ----------------------------------------------------------------------------
