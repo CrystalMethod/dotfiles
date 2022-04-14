@@ -1,4 +1,7 @@
-local cmp = require("cmp")
+local cmp_status_ok, cmp = pcall(require, "cmp")
+if not cmp_status_ok then
+    return
+end
 local lspkind = require("lspkind")
 
 -- Don't show the dumb matching stuff.
