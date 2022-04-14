@@ -49,7 +49,10 @@ cmp.setup({
             },
         }),
     },
-    documentation = { border = "rounded" },
+    window = {
+        documentation = "native",
+        -- documentation = { border = "rounded" },
+    },
     experimental = { native_menu = false, ghost_text = false },
 
 })
