@@ -19,5 +19,5 @@ vim.g.dashboard_custom_section = {
 }
 
 vim.g.dashboard_custom_footer = {
-    "If you don't know what you are doing with NeoVim, please stop using it!",
+    "It costs $0.00 to treat someone with respect.",
 }
