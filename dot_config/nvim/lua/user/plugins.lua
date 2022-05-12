@@ -126,6 +126,8 @@ return packer.startup(function(use)
 
   -- Misc
 
+  use "tpope/vim-projectionist"
+
   use "vim-test/vim-test"
   use {
     "rcarriga/vim-ultest",
