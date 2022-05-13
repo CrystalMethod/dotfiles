@@ -142,6 +142,8 @@ return packer.startup(function(use)
 
   use "mbbill/undotree"
 
+  use "norcalli/nvim-colorizer.lua"
+
   use "folke/todo-comments.nvim"
   use "folke/trouble.nvim"
   use "https://gitlab.com/code-stats/code-stats-vim"
