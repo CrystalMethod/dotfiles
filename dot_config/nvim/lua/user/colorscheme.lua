@@ -3,6 +3,7 @@ vim.g.gruvbox_material_palette = "original"
 vim.g.gruvbox_material_background = "hard"
 vim.g.gruvbox_material_transparent_background = 1
 vim.g.gruvbox_material_sign_column_background = "none"
+vim.g.gruvbox_material_show_eob = 0
 
 vim.cmd([[
     function! s:gruvbox_material_custom() abort
