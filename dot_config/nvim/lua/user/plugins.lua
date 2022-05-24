@@ -142,7 +142,14 @@ return packer.startup(function(use)
 
   use "mbbill/undotree"
 
-  use "norcalli/nvim-colorizer.lua"
+  use {
+    "norcalli/nvim-colorizer.lua",
+    cmd = "ColorizerToggle",
+    ft = {
+      "css",
+      "html"
+    },
+  }
 
   use "folke/todo-comments.nvim"
   use "folke/trouble.nvim"
