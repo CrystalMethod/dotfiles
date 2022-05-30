@@ -41,6 +41,7 @@ pacman
 pacman-contrib
 patch
 ripgrep
+shfmt
 sed
 skopeo
 sops
