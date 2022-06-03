@@ -90,6 +90,13 @@ M.on_attach = function(client, bufnr)
   end
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
+  -- disable and reset diagnostics for helm files
+  if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then
+    vim.diagnostic.disable(bufnr)
+    vim.defer_fn(function()
+      vim.diagnostic.reset(nil, bufnr)
+    end, 1000)
+  end
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
