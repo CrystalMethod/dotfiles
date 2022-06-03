@@ -62,7 +62,11 @@ lualine.setup({
   sections = {
     lualine_a = { "mode" },
     lualine_b = { "branch" },
-    lualine_c = { { "diagnostics", sources = { "nvim_diagnostic" } }, "filename", nvim_gps },
+    lualine_c = {
+      { "diagnostics", sources = { "nvim_diagnostic" } },
+      { "filename", path = 1, shorting_target = 40, symbols = { modified = "[]", readonly = "[]" }},
+      { nvim_gps, cond = gps.is_available }
+    },
     lualine_x = { diff, spaces, "encoding", fileformat, "filetype" },
     lualine_y = { "progress" },
     lualine_z = { "location"},
