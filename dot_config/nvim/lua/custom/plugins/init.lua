@@ -80,7 +80,7 @@ M.user = {
     end,
   },
 
-  ["folke/which-key.nvim"] = {
+  ['folke/which-key.nvim'] = {
     disable = false,
     config = function()
       require('plugins.configs.whichkey')
@@ -104,7 +104,7 @@ M.user = {
     end,
   },
 
-  ["tpope/vim-fugitive"] = {},
+  ['tpope/vim-fugitive'] = {},
 
   ['https://gitlab.com/code-stats/code-stats-vim'] = {}
 
