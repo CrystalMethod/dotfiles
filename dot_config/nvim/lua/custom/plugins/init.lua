@@ -43,6 +43,8 @@ M.user = {
     end,
   },
 
+  ['williamboman/mason-lspconfig.nvim'] = {},
+
   -- treesitter related plugins
   ['nvim-treesitter/playground'] = {
     after = 'nvim-treesitter',
