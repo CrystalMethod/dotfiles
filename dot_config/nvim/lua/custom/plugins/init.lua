@@ -106,7 +106,7 @@ M.user = {
 
   ['tpope/vim-fugitive'] = {},
 
-  ['https://gitlab.com/code-stats/code-stats-vim'] = {}
+  ['CrystalMethod/codestats.nvim'] = {},
 
 }
 

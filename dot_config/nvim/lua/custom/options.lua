@@ -42,6 +42,3 @@ vim.cmd('set rnu!') -- set relative line numbers by default
 -- treesitter based experimental folding
 vim.cmd('set foldmethod=expr')
 vim.cmd('set foldexpr=nvim_treesitter#foldexpr()')
-
-vim.g.codestats_api_key = 'SFMyNTY.UTNKNWMzUmhiRTFsZEdodlpBPT0jI01UVXlNakk9.v_cWcZn34kYwvFTv-4cxAmBR34_aOliWi0okMJ8pssU'
-vim.api.nvim_set_var('codestats_api_key', 'SFMyNTY.UTNKNWMzUmhiRTFsZEdodlpBPT0jI01UVXlNakk9.v_cWcZn34kYwvFTv-4cxAmBR34_aOliWi0okMJ8pssU')
