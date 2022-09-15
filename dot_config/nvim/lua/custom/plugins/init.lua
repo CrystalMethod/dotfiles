@@ -106,6 +106,8 @@ M.user = {
 
   ['tpope/vim-fugitive'] = {},
 
+  ['towolf/vim-helm'] = {},
+
   ['CrystalMethod/codestats.nvim'] = {},
 
 }
