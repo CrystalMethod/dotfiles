@@ -24,3 +24,18 @@
 [".config/tmux/tmux-statusline-gruvbox-dark.conf"]
     type = "file"
     url = "https://raw.githubusercontent.com/gseidler/tmux-statusline-gruvbox-dark/master/tmux-statusline-gruvbox-dark.conf"
+
+[".config/vale/proselint"]
+    type = "archive"
+    url = "https://github.com/errata-ai/proselint/releases/latest/download/proselint.zip"
+    stripComponents = 1
+
+[".config/vale/alex"]
+    type = "archive"
+    url = "https://github.com/errata-ai/alex/releases/latest/download/alex.zip"
+    stripComponents = 1
+
+[".config/vale/write-good"]
+    type = "archive"
+    url = "https://github.com/errata-ai/write-good/releases/latest/download/write-good.zip"
+    stripComponents = 1
