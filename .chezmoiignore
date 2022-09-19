@@ -1,17 +1,13 @@
 rules/
 install.sh
 scripts/
-Brewfile
+Brew*
 Pacfile
 Aurfile
-Brewfile.lock.json
 Makefile
 
-.bashrc
-.cache/
-.gitmux.conf
-.inputrc
-.ipython
-.mailcap
-.mailrc
-.pythonrc
+# ignore if not on macos
+{{- if ne .chezmoi.os "darwin" }}
+.config/skhd
+.config/yabai
+{{- end }}

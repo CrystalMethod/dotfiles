@@ -1,5 +1,6 @@
 #Taps
 tap "getantibody/tap"
+tap "koekeishiya/formulae"
 
 # brew install
 brew "asdf"
@@ -14,6 +15,8 @@ brew "helmfile"
 brew "isync"
 brew "kubie"
 brew "knqyf263/pet/pet"
+brew "koekeishiya/formulae/skhd", restart_service: true
+brew "koekeishiya/formulae/yabai", restart_service: true
 brew "libvirt"
 brew "lolcat"
 brew "neofetch"
