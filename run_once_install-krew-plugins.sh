@@ -7,8 +7,6 @@ if command -v kubectl krew >/dev/null 2>&1; then
     kubectl krew install kubesec-scan
     kubectl krew install images
     kubectl krew install df-pv
-    kubectl krew install ns
-    kubectl krew install ctx
     kubectl krew install konfig
     kubectl krew install sniff
     kubectl krew install tail
