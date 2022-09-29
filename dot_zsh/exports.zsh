@@ -22,7 +22,7 @@ else
 	source /usr/share/fzf/completion.zsh
 fi
 
-export PATH="$HOME/.bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.bin:$PATH"
 
 ### Plugins
 
