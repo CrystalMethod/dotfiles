@@ -3,7 +3,6 @@ tap "getantibody/tap"
 tap "koekeishiya/formulae"
 
 # brew install
-brew "asdf"
 brew "antibody"
 brew "bottom"
 brew "btop"
@@ -13,7 +12,6 @@ brew "gist"
 brew "glow"
 brew "helmfile"
 brew "isync"
-brew "knqyf263/pet/pet"
 brew "koekeishiya/formulae/skhd", restart_service: true
 brew "koekeishiya/formulae/yabai", restart_service: true
 brew "libvirt"
