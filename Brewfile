@@ -4,10 +4,8 @@ tap "koekeishiya/formulae"
 
 # brew install
 brew "antibody"
-brew "bottom"
 brew "btop"
 brew "drone-cli"
-brew "gh"
 brew "gist"
 brew "glow"
 brew "helmfile"

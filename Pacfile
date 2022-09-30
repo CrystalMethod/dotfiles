@@ -18,7 +18,6 @@ grep
 gzip
 helmfile
 httpie
-kubectl
 lazygit
 less
 libexif
@@ -41,8 +40,6 @@ ripgrep
 shfmt
 sed
 skopeo
-sops
-stern
 sudo
 tar
 the_silver_searcher
