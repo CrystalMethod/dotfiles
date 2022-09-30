@@ -4,6 +4,8 @@
 {{- $workconf = true -}}
 {{- end -}}
 
+{{- $wsl := or (env "WSL_DISTRO_NAME") (env "IS_WSL") | not | not -}}
+
 {{- $name := "Lars Martin" -}}
 {{- $email := "lars.martin@smb-tec.com" -}}
 {{- $gpg_keyid := "2D29A054A1A10BEC" -}}
@@ -18,6 +20,8 @@ diff:
   format: git
 
 data:
+  is_wsl: {{ $wsl }}
+
   email: {{ $email }}
   name: {{ $name }}
   gpg_keyid: {{ $gpg_keyid }}
