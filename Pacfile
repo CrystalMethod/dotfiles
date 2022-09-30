@@ -19,9 +19,7 @@ grep
 gzip
 helmfile
 httpie
-k9s
 kubectl
-kubie
 lazygit
 less
 libexif
@@ -33,7 +31,6 @@ man-db
 man-pages
 neofetch
 neomutt
-neovim
 nodejs-lts-fermium
 npm
 ntp
