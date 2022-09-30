@@ -5,6 +5,7 @@ tap "koekeishiya/formulae"
 # brew install
 brew "antibody"
 brew "btop"
+brew "docker"
 brew "drone-cli"
 brew "gist"
 brew "glow"
@@ -13,6 +14,7 @@ brew "isync"
 brew "koekeishiya/formulae/skhd", restart_service: true
 brew "koekeishiya/formulae/yabai", restart_service: true
 brew "libvirt"
+brew "lima"
 brew "lolcat"
 brew "neofetch"
 brew "neomutt"
@@ -22,7 +24,6 @@ brew "slides"
 brew "vifm"
 
 cask "alacritty"
-cask "amethyst"
 cask "bitwarden"
 cask "font-jetbrains-mono-nerd-font"
 cask "kitty"
