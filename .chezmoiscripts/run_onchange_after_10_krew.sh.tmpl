@@ -1,0 +1,23 @@
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin") -}}
+#!{{ lookPath "bash" }}
+
+set -eufo pipefail
+
+if [ ! $(command -v krew) ]; then
+  echo "krew not installed"
+  exit 1
+fi
+
+# This script will run whenever I added something to .config/krew/plugins
+# .config/krew/plugins hash: {{ include "private_dot_config/private_krew/plugins.tmpl" | sha256sum }}
+echo "installing kubectl plugins"
+
+FILENAME="{{ .chezmoi.homeDir }}/.config/krew/plugins"
+PLUGINS=$(cat $FILENAME)
+for PLUGIN in $PLUGINS
+do
+  krew install "$PLUGIN"
+done
+
+{{ end -}}
+
