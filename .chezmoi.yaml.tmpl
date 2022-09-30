@@ -12,6 +12,11 @@
 
 sourceDir: {{ .chezmoi.sourceDir }}
 
+diff:
+  exclude:
+    - scripts
+  format: git
+
 data:
   email: {{ $email }}
   name: {{ $name }}
