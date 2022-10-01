@@ -161,6 +161,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
+  { "CrystalMethod/codestats.nvim" },
   { "ellisonleao/gruvbox.nvim" },
   { "folke/tokyonight.nvim" },
   {
