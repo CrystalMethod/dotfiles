@@ -22,6 +22,19 @@ M.config = function()
       event = "BufRead",
     },
     {
+      "folke/trouble.nvim",
+      config = function()
+        require("trouble").setup {
+          auto_open = true,
+          auto_close = true,
+          padding = false,
+          height = 10,
+          use_diagnostic_signs = true,
+        }
+      end,
+      cmd = "Trouble",
+    },
+    {
       "RishabhRD/nvim-cheat.sh",
       requires = "RishabhRD/popfix",
       config = function()
@@ -59,10 +72,6 @@ M.config = function()
       end,
       disable = not lvim.builtin.dressing.active,
       event = "BufWinEnter",
-    },
-    {
-      "folke/trouble.nvim",
-      cmd = "TroubleToggle"
     },
     { "CrystalMethod/codestats.nvim" },
   }
