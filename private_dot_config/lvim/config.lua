@@ -45,6 +45,8 @@ if lvim.builtin.cursorline.active then
   lvim.lsp.document_highlight = false
 end
 
+require("user.builtin").config()
+
 -- Additional Plugins
 require("user.plugins").config()
 
