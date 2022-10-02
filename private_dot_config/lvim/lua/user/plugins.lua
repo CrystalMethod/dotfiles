@@ -43,6 +43,7 @@ M.config = function()
       "folke/trouble.nvim",
       cmd = "TroubleToggle"
     },
+    { "CrystalMethod/codestats.nvim" },
   }
 
 end
