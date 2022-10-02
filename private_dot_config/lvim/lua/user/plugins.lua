@@ -53,6 +53,14 @@ M.config = function()
       disable = not lvim.builtin.editorconfig.active,
     },
     {
+      "stevearc/dressing.nvim",
+      config = function()
+        require("user.dress").config()
+      end,
+      disable = not lvim.builtin.dressing.active,
+      event = "BufWinEnter",
+    },
+    {
       "folke/trouble.nvim",
       cmd = "TroubleToggle"
     },
