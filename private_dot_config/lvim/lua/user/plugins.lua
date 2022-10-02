@@ -5,6 +5,7 @@ M.config = function()
   lvim.plugins = {
     -- Themes
     { "ellisonleao/gruvbox.nvim" },
+    { "folke/tokyonight.nvim" },
     {
       "ray-x/lsp_signature.nvim",
       config = function()
