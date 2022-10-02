@@ -22,6 +22,9 @@ M.config = function()
       disable = not lvim.builtin.harpoon.active,
     },
     {
+      "nvim-telescope/telescope-live-grep-args.nvim",
+    },
+    {
       "folke/trouble.nvim",
       cmd = "TroubleToggle"
     },
