@@ -10,6 +10,7 @@ require("user.neovim").config()
 lvim.builtin.lua_dev = { active = true } -- change this to enable/disable folke/lua_dev
 lvim.builtin.cheat = { active = false } -- enable/disable cheat.sh ilvim.builtin.cheat = { active = false } -- enable/disable cheat.sh integrationntegration
 lvim.builtin.harpoon = { active = true } -- use the harpoon plugin
+lvim.builtin.cursorline = { active = false } -- use a bit fancier cursorline
 lvim.builtin.motion_provider = "hop" -- change this to use different motion providers ( hop or lightspeed )
 lvim.builtin.editorconfig = { active = true } -- enable/disable editorconfig
 lvim.builtin.dressing = { active = false } -- enable to override vim.ui.input and vim.ui.select with telescope
@@ -39,6 +40,10 @@ lvim.builtin.treesitter.ensure_installed = {
 }
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
+
+if lvim.builtin.cursorline.active then
+  lvim.lsp.document_highlight = false
+end
 
 -- Additional Plugins
 require("user.plugins").config()

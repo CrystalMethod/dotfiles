@@ -71,6 +71,12 @@ M.config = function()
     { "nvim-telescope/telescope-live-grep-args.nvim" },
     { "mtdl9/vim-log-highlighting", ft = { "text", "log" },
     {
+      "yamatsum/nvim-cursorline",
+      opt = true,
+      event = "BufWinEnter",
+      disable = not lvim.builtin.cursorline.active,
+    },
+    {
       "j-hui/fidget.nvim",
       config = function()
         require("user.fidget_spinner").config()
