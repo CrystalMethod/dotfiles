@@ -14,6 +14,14 @@ M.config = function()
       event = { "BufRead", "BufNew" },
     },
     {
+      "folke/todo-comments.nvim",
+      requires = "nvim-lua/plenary.nvim",
+      config = function()
+        require("user.todo_comments").config()
+      end,
+      event = "BufRead",
+    },
+    {
       "RishabhRD/nvim-cheat.sh",
       requires = "RishabhRD/popfix",
       config = function()
