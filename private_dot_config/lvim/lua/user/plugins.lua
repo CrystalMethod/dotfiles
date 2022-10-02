@@ -35,6 +35,21 @@ M.config = function()
       cmd = "Trouble",
     },
     {
+      "ggandor/lightspeed.nvim",
+      config = function()
+        require("user.lightspeed").config()
+      end,
+      disable = lvim.builtin.motion_provider ~= "lightspeed",
+    },
+    {
+      "phaazon/hop.nvim",
+      event = "BufRead",
+      config = function()
+        require("user.hop").config()
+      end,
+      disable = lvim.builtin.motion_provider ~= "hop",
+    },
+    {
       "RishabhRD/nvim-cheat.sh",
       requires = "RishabhRD/popfix",
       config = function()
