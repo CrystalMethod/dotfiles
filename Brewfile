@@ -6,10 +6,8 @@ tap "koekeishiya/formulae"
 brew "antibody"
 brew "btop"
 brew "docker"
-brew "drone-cli"
 brew "gist"
 brew "glow"
-brew "helmfile"
 brew "isync"
 brew "koekeishiya/formulae/skhd", restart_service: true
 brew "koekeishiya/formulae/yabai", restart_service: true
