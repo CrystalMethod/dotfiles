@@ -10,6 +10,7 @@ require("user.neovim").config()
 lvim.builtin.lua_dev = { active = true } -- change this to enable/disable folke/lua_dev
 lvim.builtin.cheat = { active = false } -- enable/disable cheat.sh ilvim.builtin.cheat = { active = false } -- enable/disable cheat.sh integrationntegration
 lvim.builtin.harpoon = { active = true } -- use the harpoon plugin
+lvim.builtin.editorconfig = { active = true } -- enable/disable editorconfig
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
