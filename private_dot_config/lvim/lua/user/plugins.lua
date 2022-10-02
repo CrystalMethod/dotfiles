@@ -25,6 +25,12 @@ M.config = function()
       "nvim-telescope/telescope-live-grep-args.nvim",
     },
     {
+      "j-hui/fidget.nvim",
+      config = function()
+        require("user.fidget_spinner").config()
+      end,
+    },
+    {
       "folke/trouble.nvim",
       cmd = "TroubleToggle"
     },
