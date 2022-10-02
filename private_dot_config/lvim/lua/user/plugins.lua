@@ -69,6 +69,7 @@ M.config = function()
       disable = not lvim.builtin.harpoon.active,
     },
     { "nvim-telescope/telescope-live-grep-args.nvim" },
+    { "mtdl9/vim-log-highlighting", ft = { "text", "log" },
     {
       "j-hui/fidget.nvim",
       config = function()
