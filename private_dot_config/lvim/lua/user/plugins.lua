@@ -40,6 +40,11 @@ M.config = function()
       end,
     },
     {
+      "editorconfig/editorconfig-vim",
+      event = "BufRead",
+      disable = not lvim.builtin.editorconfig.active,
+    },
+    {
       "folke/trouble.nvim",
       cmd = "TroubleToggle"
     },
