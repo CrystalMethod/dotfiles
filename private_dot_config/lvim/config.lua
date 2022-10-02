@@ -8,6 +8,7 @@ require("user.neovim").config()
 
 -- Customization
 lvim.builtin.lua_dev = { active = true } -- change this to enable/disable folke/lua_dev
+lvim.builtin.harpoon = { active = true } -- use the harpoon plugin
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
