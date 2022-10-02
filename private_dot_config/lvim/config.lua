@@ -8,6 +8,7 @@ require("user.neovim").config()
 
 -- Customization
 lvim.builtin.lua_dev = { active = true } -- change this to enable/disable folke/lua_dev
+lvim.builtin.cheat = { active = false } -- enable/disable cheat.sh ilvim.builtin.cheat = { active = false } -- enable/disable cheat.sh integrationntegration
 lvim.builtin.harpoon = { active = true } -- use the harpoon plugin
 
 -- TODO: User Config for predefined plugins
@@ -38,3 +39,6 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 require("user.plugins").config()
+
+-- Additional keybindings
+require("user.keybindings").config()

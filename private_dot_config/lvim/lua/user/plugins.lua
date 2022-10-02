@@ -14,6 +14,17 @@ M.config = function()
       event = { "BufRead", "BufNew" },
     },
     {
+      "RishabhRD/nvim-cheat.sh",
+      requires = "RishabhRD/popfix",
+      config = function()
+        vim.g.cheat_default_window_layout = "vertical_split"
+      end,
+      opt = true,
+      cmd = { "Cheat", "CheatWithoutComments", "CheatList", "CheatListWithoutComments" },
+      keys = "<leader>?",
+      disable = not lvim.builtin.cheat.active,
+    },
+    {
       "ThePrimeagen/harpoon",
       requires = {
         { "nvim-lua/plenary.nvim" },
@@ -21,9 +32,7 @@ M.config = function()
       },
       disable = not lvim.builtin.harpoon.active,
     },
-    {
-      "nvim-telescope/telescope-live-grep-args.nvim",
-    },
+    { "nvim-telescope/telescope-live-grep-args.nvim" },
     {
       "j-hui/fidget.nvim",
       config = function()
