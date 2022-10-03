@@ -1,4 +1,3 @@
-alacritty
 bind
 binutils
 bitwarden-cli
@@ -10,15 +9,12 @@ diff-so-fancy
 diffutils
 exa
 fd
-gist
 git
 glibc
 go-yq
 grep
 gzip
-helmfile
 httpie
-lazygit
 less
 libexif
 libgit2

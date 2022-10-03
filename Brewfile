@@ -6,8 +6,6 @@ tap "koekeishiya/formulae"
 brew "antibody"
 brew "btop"
 brew "docker"
-brew "gist"
-brew "glow"
 brew "isync"
 brew "koekeishiya/formulae/skhd", restart_service: true
 brew "koekeishiya/formulae/yabai", restart_service: true
