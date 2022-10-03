@@ -4,7 +4,6 @@ tap "koekeishiya/formulae"
 
 # brew install
 brew "antibody"
-brew "btop"
 brew "docker"
 brew "isync"
 brew "koekeishiya/formulae/skhd", restart_service: true
