@@ -1,41 +1,27 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 #!/usr/bin/env zsh
 
 if [[ "$ZPROF" = true ]]; then
-        zmodload zsh/zprof
-fi
-
-eval "$(direnv hook zsh)"
-
-source $HOME/.zsh/exports.zsh
-
-if [ -f "$HOME/.zsh_plugins.sh" ]; then
-        source $HOME/.zsh_plugins.sh
-else
-        echo "Bundling zsh plugins..."
-        antibody bundle <$HOME/.zsh/plugins.txt >$HOME/.zsh_plugins.sh
-        source $HOME/.zsh_plugins.sh
+  zmodload zsh/zprof
 fi
 
 source $HOME/.zsh/init.zsh
+source $HOME/.zsh/exports.zsh
 source $HOME/.zsh/history.zsh
 source $HOME/.zsh/stack.zsh
 source $HOME/.zsh/aliases.zsh
 source $HOME/.zsh/sdkman.zsh
-source $HOME/.zsh/nvm.zsh
 
-# base16 theme
-base16_gruvbox-dark-hard
+if [ -f "$HOME/.zsh_plugins.sh" ]; then
+  source $HOME/.zsh_plugins.sh
+else
+  echo "Bundling zsh plugins..."
+  antibody bundle <$HOME/.zsh/plugins.txt >$HOME/.zsh_plugins.sh
+  source $HOME/.zsh_plugins.sh
+fi
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-(( ! ${+functions[p10k]} )) || p10k finalize
+eval "$(direnv hook zsh)"
 
 # Load fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+eval "$(starship init zsh)"

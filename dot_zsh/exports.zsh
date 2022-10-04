@@ -14,8 +14,6 @@ if [[ ${OSTYPE} == darwin* ]]; then
 	# fzf
 	source /usr/local/opt/fzf/shell/key-bindings.zsh
 	source /usr/local/opt/fzf/shell/completion.zsh
-	#asdf
-	source /usr/local/opt/asdf/libexec/asdf.sh
 else
 	# fzf
 	source /usr/share/fzf/key-bindings.zsh

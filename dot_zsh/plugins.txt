@@ -1,32 +1,12 @@
-# Base
 mafredri/zsh-async
-
-# Colors
-chriskempson/base16-shell
-
-# Completions
 zsh-users/zsh-completions path:src kind:fpath
-
-# Helpers
 thetic/extract
 hcgraf/zsh-sudo
-
-# Git
 wfxr/forgit
-
-# Automatic
-zsh-users/zsh-autosuggestions
 # Tarrasch/zsh-autoenv
-
 docker/cli path:contrib/completion/zsh kind:fpath
 skywind3000/z.lua
-
-# Theme
-romkatv/powerlevel10k
-
-# Misc
 https://gitlab.com/code-stats/code-stats-zsh.git
-
 dbz/kube-aliases
-
+zsh-users/zsh-autosuggestions
 zdharma/fast-syntax-highlighting
