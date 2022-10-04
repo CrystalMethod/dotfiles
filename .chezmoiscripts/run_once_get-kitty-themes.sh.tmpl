@@ -1,5 +1,5 @@
-{{- if not .is_wsl }}
-#!/usr/bin/env sh
+{{- if not .is_wsl -}}
+#!{{ lookPath "bash" }}
 
 # Script to pull kitty themes. Originally, I was using
 # `.chezmoiexternal.toml`[0] to pull the repo with the themes, but this adds
@@ -24,4 +24,4 @@ if command -v git >/dev/null 2>&1; then
         echo "Repository already exist" && exit
     fi
 fi
-{{- end }}
+{{ end -}}
