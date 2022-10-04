@@ -1,10 +1,35 @@
+{{- $is_linux := false -}}
+{{- $is_mac := false -}}
+{{- $is_unix := false -}}
+{{- $is_windows := false -}}
+{{- $is_apple_silicon := false -}}
+
+{{- if eq .chezmoi.os "linux" -}}
+{{-   $is_linux = true -}}
+{{- end -}}
+
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $is_mac = true -}}
+{{-   if eq .chezmoi.arch "arm64" -}}
+{{-     $is_apple_silicon = true -}}
+{{-   end -}}
+{{- end -}}
+
+{{- if or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin") -}}
+{{-   $is_unix = true -}}
+{{- end -}}
+
+{{- if eq .chezmoi.os "windows" -}}
+{{-   $is_windows = true -}}
+{{- end -}}
+
 {{- $workconf := false -}}
 
 {{- if (env "WORKCONF") -}}
 {{- $workconf = true -}}
 {{- end -}}
 
-{{- $wsl := or (env "WSL_DISTRO_NAME") (env "IS_WSL") | not | not -}}
+{{- $is_wsl := or (env "WSL_DISTRO_NAME") (env "IS_WSL") | not | not -}}
 
 {{- $name := "Lars Martin" -}}
 {{- $email := "lars.martin@smb-tec.com" -}}
@@ -20,7 +45,12 @@ diff:
   format: git
 
 data:
-  is_wsl: {{ $wsl }}
+  is_apple_silicon: {{ $is_apple_silicon }}
+  is_linux: {{ $is_linux }}
+  is_mac: {{ $is_mac }}
+  is_unix: {{ $is_unix }}
+  is_windows: {{ $is_windows }}
+  is_wsl: {{ $is_wsl }}
 
   email: {{ $email }}
   name: {{ $name }}
