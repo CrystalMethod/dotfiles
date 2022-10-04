@@ -1,0 +1,115 @@
+###############################################################################
+# Gruvbox (Dark)
+###############################################################################
+red: &red "#cc241d"
+orange: &orange "#d65d0e"
+yellow: &yellow "#d79921"
+green: &green "#98971a"
+cyan: &cyan "#689d6a"
+blue: &blue "#458588"
+purple: &purple "#b16286"
+magenta: &magenta "#b16286"
+
+foreground: &foreground "#ebdbb2"
+background: &background "#282828"
+current_line: &current_line "#928374"
+selection: &selection "#928374"
+comment: &comment "#458588"
+###############################################################################
+
+###############################################################################
+# Solarized (Dark)
+###############################################################################
+# red: &red "#dc322f"
+# orange: &orange "#cb4b16"
+# yellow: &yellow "#b58900"
+# green: &green "#859900"
+# cyan: &cyan "#2aa198"
+# blue: &blue "#268bd2"
+# purple: &purple "#6c71c4"
+# magenta: &magenta "#d33682"
+#
+# foreground: &foreground "#7f7f7f"
+# background: &background "#1c1c1c"
+# current_line: &current_line "#839496"
+# selection: &selection "#839496"
+# comment: &comment "#6c71c4"
+###############################################################################
+
+k9s:
+  body:
+    fgColor: *foreground
+    bgColor: *background
+    logoColor: *blue
+  info:
+    fgColor: *blue
+    sectionColor: *foreground
+  dialog:
+    fgColor: *foreground
+    bgColor: *background
+    buttonFgColor: *foreground
+    buttonBgColor: *magenta
+    buttonFocusFgColor: white
+    buttonFocusBgColor: *cyan
+    labelFgColor: *orange
+    fieldFgColor: *foreground
+  frame:
+    border:
+      fgColor: *selection
+      focusColor: *current_line
+    menu:
+      fgColor: *foreground
+      keyColor: *blue
+      numKeyColor: *blue
+    crumbs:
+      fgColor: *background
+      bgColor: *foreground
+      activeColor: *blue
+    status:
+      newColor: *cyan
+      modifyColor: *blue
+      addColor: *green
+      errorColor: *red
+      highlightcolor: *orange
+      killColor: *comment
+      completedColor: *comment
+    title:
+      fgColor: *foreground
+      bgColor: *background
+      highlightColor: *orange
+      counterColor: *blue
+      filterColor: *foreground
+  views:
+    charts:
+      bgColor: default
+      defaultDialColors:
+        - *blue
+        - *red
+      defaultChartColors:
+        - *blue
+        - *red
+    table:
+      fgColor: *foreground
+      bgColor: *background
+      cursorFgColor: *background
+      cursorBgColor: *current_line
+      header:
+        fgColor: *foreground
+        bgColor: *background
+        sorterColor: *cyan
+    xray:
+      fgColor: *foreground
+      bgColor: *background
+      cursorColor: *current_line
+      graphicColor: *blue
+      showIcons: false
+    yaml:
+      keyColor: *green
+      colonColor: *blue
+      valueColor: *foreground
+    logs:
+      fgColor: *foreground
+      bgColor: *background
+      indicator:
+        fgColor: *foreground
+        bgColor: *selection
