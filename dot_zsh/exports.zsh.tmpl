@@ -1,4 +1,9 @@
 # general exports
+
+{{- if .is_mac }}
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+{{ end -}}
 export EDITOR=$HOME/.bin/editor
 export VISUAL=$HOME/.bin/editor
 export LC_ALL=en_US.UTF-8
