@@ -6,11 +6,6 @@
     refreshPeriod = "168h"
     stripComponents = 1
 
-[".config/base16-shell"]
-    type = "archive"
-    url = "https://github.com/chriskempson/base16-shell/archive/refs/heads/master.zip"
-    stripComponents = 1
-
 [".config/vifm/colors/gruvbox.vifm"]
     type = "file"
     url = "https://raw.githubusercontent.com/vifm/vifm-colors/master/gruvbox.vifm"
