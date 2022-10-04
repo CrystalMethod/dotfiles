@@ -1,3 +1,4 @@
+{{- if not .is_wsl }}
 #!/usr/bin/env sh
 
 # Script to pull kitty themes. Originally, I was using
@@ -23,3 +24,4 @@ if command -v git >/dev/null 2>&1; then
         echo "Repository already exist" && exit
     fi
 fi
+{{- end }}
