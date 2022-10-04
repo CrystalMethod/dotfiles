@@ -5,7 +5,6 @@ M.config = function()
   lvim.plugins = {
     -- Themes
     { "ellisonleao/gruvbox.nvim" },
-    { "folke/tokyonight.nvim" },
     {
       "ray-x/lsp_signature.nvim",
       config = function()
@@ -48,6 +47,20 @@ M.config = function()
         require("user.hop").config()
       end,
       disable = lvim.builtin.motion_provider ~= "hop",
+    },
+    {
+      "folke/twilight.nvim",
+      config = function()
+        require("user.twilight").config()
+      end,
+      event = "BufRead",
+    },
+    {
+      "folke/zen-mode.nvim",
+      config = function()
+        require("user.zen").config()
+      end,
+      event = "BufRead",
     },
     {
       "RishabhRD/nvim-cheat.sh",
