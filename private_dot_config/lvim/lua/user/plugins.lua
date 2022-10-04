@@ -109,6 +109,7 @@ M.config = function()
       event = "BufWinEnter",
     },
     { "CrystalMethod/codestats.nvim" },
+    { "towolf/vim-helm" },
   }
 
 end
