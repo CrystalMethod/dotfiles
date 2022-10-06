@@ -56,6 +56,13 @@ M.config = function()
       event = "BufRead",
     },
     {
+      "norcalli/nvim-colorizer.lua",
+      config = function()
+        require("user.colorizer").config()
+      end,
+      event = "BufReadPre",
+    },
+    {
       "folke/zen-mode.nvim",
       config = function()
         require("user.zen").config()
