@@ -11,7 +11,7 @@ lvim.builtin.lua_dev = { active = true } -- change this to enable/disable folke/
 lvim.builtin.cheat = { active = false } -- enable/disable cheat.sh ilvim.builtin.cheat = { active = false } -- enable/disable cheat.sh integrationntegration
 lvim.builtin.harpoon = { active = true } -- use the harpoon plugin
 lvim.builtin.cursorline = { active = false } -- use a bit fancier cursorline
-lvim.builtin.motion_provider = "hop" -- change this to use different motion providers ( hop or lightspeed )
+lvim.builtin.motion_provider = "lightspeed" -- change this to use different motion providers ( hop or lightspeed )
 lvim.builtin.editorconfig = { active = true } -- enable/disable editorconfig
 lvim.builtin.dressing = { active = false } -- enable to override vim.ui.input and vim.ui.select with telescope
 
