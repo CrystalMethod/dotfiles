@@ -14,7 +14,7 @@
 # White: #fbf1c7
 
 format = '''
-┌ $time$username$hostname$directory$fill $status$cmd_duration$all
+┌ $username$hostname$directory$fill $status$cmd_duration $git_branch$git_status$kubernetes
 └ $character '''
 right_format = ''
 scan_timeout = 30
@@ -35,7 +35,7 @@ error_symbol = '[\$](red)'
 vicmd_symbol = '[N](green)'
 
 [cmd_duration]
-format = '[$duration]($style) '
+format = '[$duration]($style)'
 style = 'bright-black'
 
 [directory]
@@ -95,7 +95,7 @@ show_always = true
 ################################################################################
 
 [git_branch]
-format = '([$symbol$branch]($style) )'
+format = '([$symbol $branch]($style) ) '
 symbol = ''                            # 
 style = 'blue'
 
@@ -198,7 +198,9 @@ disabled = true
 disabled = true
 
 [kubernetes]
-disabled = true
+disabled = false
+format = '[$symbol $context( \($namespace\))]($style)'
+style = 'cyan'
 
 [lua]
 disabled = true
