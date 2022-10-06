@@ -44,6 +44,9 @@ end
 
 require("user.builtin").config()
 
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
+  "jdtls",
+})
 -- Additional Plugins
 require("user.plugins").config()
 

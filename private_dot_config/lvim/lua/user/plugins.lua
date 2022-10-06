@@ -62,6 +62,7 @@ M.config = function()
       end,
       event = "BufReadPre",
     },
+    { "mfussenegger/nvim-jdtls", ft = "java" },
     {
       "folke/zen-mode.nvim",
       config = function()
