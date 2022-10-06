@@ -1,9 +1,9 @@
 # general exports
 
-{{- if .is_mac }}
 export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
-{{ end -}}
+
 export EDITOR=$HOME/.bin/editor
 export VISUAL=$HOME/.bin/editor
 export LC_ALL=en_US.UTF-8
@@ -50,7 +50,6 @@ fi
 
 # Krew path
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-
 
 # FZF
 export FZF_DEFAULT_OPTS='--height 30% --layout=reverse --border'
