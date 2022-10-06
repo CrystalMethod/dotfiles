@@ -116,7 +116,7 @@ deleted_style = 'red'
 disabled = true
 
 [git_status]
-format = '[$all_status$ahead_behind]($style)'
+format = '[$all_status$ahead_behind]($style) '
 style = "bold fg:#BA8A00"
 conflicted = "🏳 $count "
 #up_to_date = " $count "
