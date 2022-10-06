@@ -117,7 +117,7 @@ disabled = true
 
 [git_status]
 format = '[$all_status$ahead_behind]($style)'
-style = "bold fg:#003642 bg:#BA8A00"
+style = "bold fg:#BA8A00"
 conflicted = "🏳 $count "
 #up_to_date = " $count "
 untracked = " $count "
@@ -126,7 +126,7 @@ diverged = "⇕⇡${ahead_count}⇣${behind_count}"
 behind = "⇣${count}"
 stashed = " $count "
 modified = " $count "
-staged = '[++\($count\)](bold fg:#003642 bg:#BA8A00)'
+staged = '[++\($count\)](bold fg:#BA8A00)'
 renamed = "襁 $count "
 deleted = " $count "
 
