@@ -14,7 +14,7 @@ set mark-symlinked-directories On
 set show-all-if-ambiguous On
 set show-all-if-unmodified On
 set visible-stats On
-set show-mode-in-prompt on
+set show-mode-in-prompt off
 set echo-control-characters off
 
 "\C-p":history-search-backward
