@@ -5,7 +5,10 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/projects/clients/czm ~/ -mindepth 1 -maxdepth 1 -type d | fzf)
+    tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" > /tmp/tmux-sessionizer
+    find ~/repos/personal ~/repos/work -mindepth 1 -maxdepth 2 -type d >> /tmp/tmux-sessionizer
+    find $DOTFILES -maxdepth 0 -type d >> /tmp/tmux-sessionizer
+    selected=$(cat /tmp/tmux-sessionizer | fzf)
 fi
 
 if [[ -z $selected ]]; then
