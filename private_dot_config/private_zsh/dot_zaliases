@@ -1,0 +1,13 @@
+#
+# aliases
+#
+
+if (( $+commands[lvim] )); then
+    alias vim="lvim"
+    alias nvim="lvim"
+fi
+
+if (( $+commands[bat] )); then
+    alias cat="bat"
+fi
+

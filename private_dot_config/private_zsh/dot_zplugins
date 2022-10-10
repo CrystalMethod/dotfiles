@@ -1,0 +1,53 @@
+# zephyr plugins
+mattmc3/zephyr path:plugins/autosuggestions
+mattmc3/zephyr path:plugins/directory
+mattmc3/zephyr path:plugins/environment
+mattmc3/zephyr path:plugins/editor
+mattmc3/zephyr path:plugins/history
+mattmc3/zephyr path:plugins/utility
+mattmc3/zephyr path:plugins/zfunctions
+
+# local plugins
+$ZDOTDIR/plugins/fancy-ctrl-z
+$ZDOTDIR/plugins/aqua
+# $ZDOTDIR/plugins/bitwarden
+# $ZDOTDIR/plugins/chezmoi
+# $ZDOTDIR/plugins/golang
+# $ZDOTDIR/plugins/groovy
+# $ZDOTDIR/plugins/homebrew
+# $ZDOTDIR/plugins/lpass
+# $ZDOTDIR/plugins/python
+# $ZDOTDIR/plugins/string
+
+# prompt
+#sindresorhus/pure     kind:fpath
+#romkatv/powerlevel10k kind:fpath
+# $ZDOTDIR/plugins/prompt
+
+# general plugins
+zshzoo/macos
+zshzoo/magic-enter
+mattmc3/zsh-safe-rm
+olets/zsh-window-title
+mattmc3/zsh-xdg-basedir
+mattmc3/zman
+
+thetic/extract
+
+# deferred plugins
+olets/zsh-abbr kind:defer
+$ZDOTDIR/plugins/abbreviations
+zdharma-continuum/fast-syntax-highlighting kind:defer
+
+# z
+rupa/z
+$ZDOTDIR/plugins/z
+
+### ^^^ ###
+
+# completions
+mattmc3/zephyr path:plugins/completions
+
+https://gitlab.com/code-stats/code-stats-zsh.git
+wfxr/forgit
+joshskidmore/zsh-fzf-history-search
