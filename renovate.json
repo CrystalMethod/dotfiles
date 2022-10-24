@@ -1,0 +1,24 @@
+{
+  "extends": [
+    "github>aquaproj/aqua-renovate-config#1.2.6"
+  ],
+  "labels": [
+    "dependencies"
+  ],
+  "reviewers": [
+    "CrystalMethod"
+  ],
+  "platformAutomerge": true,
+  "dependencyDashboard": true,
+  "patch": {
+    "automerge": true
+  },
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "aquaproj/aqua-registry"
+      ],
+      "automerge": true
+    }
+  ]
+}
