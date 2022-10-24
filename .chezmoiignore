@@ -9,7 +9,11 @@ Makefile
 
 {{- if .is_wsl }}
 .config/kitty
-{{- end}}
+{{- end }}
+
+{{- if .is_mac }}
+.config/lazygit/config.yml
+{{- end }}
 
 # ignore if not on macos
 {{- if ne .chezmoi.os "darwin" }}
