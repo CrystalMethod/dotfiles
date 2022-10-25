@@ -2,13 +2,10 @@ bind
 binutils
 bitwarden-cli
 bzip2
-chezmoi
 coreutils
 ctags
 diff-so-fancy
 diffutils
-exa
-fd
 git
 glibc
 go-yq
@@ -23,7 +20,6 @@ libxss
 lolcat
 man-db
 man-pages
-neofetch
 neomutt
 nodejs-lts-fermium
 npm

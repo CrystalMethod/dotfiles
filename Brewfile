@@ -3,7 +3,6 @@ tap "getantibody/tap"
 tap "koekeishiya/formulae"
 
 # brew install
-brew "antibody"
 brew "docker"
 brew "isync"
 brew "koekeishiya/formulae/skhd", restart_service: true
@@ -11,7 +10,6 @@ brew "koekeishiya/formulae/yabai", restart_service: true
 brew "libvirt"
 brew "lima"
 brew "lolcat"
-brew "neofetch"
 brew "neomutt"
 brew "qemu"
 brew "skopeo"
