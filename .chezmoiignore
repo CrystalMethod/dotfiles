@@ -2,6 +2,7 @@
 rules/
 install.sh
 scripts/
+README.md
 Brew*
 Pacfile
 Aurfile
