@@ -28,7 +28,6 @@ orc
 pacman
 pacman-contrib
 patch
-ripgrep
 sed
 skopeo
 sudo
