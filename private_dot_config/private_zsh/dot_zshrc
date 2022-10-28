@@ -38,5 +38,11 @@ eval "$(direnv hook zsh)"
 
 eval "$(starship init zsh)"
 
+if [ -z "$SDKMAN_DIR" ]; then
+  SDKMAN_DIR="$HOME/.sdkman"
+fi
+
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+
 # done profiling
 [[ ${ZPROFRC:-0} -eq 0 ]] || { unset ZPROFRC && zprof }
