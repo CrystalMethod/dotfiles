@@ -38,6 +38,10 @@ eval "$(direnv hook zsh)"
 
 eval "$(starship init zsh)"
 
+if [[ "$OSTYPE" == darwin* ]]; then
+  export PATH=$PATH:$HOME/.rd/bin
+fi
+
 if [ -z "$SDKMAN_DIR" ]; then
   SDKMAN_DIR="$HOME/.sdkman"
 fi
