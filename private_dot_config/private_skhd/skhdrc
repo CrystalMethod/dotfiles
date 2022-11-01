@@ -47,7 +47,9 @@ shift + cmd - d : yabai -m window --resize right:-20:0
 
 # mirror tree y-axis
 alt - y : yabai -m space --mirror y-axis
-## mirror tree x-axis
+# mirror tree x-axis
 alt - x : yabai -m space --mirror x-axis
+# rotate tree
+alt - r : yabai -m space --rotate 90
 
 ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
