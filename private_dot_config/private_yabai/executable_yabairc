@@ -69,25 +69,17 @@ yabai -m space 9 --label "9"
 # space 3: browser
 
 # application excpetions
-yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
+yabai -m rule --add app="^Activity Monitor$" manage=off
+yabai -m rule --add app="^Alfred Preferences$" manage=off
+yabai -m rule --add app="^App Store$" manage=off
+yabai -m rule --add app="^Bartender 4$" manage=off
+yabai -m rule --add app="^Bitwarden$" manage=off
+yabai -m rule --add app="^Calendar$" manage=off
+yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^JetBrains Toolbox$" manage=off border=off
+yabai -m rule --add app="^Messages$" manage=off
+yabai -m rule --add app="^Rancher Desktop$" manage=off
 
-
-yabai -m rule --add label="Alfred Preferences" app="^Alfred Preferences$" manage=off
-yabai -m rule --add label="Bartender Preferences" app="^Bartender 4$" manage=off
-yabai -m rule --add label="Bitwarden" app="^Bitwarden$" manage=off
-
-# yabai -m rule --add app="^(AppCleaner|Garmin Express|GPG Keychain|Logi Options|Toggl Track|WeChat|YoudaoDict|Cisco Webex Meetings)$" manage=off
-# yabai -m rule --add app="^(System Preferences|System Information|法语助手|EuDic)$" manage=off
-
-# dialog boxes
-# yabai -m rule --add app="^Firefox$" title="^Opening .*$" manage=off
-
-# buildin status bar (does not work)
-# yabai -m config status_bar on
-
-# status bar
-# SPACEBAR_HEIGHT=$(spacebar -m config height)
-# SPACEBAR_HEIGHT=0
-# yabai -m config external_bar all:30:0
+yabai -m rule --add app="^Spotify$" space=8
 
 echo "yabai configuration loaded.."
