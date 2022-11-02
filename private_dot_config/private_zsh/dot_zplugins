@@ -10,6 +10,7 @@ mattmc3/zephyr path:plugins/zfunctions
 # local plugins
 $ZDOTDIR/plugins/fancy-ctrl-z
 $ZDOTDIR/plugins/aqua
+$ZDOTDIR/plugins/fnm
 # $ZDOTDIR/plugins/bitwarden
 # $ZDOTDIR/plugins/chezmoi
 # $ZDOTDIR/plugins/golang
