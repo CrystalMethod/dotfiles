@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 if ! (( $+commands[chezmoi] ))
 then
     print "zsh chezmoi plugin: chezmoi not found. Please install chezmoi before using this plugin." >&2

@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 ZSH_BITWARDEN_DELIMITER='\t'
 
 function .bw_ensure_unlocked() {
