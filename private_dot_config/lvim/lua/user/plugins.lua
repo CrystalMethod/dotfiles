@@ -116,6 +116,11 @@ M.config = function()
       disable = not lvim.builtin.dressing.active,
       event = "BufWinEnter",
     },
+    { "NTBBloodbath/rest.nvim",
+      requires = {
+        "nvim-lua/plenary.nvim"
+      },
+    },
     { "CrystalMethod/codestats.nvim" },
     { "towolf/vim-helm" },
   }
