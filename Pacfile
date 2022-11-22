@@ -22,6 +22,7 @@ neomutt
 nodejs-lts-fermium
 npm
 ntp
+openssl-1.1
 orc
 pacman
 pacman-contrib
