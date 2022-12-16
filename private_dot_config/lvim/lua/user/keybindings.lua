@@ -97,6 +97,12 @@ M.config = function()
   end
 
   lvim.builtin.which_key.mappings["z"] = { "<cmd>ZenMode<cr>", " Zen" }
+
+  lvim.builtin.which_key.mappings["o"] = {
+    name= "+SOPS",
+    d = { "<CMD>!sops -d -i %<CR>", "Decrypt file" },
+    e = { "<CMD>!sops -e -i %<CR>", "Encrypt file" },
+  }
 end
 
 return M
