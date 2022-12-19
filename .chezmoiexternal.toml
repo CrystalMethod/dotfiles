@@ -1,3 +1,12 @@
+[".local/share/lunarvim/lvim"]
+    type = "git-repo"
+    url = "https://github.com/LunarVim/LunarVim.git"
+
+        [".local/share/lunarvim/lvim".clone]
+        args = [ "--depth", "1" ]
+
+        [".local/share/lunarvim/lvim".pull]
+        args = [ "--dry-run" ]
 
 [".config/vifm/colors/gruvbox.vifm"]
     type = "file"
