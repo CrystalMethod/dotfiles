@@ -1,30 +1,63 @@
 #!/usr/bin/env bash
 
-# kudos to ThePrimeagen (https://github.com/ThePrimeagen)
+set -e
 
-if [[ $# -eq 1 ]]; then
-    selected=$1
+usage() {
+    cat <<EOF
+"Usage: $0 [options] [command]"
+    -a:                 show all repos
+    -w:                 show only work repos
+    -p:                 show only personal repos
+    -c:                 select dotfiles config repo
+    -s /path/to/repo:   select specific repo
+    -h:                 show this help
+EOF
+    exit 1
+}
+
+while getopts "awpcs:h" opt; do
+    case $opt in
+        a)
+            find "$REPOS"/personal "$REPOS"/work -mindepth 1 -maxdepth 2 -type d > /tmp/tmux-sessionizer
+            find "$DOTFILES" -maxdepth 0 -type d >> /tmp/tmux-sessionizer
+            selected=$(cat /tmp/tmux-sessionizer | fzf)
+            ;;
+        w)
+            selected=$(find "$REPOS"/work -mindepth 1 -maxdepth 2 -type d | fzf)
+            ;;
+        p)
+            selected=$(find "$REPOS"/personal -mindepth 1 -maxdepth 2 -type d | fzf)
+            ;;
+        c)
+            selected=$DOTFILES
+            ;;
+        s)
+            selected=$OPTARG
+            ;;
+        h|*)
+            usage
+            ;;
+    esac
+done
+
+if [ "$OPTIND" -eq 1 ]; then
+    usage
+fi
+
+if [[ -e "$selected/.tmuxinator.yml" ]]; then
+    /home/linuxbrew/.linuxbrew/bin/tmuxinator start -p "$selected/.tmuxinator.yml"
 else
-    tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" > /tmp/tmux-sessionizer
-    find ~/repos/personal ~/repos/work -mindepth 1 -maxdepth 2 -type d >> /tmp/tmux-sessionizer
-    find $DOTFILES -maxdepth 0 -type d >> /tmp/tmux-sessionizer
-    selected=$(cat /tmp/tmux-sessionizer | fzf)
+    selected_name=$(basename "$selected" | tr . _)
+    tmux_running=$(pgrep tmux)
+
+    if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+        tmux new-session -s "$selected_name" -c "$selected"
+        exit 0
+    fi
+
+    if ! tmux has-session -t="$selected_name" 2> /dev/null; then
+        tmux new-session -ds "$selected_name" -c "$selected"
+    fi
+
+    tmux switch-client -t "$selected_name" || tmux attach-session -t $selected_name
 fi
-
-if [[ -z $selected ]]; then
-    exit 0
-fi
-
-selected_name=$(basename "$selected" | tr . _)
-tmux_running=$(pgrep tmux)
-
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $selected_name -c $selected
-    exit 0
-fi
-
-if ! tmux has-session -t=$selected_name 2> /dev/null; then
-    tmux new-session -ds $selected_name -c $selected
-fi
-
-tmux switch-client -t $selected_name || tmux attach-session -t $selected_name

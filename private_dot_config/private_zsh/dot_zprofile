@@ -4,6 +4,8 @@
 
 export DOTFILES=${XDG_DATA_DIR:-$HOME/.local/share}/chezmoi
 
+export REPOS=${HOME}/repos
+
 if [[ "$OSTYPE" == darwin* ]]; then
   export XDG_DESKTOP_DIR=${XDG_DESKTOP_DIR:-$HOME/Desktop}
   export XDG_DOCUMENTS_DIR=${XDG_DOCUMENTS_DIR:-$HOME/Documents}
