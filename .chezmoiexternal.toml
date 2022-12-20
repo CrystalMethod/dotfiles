@@ -39,6 +39,5 @@
 
 [".local/bin/tea"]
     type = "file"
-    # 0.9.0
-    url = "https://gitea.com/attachments/c15910d0-736c-4dc3-846b-6440ad2048fd"
+    url = "https://dl.gitea.io/tea/0.9.0/tea-0.9.0-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
     executable = true
