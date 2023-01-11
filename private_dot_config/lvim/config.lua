@@ -1,7 +1,7 @@
 -- Neovim
 lvim.log.level = "warn"
 lvim.format_on_save = false
-lvim.colorscheme = "gruvbox"
+lvim.colorscheme = "catppuccin-frappe"
 lvim.leader = "space"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 require("user.neovim").config()
