@@ -14,7 +14,7 @@ M.config = function()
     },
     {
       "folke/todo-comments.nvim",
-      requires = "nvim-lua/plenary.nvim",
+      dependencies = "nvim-lua/plenary.nvim",
       config = function()
         require("user.todo_comments").config()
       end,
@@ -38,7 +38,7 @@ M.config = function()
       config = function()
         require("user.lightspeed").config()
       end,
-      disable = lvim.builtin.motion_provider ~= "lightspeed",
+      enabled = lvim.builtin.motion_provider == "lightspeed",
     },
     {
       "phaazon/hop.nvim",
@@ -46,7 +46,7 @@ M.config = function()
       config = function()
         require("user.hop").config()
       end,
-      disable = lvim.builtin.motion_provider ~= "hop",
+      enabled = lvim.builtin.motion_provider == "hop",
     },
     {
       "folke/twilight.nvim",
@@ -72,30 +72,30 @@ M.config = function()
     },
     {
       "RishabhRD/nvim-cheat.sh",
-      requires = "RishabhRD/popfix",
+      dependencies = "RishabhRD/popfix",
       config = function()
         vim.g.cheat_default_window_layout = "vertical_split"
       end,
-      opt = true,
+      lazy = true,
       cmd = { "Cheat", "CheatWithoutComments", "CheatList", "CheatListWithoutComments" },
       keys = "<leader>?",
-      disable = not lvim.builtin.cheat.active,
+      enabled = lvim.builtin.cheat.active,
     },
     {
       "ThePrimeagen/harpoon",
-      requires = {
+      dependencies = {
         { "nvim-lua/plenary.nvim" },
         { "nvim-lua/popup.nvim" },
       },
-      disable = not lvim.builtin.harpoon.active,
+      enabled = lvim.builtin.harpoon.active,
     },
     { "nvim-telescope/telescope-live-grep-args.nvim" },
     { "mtdl9/vim-log-highlighting", ft = { "text", "log" }, },
     {
       "yamatsum/nvim-cursorline",
-      opt = true,
+      lazy = true,
       event = "BufWinEnter",
-      disable = not lvim.builtin.cursorline.active,
+      enabled = lvim.builtin.cursorline.active,
     },
     {
       "j-hui/fidget.nvim",
@@ -106,18 +106,18 @@ M.config = function()
     {
       "editorconfig/editorconfig-vim",
       event = "BufRead",
-      disable = not lvim.builtin.editorconfig.active,
+      enabled = lvim.builtin.editorconfig.active,
     },
     {
       "stevearc/dressing.nvim",
       config = function()
         require("user.dress").config()
       end,
-      disable = not lvim.builtin.dressing.active,
+      enabled = lvim.builtin.dressing.active,
       event = "BufWinEnter",
     },
     { "NTBBloodbath/rest.nvim",
-      requires = {
+      dependencies = {
         "nvim-lua/plenary.nvim"
       },
     },
