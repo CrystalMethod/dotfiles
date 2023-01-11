@@ -8,6 +8,13 @@
         [".local/share/lunarvim/lvim".pull]
         args = [ "--dry-run" ]
 
+[".config/bat/themes"]
+  type = "archive"
+  url = "https://github.com/catppuccin/bat/archive/refs/heads/main.zip"
+  stripComponents = 1
+  refreshPeriod = "168h"
+  include = ["*/*.tmTheme"]
+
 [".config/vifm/colors/gruvbox.vifm"]
     type = "file"
     url = "https://raw.githubusercontent.com/vifm/vifm-colors/master/gruvbox.vifm"
