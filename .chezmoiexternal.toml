@@ -25,10 +25,6 @@
     exact = true
     stripComponents = 1
 
-[".config/tmux/tmux-statusline-gruvbox-dark.conf"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/gseidler/tmux-statusline-gruvbox-dark/master/tmux-statusline-gruvbox-dark.conf"
-
 [".config/vale/proselint"]
     type = "archive"
     url = "https://github.com/errata-ai/proselint/releases/latest/download/proselint.zip"
