@@ -14,7 +14,6 @@ brew "neomutt"
 brew "qemu"
 brew "skopeo"
 brew "slides"
-brew "vifm"
 
 cask "alacritty"
 cask "bitwarden"
