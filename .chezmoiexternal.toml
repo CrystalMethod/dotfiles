@@ -15,10 +15,6 @@
   refreshPeriod = "168h"
   include = ["*/*.tmTheme"]
 
-[".config/vifm/colors/gruvbox.vifm"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/vifm/vifm-colors/master/gruvbox.vifm"
-
 [".config/tmux/plugins/tpm"]
     type = "archive"
     url = "https://github.com/tmux-plugins/tpm/archive/master.tar.gz"
