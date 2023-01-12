@@ -6,21 +6,11 @@ end
 
 -- Determine OS
 local home = os.getenv "HOME"
-local launcher_path = vim.fn.glob(
-  home .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"
-)
-if #launcher_path == 0 then
-  launcher_path = vim.fn.glob(
-    home .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar",
-    1,
-    1
-  )[1]
-end
 if vim.fn.has "mac" == 1 then
-  WORKSPACE_PATH = home .. "/workspace/"
+  WORKSPACE_PATH = home .. "/.cache/jdtls/workspace/"
   CONFIG = "mac"
 elseif vim.fn.has "unix" == 1 then
-  WORKSPACE_PATH = home .. "/workspace/"
+  WORKSPACE_PATH = home .. "/.cache/jdtls/workspace/"
   CONFIG = "linux"
 else
   print "Unsupported system"
@@ -33,42 +23,30 @@ if root_dir == "" then
   return
 end
 
-local extendedClientCapabilities = jdtls.extendedClientCapabilities
-extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
-
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
 local workspace_dir = WORKSPACE_PATH .. project_name
 
--- NOTE: for debugging
--- git clone git@github.com:microsoft/java-debug.git ~/.config/lvim/.java-debug
--- cd ~/.config/lvim/.java-debug/
--- ./mvnw clean install
--- local bundles = vim.fn.glob(
---   home .. "/.config/lvim/.java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"
--- )
--- if #bundles == 0 then
---   bundles = vim.fn.glob(
---     home .. "/.config/lvim/.java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar",
---     1,
---     1
---   )
--- end
+local bundles = {
+  vim.fn.glob(home .. "/.config/lvim/.java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"),
+}
 
--- NOTE: for testing
--- git clone git@github.com:microsoft/vscode-java-test.git ~/.config/lvim/.vscode-java-test
--- cd ~/.config/lvim/vscode-java-test
--- npm install
--- npm run build-plugin
--- local extra_bundles = vim.split(vim.fn.glob(home .. "/.config/lvim/.vscode-java-test/server/*.jar"), "\n")
--- if #extra_bundles == 0 then
---   extra_bundles = vim.fn.glob(home .. "/.config/lvim/.vscode-java-test/server/*.jar", 1, 1)
--- end
--- vim.list_extend(bundles, extra_bundles)
+vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.config/lvim/.vscode-java-test/server/*.jar"), "\n"))
+
+local on_attach = function(client)
+  if client.name == "jdt.ls" then
+    require("jdtls").setup_dap({ hotcodereplace = "auto" })
+    require("jdtls.dap").setup_dap_main_class_configs()
+    vim.lsp.codelens.refresh()
+  end
+end
+
+local extendedClientCapabilities = jdtls.extendedClientCapabilities;
+extendedClientCapabilities.resolveAdditionalTextEditsSupport = true;
 
 local config = {
   cmd = {
-    "java",
+    home .. "/.sdkman/candidates/java/19.0.1-tem/bin/java",
     "-Declipse.application=org.eclipse.jdt.ls.core.id1",
     "-Dosgi.bundles.defaultStartLevel=4",
     "-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -82,25 +60,18 @@ local config = {
     "--add-opens",
     "java.base/java.lang=ALL-UNNAMED",
     "-jar",
-    launcher_path,
+    vim.fn.glob(home .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
     "-configuration",
     home .. "/.local/share/nvim/mason/packages/jdtls/config_" .. CONFIG,
     "-data",
     workspace_dir,
   },
 
-  on_attach = require("lvim.lsp").common_on_attach,
-  on_init = require("lvim.lsp").common_on_init,
-  on_exit = require("lvim.lsp").common_on_exit,
-  capabilities = require("lvim.lsp").common_capabilities(),
+  on_attach = on_attach,
+
   root_dir = root_dir,
   settings = {
     java = {
-      -- jdt = {
-      --   ls = {
-      --     vmargs = "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m"
-      --   }
-      -- },
       eclipse = {
         downloadSources = true,
       },
@@ -161,6 +132,7 @@ local config = {
   },
   init_options = {
     bundles = bundles,
+    extendedClientCapabilities = extendedClientCapabilities;
   },
 }
 
