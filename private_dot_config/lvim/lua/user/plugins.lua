@@ -6,6 +6,9 @@ M.config = function()
     -- Themes
     "ellisonleao/gruvbox.nvim",
     { "catppuccin/nvim", name = "catppuccin" },
+
+    -- LSP
+    { "mfussenegger/nvim-jdtls", ft = "java" },
     {
       "ray-x/lsp_signature.nvim",
       config = function()
@@ -63,7 +66,6 @@ M.config = function()
       end,
       event = "BufReadPre",
     },
-    { "mfussenegger/nvim-jdtls", ft = "java" },
     {
       "folke/zen-mode.nvim",
       config = function()
