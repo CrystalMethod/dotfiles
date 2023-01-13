@@ -16,6 +16,13 @@ M.config = function()
       end,
       event = { "BufRead", "BufNew" },
     },
+    "nvim-treesitter/playground",
+    {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      lazy = true,
+      event = "BufReadPre",
+      dependencies = "nvim-treesitter",
+    },
     {
       "folke/todo-comments.nvim",
       dependencies = "nvim-lua/plenary.nvim",
@@ -28,13 +35,14 @@ M.config = function()
       "folke/trouble.nvim",
       config = function()
         require("trouble").setup {
-          auto_open = true,
+          auto_open = false,
           auto_close = true,
           padding = false,
           height = 10,
           use_diagnostic_signs = true,
         }
       end,
+      event = "VeryLazy",
       cmd = "Trouble",
     },
     {
