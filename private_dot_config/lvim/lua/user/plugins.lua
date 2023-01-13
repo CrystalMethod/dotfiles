@@ -4,7 +4,7 @@ M.config = function()
 
   lvim.plugins = {
     -- Themes
-    { "ellisonleao/gruvbox.nvim" },
+    "ellisonleao/gruvbox.nvim",
     { "catppuccin/nvim", name = "catppuccin" },
     {
       "ray-x/lsp_signature.nvim",
@@ -118,9 +118,7 @@ M.config = function()
       event = "BufWinEnter",
     },
     { "NTBBloodbath/rest.nvim",
-      dependencies = {
-        "nvim-lua/plenary.nvim"
-      },
+      dependencies = "nvim-lua/plenary.nvim"
     },
     { "CrystalMethod/codestats.nvim" },
     { "towolf/vim-helm" },
