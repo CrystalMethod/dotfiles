@@ -76,10 +76,11 @@ M.config = function()
     },
     {
       "folke/zen-mode.nvim",
+      lazy = true,
+      cmd = "ZenMode",
       config = function()
         require("user.zen").config()
       end,
-      event = "BufRead",
     },
     {
       "RishabhRD/nvim-cheat.sh",
@@ -127,11 +128,22 @@ M.config = function()
       enabled = lvim.builtin.dressing.active,
       event = "BufWinEnter",
     },
-    { "NTBBloodbath/rest.nvim",
-      dependencies = "nvim-lua/plenary.nvim"
+    {
+      "NTBBloodbath/rest.nvim",
+      lazy = true,
+      ft = { "http" },
+      dependencies = "nvim-lua/plenary.nvim",
     },
-    { "CrystalMethod/codestats.nvim" },
-    { "towolf/vim-helm" },
+    {
+      "CrystalMethod/codestats.nvim",
+      lazy = true,
+      event = "BufWinEnter",
+    },
+    {
+      "towolf/vim-helm",
+      lazy = true,
+      ft = { "helm" },
+    },
   }
 
 end
