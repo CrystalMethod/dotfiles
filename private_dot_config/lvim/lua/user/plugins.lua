@@ -144,6 +144,11 @@ M.config = function()
       lazy = true,
       ft = { "helm" },
     },
+    {
+      "mbbill/undotree",
+      lazy = true,
+      cmd = "UndotreeToggle",
+    },
   }
 
 end
