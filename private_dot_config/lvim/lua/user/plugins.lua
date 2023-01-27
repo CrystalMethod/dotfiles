@@ -4,9 +4,19 @@ M.config = function()
 
   lvim.plugins = {
     -- Themes
-    "ellisonleao/gruvbox.nvim",
-    { "catppuccin/nvim", name = "catppuccin" },
-
+    {
+      "ellisonleao/gruvbox.nvim",
+      lazy = true,
+    },
+    {
+      "catppuccin/nvim",
+      lazy = false,
+      priority = 1000,
+      name = "catppuccin",
+      config = function()
+        vim.cmd([[colorscheme catppuccin-frappe]])
+      end
+    },
     -- LSP
     { "mfussenegger/nvim-jdtls", ft = "java" },
     {
@@ -16,7 +26,10 @@ M.config = function()
       end,
       event = { "BufRead", "BufNew" },
     },
-    "nvim-treesitter/playground",
+    {
+      "nvim-treesitter/playground",
+      cmd = "TSPlaygroundToggle"
+    },
     {
       "nvim-treesitter/nvim-treesitter-textobjects",
       lazy = true,
