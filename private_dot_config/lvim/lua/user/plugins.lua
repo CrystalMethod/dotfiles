@@ -162,6 +162,7 @@ M.config = function()
       lazy = true,
       cmd = "UndotreeToggle",
     },
+    { "tpope/vim-fugitive", event = "VeryLazy" },
   }
 
 end
