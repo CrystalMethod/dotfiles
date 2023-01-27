@@ -22,7 +22,7 @@ M.config = function()
     {
       "ray-x/lsp_signature.nvim",
       config = function()
-        require("user/lsp_signature").config()
+        require("user.lsp_signature").config()
       end,
       event = { "BufRead", "BufNew" },
     },
