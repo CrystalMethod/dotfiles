@@ -14,7 +14,7 @@ M.config = function()
       priority = 1000,
       name = "catppuccin",
       config = function()
-        vim.cmd([[colorscheme catppuccin-frappe]])
+        lvim.colorscheme="catppuccin-frappe"
       end
     },
     -- LSP
