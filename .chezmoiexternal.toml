@@ -40,3 +40,8 @@
     type = "file"
     url = "https://dl.gitea.io/tea/0.9.0/tea-0.9.0-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
     executable = true
+
+[".config/k9s/skin.yml"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/catppuccin/k9s/main/dist/frappe.yml"
+    refreshPeriod = "168h"
