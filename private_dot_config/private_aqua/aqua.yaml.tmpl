@@ -4,6 +4,12 @@
 registries:
   - type: standard
     ref: v3.134.0 # renovate: depName=aquaproj/aqua-registry
+  - name: remote
+    type: github_content
+    repo_owner: CrystalMethod
+    repo_name: dotfiles
+    ref: main
+    path: registry.yaml
 
 packages:
 {{- if not (or .is_wsl .is_windows) }}
@@ -77,3 +83,5 @@ packages:
 - name: owenrumney/squealer@v1.1.1
 - name: hairyhenderson/gomplate@v3.11.3
 - name: orhun/git-cliff@v1.1.2
+- name: go-gitea/tea@0.9.2
+  registry: remote
