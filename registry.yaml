@@ -1,0 +1,8 @@
+packages:
+  - name: gitea/tea
+    type: http
+    url: https://dl.gitea.io/tea/{{.Version}}/tea-{{.Version}}-{{.OS}}-{{.Arch}}.{{.Format}}
+    format: xz
+    files:
+      - name: tea
+        src: tea-{{.Version}}-{{.OS}}-{{.Arch}}
