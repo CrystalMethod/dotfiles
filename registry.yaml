@@ -34,3 +34,5 @@ packages:
     supported_envs:
       - darwin
       - linux
+    files:
+      - name: dagger-cue
