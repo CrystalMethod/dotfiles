@@ -25,3 +25,12 @@ packages:
       pattern:
         checksum: ^(\b[A-Fa-f0-9]{64}\b)
         file: "^\\b[A-Fa-f0-9]{64}\\b\\s+(\\S+)$"
+  - name: dagger/dagger-cue
+    type: http
+    description: Dagger is a programmable deployment system
+    link: https://github.com/dagger/dagger
+    format: tar.gz
+    url: https://dl.dagger.io/dagger-cue/releases/{{trimV .Version}}/dagger-cue_{{.Version}}_{{.OS}}_{{.Arch}}.{{.Format}}
+    supported_envs:
+      - darwin
+      - linux
