@@ -13,7 +13,6 @@ brew "lolcat"
 brew "neomutt"
 brew "qemu"
 brew "skopeo"
-brew "slides"
 
 cask "alacritty"
 cask "bitwarden"
