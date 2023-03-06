@@ -48,5 +48,9 @@ fi
 
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+source <(konf-go shellwrapper zsh)
+source <(konf completion zsh)
+export KUBECONFIG=$(konf --silent set -)
+
 # done profiling
 [[ ${ZPROFRC:-0} -eq 0 ]] || { unset ZPROFRC && zprof }
