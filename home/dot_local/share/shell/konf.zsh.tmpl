@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+{{ $konf := lookPath (joinPath .chezmoi.homeDir ".local" "share" "aquaproj-aqua" "bin" "konf-go") -}}
+{{ if $konf -}}
+# konf-go setup
+source <(konf-go shellwrapper zsh)
+source <(konf completion zsh)
+export KUBECONFIG=$(konf --silent set -)
+{{- end }}

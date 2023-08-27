@@ -1,0 +1,61 @@
+{{- /* Checks if running interactively, which is not the case for GitHub Codespaces */ -}}
+{{- $interactive := stdinIsATTY                                                        -}}
+
+{{- $package_manager := ""                                                             -}}
+{{- if eq .chezmoi.os "linux"                                                          -}}
+{{-   if eq .chezmoi.osRelease.id "debian" "ubuntu"                                    -}}
+{{-     $package_manager := "apt"                                                      -}}
+{{-   else if .chezmoi.osRelease.id "alpine"                                           -}}
+{{-     $package_manager := "apk"                                                      -}}
+{{-   else if .chezmoi.osRelease.id "arch"                                             -}}
+{{-     $package_manager := "pacman"                                                   -}}
+{{-   end                                                                              -}}
+{{- end                                                                                -}}
+
+{{- $username := ""                                                                    -}}
+{{- if hasKey . "username"                                                             -}}
+{{-   $username = .username                                                            -}}
+{{- else                                                                               -}}
+{{-   $username = .chezmoi.username | printf "username [%s]" | promptString            -}}
+{{-   if eq $username ""                                                               -}}
+{{-     $username = .chezmoi.username                                                  -}}
+{{-   end                                                                              -}}
+{{- end                                                                                -}}
+
+{{- $email := ""                                                                       -}}
+{{- if hasKey . "email"                                                                -}}
+{{-   $email = .email                                                                  -}}
+{{- else                                                                               -}}
+{{-   $email = $username | printf "email [%s@smb-tec.com]" | promptString              -}}
+{{-   if eq $email ""                                                                  -}}
+{{-     $email = $username | printf "email [%s@smb-tec.com]" | promptString            -}}
+{{-   end                                                                              -}}
+{{- end                                                                                -}}
+
+{{- $fullname := ""                                                                    -}}
+{{- if hasKey . "fullname"                                                             -}}
+{{-   $fullname = .fullname                                                            -}}
+{{- else                                                                               -}}
+{{-   $fullname = expandenv "full name [$CHEZMOI_FULLNAME]" | printf | promptString    -}}
+{{-   if eq $fullname ""                                                               -}}
+{{-     $fullname = env "CHEZMOI_FULLNAME"                                             -}}
+{{-   end                                                                              -}}
+{{- end                                                                                -}}
+   
+diff:
+  exclude:
+    - scripts
+  format: git
+
+data:
+  username: {{ $username }}
+  email: {{ $email }}
+  fullname: {{ $fullname }}
+  package_manager: {{ $package_manager | quote }}
+  bitwarden:
+    codestats: bc387016-c599-436b-aa2d-dd242ae313fe
+    github: a0a82c51-d93b-4bce-98f4-744271ebcba1
+  package:
+    apt:
+      - package: build-essential
+

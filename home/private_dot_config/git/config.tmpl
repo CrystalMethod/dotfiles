@@ -1,0 +1,35 @@
+[core]
+  editor = nvim
+  excludesfile = ~/.config/git/ignore
+  pager = delta
+  whitespace = trailing-space,space-before-tab
+
+[delta]
+  navigate = true
+  side-by-side = true
+
+[user]
+  name = Lars Martin
+  email = lars.martin@smb-tec.com
+  signingkey = 1C2E503B01284025417AF1DF9A402B3201A859F0
+
+[commit]
+  gpgsign = true
+
+[gpg]
+  program = gpg
+
+[alias]
+  append = town append
+  hack = town hack
+  kill = town kill
+  new-pull-request = town new-pull-request
+  prepend = town prepend
+  prune-branches = town prune-branches
+  rename-branch = town rename-branch
+  repo = town repo
+  ship = town ship
+  sync = town sync
+
+[includeIf "gitdir:~/repos/work/czm/"]
+  path = ~/.config/git/config-zdi

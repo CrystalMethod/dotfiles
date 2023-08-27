@@ -1,0 +1,103 @@
+# Sheldon configuration file
+#
+# See https://rossmacarthur.github.io/sheldon/
+
+[templates]
+defer = "{% for file in files %}zsh-defer source {{ `\"{{ file }}\"` }}\n{% endfor %}"
+defer-more = "{% for file in files %}zsh-defer -t 0.5 source {{ `\"{{ file }}\"` }}\n{% endfor %}"
+
+# Completions
+
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+
+[plugins.docker-zsh-completion]
+github = "greymd/docker-zsh-completion"
+
+# Sourced
+
+[plugins.pure]
+github = "sindresorhus/pure"
+use = ["{async,pure}.zsh"]
+
+[plugins.env]
+local = "{{ .chezmoi.homeDir }}/.local/share/shell"
+use = ["**/env.zsh"]
+
+[plugins.path]
+local = "{{ .chezmoi.homeDir }}/.local/share/shell"
+use = ["**/path.zsh"]
+
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
+
+# Deferred
+
+[plugins.config]
+local = "{{ .chezmoi.homeDir }}/.local/share/shell"
+use = ["config.zsh"]
+apply = ["defer"]
+
+[plugins.zimfw-exa]
+github = "zimfw/exa"
+apply = ["defer"]
+
+[plugins.fancy-ctrl-z]
+github = "ohmyzsh/ohmyzsh"
+use = ["**/fancy-ctrl-z/*.plugin.zsh"]
+apply = ["defer"]
+
+[plugins.zsh-autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+use = ["{{- "{{ name }}.zsh" -}}"]
+apply = ["defer"]
+
+[plugins.zsh-syntax-highlighting]
+github = 'marcosmoura/fast-syntax-highlighting'
+apply = ["defer"]
+
+[plugins.compinit]
+local = "{{ .chezmoi.homeDir }}/.local/share/shell"
+apply = ["defer"]
+
+[plugins.aliases]
+local = "{{ .chezmoi.homeDir }}/.local/share/shell"
+apply = ["defer"]
+
+[plugins.zoxide]
+github = 'ajeetdsouza/zoxide'
+apply = ["defer"]
+
+[plugins.fzf-tab]
+github = "Aloxaf/fzf-tab"
+apply = ["defer"]
+
+[plugins.forgit]
+github = 'wfxr/forgit'
+apply = ["defer"]
+
+[plugins.direnv]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/direnv"
+apply = ["defer"]
+
+[plugins.fnm]
+local = "{{ .chezmoi.homeDir }}/.local/share/shell"
+apply = ["defer"]
+
+[plugins.sdkman]
+local = "{{ .chezmoi.homeDir }}/.local/share/shell"
+use = ["**/sdkman.zsh"]
+apply = ["defer"]
+
+[plugins.konf]
+local = "{{ .chezmoi.homeDir }}/.local/share/shell"
+apply = ["defer"]
+
+# Deferred more
+
+[plugins.zsh-fzf-history-search]
+github = "joshskidmore/zsh-fzf-history-search"
+apply = ["defer-more"]
+
+{{/* vim: set filetype=toml: */}}

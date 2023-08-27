@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# {{ template "scripts-library" }}
+
+# The following line is for ShellCheck to correctly identify the above include
+true || source ../.chezmoitemplates/scripts-library
+
+zsh_path="/bin/zsh"
+
+if ! getent passwd '{{ .chezmoi.username }}' | cut -d : -f 7- | grep -q "^${zsh_path}$"; then
+  log_task "Configuring ZSH as default shell"
+
+  c sudo usermod --shell "${zsh_path}" '{{ .chezmoi.username }}'
+fi

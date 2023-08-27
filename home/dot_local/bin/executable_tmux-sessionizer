@@ -1,0 +1,96 @@
+#!/usr/bin/env bash
+
+set -e
+
+__fzfcmd() {
+  [ -n "$TMUX_PANE" ] && { [ "${FZF_TMUX:-0}" != 0 ] || [ -n "$FZF_TMUX_OPTS" ]; } &&
+    echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} -- " || echo "fzf"
+}
+
+usage() {
+    cat <<EOF
+"Usage: $0 [options]"
+    -a:                 select from all repos in "$REPOS" and running TMUX sessions
+    -w:                 select from work repos in "$REPOS/work" and running TMUX sessions
+    -p:                 select from personal repos in "$REPOS/personal" and running TMUX sessions
+    -c:                 select dotfiles config repo $DOTFILES
+    -s /path/to/repo:   select specific repo
+    -h:                 show this help
+EOF
+    exit 1
+}
+
+while getopts "awpcs:h" opt; do
+    case $opt in
+        a)
+            selected=$( (tmux list-sessions -F "#{session_name}: #{session_windows} window(s)\
+#{?session_grouped, (group ,}#{session_group}#{?session_grouped,),}\
+#{?session_attached, (attached),}" 2>/dev/null; \
+find "$REPOS"/personal "$REPOS"/work -mindepth 1 -maxdepth 2 -type d; \
+find "$DOTFILES" -maxdepth 0 -type d) | $(__fzfcmd)) 
+            ;;
+        w)
+            selected=$( (tmux list-sessions -F "#{session_name}: #{session_windows} window(s)\
+#{?session_grouped, (group ,}#{session_group}#{?session_grouped,),}\
+#{?session_attached, (attached),}" 2>/dev/null; \
+find "$REPOS"/work -mindepth 1 -maxdepth 2 -type d;) | $(__fzfcmd))
+            ;;
+        p)
+            selected=$( (tmux list-sessions -F "#{session_name}: #{session_windows} window(s)\
+#{?session_grouped, (group ,}#{session_group}#{?session_grouped,),}\
+#{?session_attached, (attached),}" 2>/dev/null; \
+find "$REPOS"/personal -mindepth 1 -maxdepth 2 -type d;) | $(__fzfcmd))
+            ;;
+        c)
+            selected=$DOTFILES
+            ;;
+        s)
+            selected=$OPTARG
+            ;;
+        h|*)
+            usage
+            ;;
+    esac
+done
+
+if [ "$OPTIND" -eq 1 ]; then
+    usage
+fi
+
+if [[ $selected == *":"* ]]; then
+  session=$(echo $selected | awk '{print $1}')
+  session=${session//:/}
+elif [[ -e "$selected/.smug.yml" ]]; then
+  smug start -f $selected/.smug.yml
+  exit 0
+else
+  session=$(basename $selected | tr . _)
+  if ! tmux has-session -t=$session 2>/dev/null; then
+    tmux new-session -d -s $session  -c $selected
+  fi
+fi
+
+if [ -z "$TMUX" ]; then
+  tmux attach-session -t $session
+else
+  tmux switch-client -t $session
+fi
+
+
+# if [[ -e "$selected/.tmuxinator.yml" ]]; then
+#     /home/linuxbrew/.linuxbrew/bin/tmuxinator start -p "$selected/.tmuxinator.yml"
+# else
+#     selected_name=$(basename "$selected" | tr . _)
+#     tmux_running=$(pgrep tmux)
+
+#     if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+#         tmux new-session -s "$selected_name" -c "$selected"
+#         exit 0
+#     fi
+
+#     if ! tmux has-session -t="$selected_name" 2> /dev/null; then
+#         tmux new-session -ds "$selected_name" -c "$selected"
+#     fi
+
+#     tmux switch-client -t "$selected_name" || tmux attach-session -t "$selected_name"
+# fi
