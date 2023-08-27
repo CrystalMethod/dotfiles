@@ -1,0 +1,19 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base",
+    "github>aquaproj/aqua-renovate-config",
+    "github>aquaproj/aqua-renovate-config:installer-script(install-aqua\\.sh)",
+    "github>aquaproj/aqua-renovate-config:file(^aqua/.*\\.ya?ml$)"
+  ],
+  "baseBranches": [
+    "main",
+    "v2"
+  ],
+  "prHourlyLimit": 0,
+  "prConcurrentLimit": 0,
+  "branchConcurrentLimit": 0,
+  "enabledManagers": [
+    "regex"
+  ]
+}
