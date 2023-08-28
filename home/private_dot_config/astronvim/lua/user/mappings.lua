@@ -22,6 +22,11 @@ return {
     ["<leader>b"] = { name = "Buffers" },
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+    ["<leader>gj"] = { "<cmd>Gitsigns next_hunk<cr>", desc = "Next hunk" },
+    ["<leader>gk"] = { "<cmd>Gitsigns prev_hunk<cr>", desc = "Previous hunk" },
+    ["<leader>gr"] = { "<cmd>Gitsigns reset_hunk<cr>", desc = "Reset Git hunk" },
+    ["<leader>gR"] = { "<cmd>Gitsigns reset_buffer<cr>", desc = "Reset Git buffer" },
+    ["<leader>gh"] = false,
   },
   t = {
     -- setting a mapping to false will disable it
