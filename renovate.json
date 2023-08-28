@@ -2,17 +2,19 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base",
-    "github>aquaproj/aqua-renovate-config",
-    "github>aquaproj/aqua-renovate-config:installer-script(install-aqua\\.sh)",
-    "github>aquaproj/aqua-renovate-config:file(^aqua/.*\\.ya?ml$)"
+    ":automergePatch",
+    ":automergeMinor",
+    ":disableRateLimiting",
+    "github>aquaproj/aqua-renovate-config#1.8.0",
+    "github>aquaproj/aqua-renovate-config:file#1.8.0(home/private_dot_config/aqua/aqua\\.yaml\\.tmpl)"
   ],
   "baseBranches": [
     "v2"
   ],
+  "labels": [
+    "dependencies"
+  ],
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
-  "branchConcurrentLimit": 0,
-  "enabledManagers": [
-    "regex"
-  ]
+  "branchConcurrentLimit": 0
 }
