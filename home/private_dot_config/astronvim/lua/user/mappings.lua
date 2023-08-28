@@ -27,6 +27,11 @@ return {
     ["<leader>gr"] = { "<cmd>Gitsigns reset_hunk<cr>", desc = "Reset Git hunk" },
     ["<leader>gR"] = { "<cmd>Gitsigns reset_buffer<cr>", desc = "Reset Git buffer" },
     ["<leader>gh"] = false,
+
+    ["<leader>F"] = { name = "󰻿 Focus" },
+    ["<leader>Ft"] = { "<cmd>Twilight<cr>", desc = "Toggle Twilight" },
+    ["<leader>Fz"] = { "<cmd>ZenMode<cr>", desc = "Toogle Zen Mode" },
+    ["<leader>uT"] = false,
   },
   t = {
     -- setting a mapping to false will disable it

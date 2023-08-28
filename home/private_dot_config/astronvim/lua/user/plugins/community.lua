@@ -2,10 +2,12 @@ return {
 	"AstroNvim/astrocommunity",
 
 	{ import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
+	{ import = "astrocommunity.color.twilight-nvim" },
 	{ import = "astrocommunity.colorscheme.catppuccin" },
 	{ import = "astrocommunity.completion.copilot-lua-cmp" },
 	{ import = "astrocommunity.debugging.nvim-bqf" },
 	{ import = "astrocommunity.diagnostics.trouble-nvim" },
+	{ import = "astrocommunity.editing-support.zen-mode-nvim" },
 	{ import = "astrocommunity.git.blame-nvim" },
 	{ import = "astrocommunity.git.diffview-nvim" },
 	{ import = "astrocommunity.git.git-blame-nvim" },
