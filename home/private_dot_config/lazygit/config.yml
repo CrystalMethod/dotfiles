@@ -1,0 +1,68 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/lazygit.json
+#
+disableStartupPopups: true
+quitOnTopLevelReturn: true
+promptToReturnFromSubprocess: false
+notARepository: quit
+
+keybinding:
+  universal:
+    appendNewline: "<c-q>"
+
+git:
+  paging:
+    colorArg: always
+    pager: delta --features side-by-side --syntax-theme 'Catppuccin-frappe' --file-decoration-style=none --hunk-header-style=omit --paging=never
+  parseEmoji: true
+  diffContextSize: 4
+
+gui:
+  # showIcons: true
+  sidePanelWidth: 0.2
+
+customCommands:
+  - key: <c-y>
+    description: "synchonize current branch (git-town)"
+    command: LEFTHOOK=0 git fetch --force --prune --tags && LEFTHOOK=0 git sync
+    context: "global"
+    subprocess: true
+  - key: <c-f>
+    context: "global"
+    description: "create new feature branch (git-town)"
+    prompts:
+      - type: "menu"
+        title: "What kind of branch is it?"
+        options:
+          - name: "feature"
+            description: "A new feature"
+            value: "feature"
+          - name: "sandbox"
+            description: "A sandbox branch"
+            value: "sandbox"
+      - type: "input"
+        title: "What is the Jira ticket number?"
+        initialValue: "CZMND-"
+      - type: "input"
+        title: "What is the branch description?"
+        initialValue: ""
+      # - type: "input"
+      #   title: "What is the name of the new feature branch?"
+      #   initialValue: ""
+    command: "git hack '{{index .PromptResponses 0}}/{{index .PromptResponses 1}}-{{index .PromptResponses 2}}'"
+    loadingContext: "Start hacking on feature branch"
+  - key: <c-t>
+    context: "global"
+    description: "create a new task branch off the current branch"
+    prompts:
+      - type: "input"
+        title: "What is the Jira ticket number of the parent feature"
+        initialValue: ""
+      - type: "input"
+        title: "What is the Jira ticket number of the task"
+        initialValue: "CZMND-"
+      - type: "input"
+        title: "What is the branch description?"
+        initialValue: ""
+    command: "git append 'task/{{index .PromptResponses 0}}/{{index .PromptResponses 1}}-{{index .PromptResponses 2}}'"
+    loadingContext: "Start hacking on task branch"
