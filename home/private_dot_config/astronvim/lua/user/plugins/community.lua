@@ -15,6 +15,7 @@ return {
 	{ import = "astrocommunity.markdown-and-latex.glow-nvim" },
 	{ import = "astrocommunity.motion.nvim-surround" },
 	{ import = "astrocommunity.pack.angular" },
+	{ import = "astrocommunity.pack.ansible" },
 	{ import = "astrocommunity.pack.bash" },
 	{ import = "astrocommunity.pack.cue" },
 	{ import = "astrocommunity.pack.docker" },
