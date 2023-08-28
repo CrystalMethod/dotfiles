@@ -7,10 +7,6 @@ return {
     "CrystalMethod/codestats.nvim",
     event = "User AstroFile",
   },
-  {
-    "towolf/vim-helm",
-    ft = "helm",
-  },
   -- You can also add new plugins here as well:
   -- Add plugins, the lazy syntax
   -- "andweeb/presence.nvim",
