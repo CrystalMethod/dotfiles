@@ -1,17 +1,6 @@
 {{- /* Checks if running interactively, which is not the case for GitHub Codespaces */ -}}
 {{- $interactive := stdinIsATTY                                                        -}}
 
-{{- $package_manager := ""                                                             -}}
-{{- if eq .chezmoi.os "linux"                                                          -}}
-{{-   if eq .chezmoi.osRelease.id "debian" "ubuntu"                                    -}}
-{{-     $package_manager := "apt"                                                      -}}
-{{-   else if .chezmoi.osRelease.id "alpine"                                           -}}
-{{-     $package_manager := "apk"                                                      -}}
-{{-   else if .chezmoi.osRelease.id "arch"                                             -}}
-{{-     $package_manager := "pacman"                                                   -}}
-{{-   end                                                                              -}}
-{{- end                                                                                -}}
-
 {{- $username := ""                                                                    -}}
 {{- if hasKey . "username"                                                             -}}
 {{-   $username = .username                                                            -}}
@@ -51,11 +40,6 @@ data:
   username: {{ $username }}
   email: {{ $email }}
   fullname: {{ $fullname }}
-  package_manager: {{ $package_manager | quote }}
   bitwarden:
     codestats: bc387016-c599-436b-aa2d-dd242ae313fe
     github: a0a82c51-d93b-4bce-98f4-744271ebcba1
-  package:
-    apt:
-      - package: build-essential
-
