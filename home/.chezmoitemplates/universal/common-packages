@@ -1,0 +1,8 @@
+{{- $packages := list
+  "curl"
+  "git"
+  "tmux"
+  "wget"
+  "zsh"
+-}}
+{{- $packages | sortAlpha | join " " -}}

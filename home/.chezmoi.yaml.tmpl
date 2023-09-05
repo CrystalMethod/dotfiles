@@ -30,7 +30,49 @@
 {{-     $fullname = env "CHEZMOI_FULLNAME"                                             -}}
 {{-   end                                                                              -}}
 {{- end                                                                                -}}
-   
+
+{{- $toolchains := list "docker" "kubernetes"                                          -}}
+
+{{- $data := .                                                                          }}
+{{- $_ := set $data "host" (default (dict) (get $data "host"))                        -}}
+{{- $_ := set $data "toolchains" (default (dict) (get $data "toolchains"))             -}}
+
+{{- $distro := dict "family" .chezmoi.os "id" (get .chezmoi.osRelease "id" | default .chezmoi.os) -}}
+{{- if or (eq $distro.id "arch") (eq $distro.id "archarm")                             -}}
+{{- $_ := set $distro "id" "archlinux"                                                 -}}
+{{- end                                                                                -}}
+
+{{- $toolchainsEnabled := dict                                                          }}
+{{- range $toolchain := $toolchains                                                     }}
+{{-   $withoutToolchains := env "WITHOUT_TOOLCHAINS"                                   -}}
+{{-   $withoutToolchain := env (list "WITHOUT" (upper $toolchain) | join "_")          -}}
+{{-   $withToolchain := env (list "WITH" (upper $toolchain) | join "_")                -}}
+{{-   if and (or $withoutToolchains $withoutToolchain) (not $withToolchain)            -}}
+{{-     writeToStdout (list "Disabled" $toolchain "toolchain.\n" | join " ")           -}}
+{{-     $_ := set $toolchainsEnabled $toolchain false                                   }}
+{{-   else                                                                              }}
+{{-     $_ := set $toolchainsEnabled $toolchain true                                    }}
+{{-   end                                                                               }}
+{{- end                                                                                 }}
+
+{{- if stdinIsATTY                                                                     -}}
+
+{{- range $toolchain := $toolchains                                                     }}
+{{-   $enabled := promptBoolOnce $data.toolchains $toolchain (list "Enable" $toolchain "toolchain" | join " ") (get $toolchainsEnabled $toolchain) -}}
+{{-   if and (eq $toolchain "kubernetes") $enabled (not $toolchainsEnabled.docker)  -}}
+{{-   $_ := set $toolchainsEnabled "docker" $enabled }}
+{{-     writeToStdout "Enabled Docker toolchain to support Kubernetes.\n" -}}
+{{-   end -}}
+{{-   $_ := set $toolchainsEnabled $toolchain $enabled }}
+{{- end }}
+{{- writeToStdout "💡 Tip: you can re-enter your name and email with `chezmoi init --data=false`.\n" -}}
+
+{{- else                                                                               -}}
+
+{{-   writeToStdout "Chezmoi is running in headless environment.\n"                    -}}
+
+{{- end                                                                                -}}
+
 diff:
   exclude:
     - scripts
@@ -43,3 +85,12 @@ data:
   bitwarden:
     codestats: bc387016-c599-436b-aa2d-dd242ae313fe
     github: a0a82c51-d93b-4bce-98f4-744271ebcba1
+  host:
+    arch: "{{ .chezmoi.arch }}"
+    distro:
+      family: "{{ $distro.family }}"
+      id: "{{ $distro.id }}"
+  toolchains:
+    {{- range $toolchain, $enabled := $toolchainsEnabled }}
+      {{ $toolchain}}: {{ $enabled }}
+    {{- end }}
