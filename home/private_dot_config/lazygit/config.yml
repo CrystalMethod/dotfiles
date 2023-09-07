@@ -22,7 +22,7 @@ gui:
   sidePanelWidth: 0.2
 
 customCommands:
-  - key: <c-y>
+  - key: <c-s>
     description: "synchonize current branch (git-town)"
     command: LEFTHOOK=0 git fetch --force --prune --tags && LEFTHOOK=0 git sync
     context: "global"
@@ -40,17 +40,29 @@ customCommands:
           - name: "sandbox"
             description: "A sandbox branch"
             value: "sandbox"
+          - name: "bugfix"
+            description: "A bugfix branch"
+            value: "bugfix"
       - type: "input"
         title: "What is the Jira ticket number?"
         initialValue: "CZMND-"
       - type: "input"
         title: "What is the branch description?"
         initialValue: ""
-      # - type: "input"
-      #   title: "What is the name of the new feature branch?"
-      #   initialValue: ""
     command: "git hack '{{index .PromptResponses 0}}/{{index .PromptResponses 1}}-{{index .PromptResponses 2}}'"
     loadingContext: "Start hacking on feature branch"
+  - key: <c-u>
+    context: 'files'
+    description: "Undo last commit"
+    command: 'git reset --soft HEAD^'
+  - key: <c-d>
+    context: files
+    description: "Reset to the remote branch"
+    prompts:
+      - type: confirm
+        title: "Action: git reset --hard origin/{{.CheckedOutBranch.Name}}"
+        body: "Are you sure you want to reset to the remote branch?"
+    command: "git reset --hard origin/{{.CheckedOutBranch.Name}}"
   - key: <c-t>
     context: "global"
     description: "create a new task branch off the current branch"
