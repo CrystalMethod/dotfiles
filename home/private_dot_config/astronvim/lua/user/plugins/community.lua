@@ -34,6 +34,7 @@ return {
 	{ import = "astrocommunity.pack.typescript" },
 	{ import = "astrocommunity.pack.yaml" },
 	{ import = "astrocommunity.programming-language-support.rest-nvim" },
+	{ import = "astrocommunity.workflow.hardtime-nvim" },
 	{
 		"m4xshen/smartcolumn.nvim",
 		opts = {
