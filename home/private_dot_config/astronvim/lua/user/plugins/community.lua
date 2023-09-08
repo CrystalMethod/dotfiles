@@ -36,6 +36,14 @@ return {
 	{ import = "astrocommunity.programming-language-support.rest-nvim" },
 	{ import = "astrocommunity.workflow.hardtime-nvim" },
 	{
+		"folke/which-key.nvim",
+		opts = {
+			window = {
+				border = { "┏", "━", "┓", "┃", "┛", "━", "┗", "┃" },
+			},
+		},
+	},
+	{
 		"m4xshen/smartcolumn.nvim",
 		opts = {
 			colorcolumn = "120",
