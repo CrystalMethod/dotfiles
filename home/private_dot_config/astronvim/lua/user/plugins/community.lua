@@ -13,6 +13,7 @@ return {
 	{ import = "astrocommunity.git.git-blame-nvim" },
 	{ import = "astrocommunity.lsp.lsp-signature-nvim" },
 	{ import = "astrocommunity.markdown-and-latex.glow-nvim" },
+	{ import = "astrocommunity.motion.harpoon" },
 	{ import = "astrocommunity.motion.nvim-surround" },
 	{ import = "astrocommunity.pack.angular" },
 	{ import = "astrocommunity.pack.ansible" },
