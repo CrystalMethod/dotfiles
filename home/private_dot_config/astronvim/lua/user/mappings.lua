@@ -36,6 +36,10 @@ return {
     -- ui/ux
     ["<leader>uH"] = { "<cmd>Hardtime toggle<cr>", desc = "Toggle Hardtime" },
     ["<leader>uT"] = false,
+
+    ["<leader>O"] = { name = "SOPS" },
+    ["<leader>Od"] = { "<cmd>!sops -d -i %<cr><cr>", desc = "Decrypt SOPS file" },
+    ["<leader>Oe"] = { "<cmd>!sops -e -i %<cr><cr>", desc = "Encrypt SOPS file" },
   },
   t = {
     -- setting a mapping to false will disable it
