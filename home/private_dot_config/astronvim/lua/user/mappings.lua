@@ -32,6 +32,8 @@ return {
     ["<leader>F"] = { name = "󰻿 Focus" },
     ["<leader>Ft"] = { "<cmd>Twilight<cr>", desc = "Toggle Twilight" },
     ["<leader>Fz"] = { "<cmd>ZenMode<cr>", desc = "Toogle Zen Mode" },
+    -- ui/ux
+    ["<leader>uH"] = { "<cmd>Hardtime toggle<cr>", desc = "Toggle Hardtime" },
     ["<leader>uT"] = false,
   },
   t = {
