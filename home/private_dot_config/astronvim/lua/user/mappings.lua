@@ -23,12 +23,13 @@ return {
     ["<leader>b"] = { name = "Buffers" },
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+    -- git
     ["<leader>gj"] = { "<cmd>Gitsigns next_hunk<cr>", desc = "Next hunk" },
     ["<leader>gk"] = { "<cmd>Gitsigns prev_hunk<cr>", desc = "Previous hunk" },
     ["<leader>gr"] = { "<cmd>Gitsigns reset_hunk<cr>", desc = "Reset Git hunk" },
     ["<leader>gR"] = { "<cmd>Gitsigns reset_buffer<cr>", desc = "Reset Git buffer" },
     ["<leader>gh"] = false,
-
+    -- focus
     ["<leader>F"] = { name = "󰻿 Focus" },
     ["<leader>Ft"] = { "<cmd>Twilight<cr>", desc = "Toggle Twilight" },
     ["<leader>Fz"] = { "<cmd>ZenMode<cr>", desc = "Toogle Zen Mode" },
