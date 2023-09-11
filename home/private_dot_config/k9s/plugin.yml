@@ -1,0 +1,12 @@
+plugin:
+  # dive image layers
+  dive:
+    shortCut: d
+    confirm: false
+    description: Dive image
+    scopes:
+      - containers
+    command: dive
+    background: false
+    args:
+      - $COL-IMAGE
