@@ -6,7 +6,7 @@
     ":automergePatch",
     ":automergeMinor",
     ":disableRateLimiting",
-    "github>aquaproj/aqua-renovate-config#1.8.0"
+    "github>aquaproj/aqua-renovate-config#1.9.0"
   ],
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
