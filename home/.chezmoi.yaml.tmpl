@@ -31,10 +31,10 @@
 {{-   end                                                                              -}}
 {{- end                                                                                -}}
 
-{{- $toolchains := list "docker" "kubernetes"                                          -}}
+{{- $toolchains := list "docker" "kubernetes" "rust"                                   -}}
 
 {{- $data := .                                                                          }}
-{{- $_ := set $data "host" (default (dict) (get $data "host"))                        -}}
+{{- $_ := set $data "host" (default (dict) (get $data "host"))                         -}}
 {{- $_ := set $data "toolchains" (default (dict) (get $data "toolchains"))             -}}
 
 {{- $distro := dict "family" .chezmoi.os "id" (get .chezmoi.osRelease "id" | default .chezmoi.os) -}}
