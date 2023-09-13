@@ -1,8 +1,0 @@
-#!/usr/bin/env zsh
-
-{{ $fnm := lookPath (joinPath .chezmoi.homeDir ".local" "share" "aquaproj-aqua" "bin" "fnm") -}}
-{{ if $fnm -}}
-# fnm setup
-eval "$(fnm env --use-on-cd)"
-source <(fnm completions --shell zsh)
-{{- end }}

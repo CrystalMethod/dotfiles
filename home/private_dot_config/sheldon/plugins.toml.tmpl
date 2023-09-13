@@ -81,10 +81,6 @@ github = "ohmyzsh/ohmyzsh"
 dir = "plugins/direnv"
 apply = ["defer"]
 
-[plugins.fnm]
-local = "{{ .chezmoi.homeDir }}/.local/share/shell"
-apply = ["defer"]
-
 [plugins.sdkman]
 local = "{{ .chezmoi.homeDir }}/.local/share/shell"
 use = ["**/sdkman.zsh"]
