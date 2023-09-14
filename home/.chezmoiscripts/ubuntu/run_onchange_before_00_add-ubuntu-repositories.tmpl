@@ -1,8 +1,20 @@
 #!/usr/bin/env bash
 
+{{ template "universal/scripts-library" }}
+
+
 function app_apt_repo {
   if [ ! -f /etc/apt/sources.list.d/$1.list ]; then
+      log_c "Adding apt repo for $1"
       curl -fsSL "$2" | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/$1.gpg
       echo "$3" | sudo tee /etc/apt/sources.list.d/$1.list
   fi
 }
+
+log_task "Adding apt repos"
+
+{{ if .toolchains.azure -}}
+app_apt_repo "azure-cli" \
+"https://packages.microsoft.com/keys/microsoft.asc" \
+"deb https://packages.microsoft.com/repos/azure-cli $(lsb_release -cs) main"
+{{- end }}

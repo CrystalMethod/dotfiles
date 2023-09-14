@@ -1,3 +1,11 @@
 {{- $packages := splitList " " (includeTemplate "universal/common-packages" .) }}
 
+{{- $azurePackages := list
+"azure-cli"
+-}}
+
+{{- if .toolchains.azure }}
+{{- $packages = concat $packages $azurePackages -}}
+{{- end}}
+
 {{- $packages | sortAlpha | join " " -}}
