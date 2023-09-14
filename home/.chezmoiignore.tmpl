@@ -1,3 +1,7 @@
 .chezmoiscripts/*/**
 !.chezmoiscripts/{{ .host.distro.id }}/**
 !.chezmoiscripts/universal/**
+
+{{ if not .toolchains.java }}
+.sdkman/
+{{ end }}

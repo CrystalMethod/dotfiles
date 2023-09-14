@@ -31,7 +31,7 @@
 {{-   end                                                                              -}}
 {{- end                                                                                -}}
 
-{{- $toolchains := list "docker" "kubernetes" "rust"                                   -}}
+{{- $toolchains := list "docker" "java" "kubernetes" "rust"                            -}}
 
 {{- $data := .                                                                          }}
 {{- $_ := set $data "host" (default (dict) (get $data "host"))                         -}}

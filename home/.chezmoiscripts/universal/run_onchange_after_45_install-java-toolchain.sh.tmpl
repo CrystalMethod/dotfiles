@@ -1,11 +1,12 @@
+{{- if .toolchains.java -}}
 #!/usr/bin/env bash
 
-# {{ template "scripts-library" }}
-# {{ template "sdkman-library" }}
+source $HOME/.local/share/shell/env.zsh
 
-# The following line is for ShellCheck to correctly identify the above include
-true || source ../.chezmoitemplates/scripts-library
-true || source ../.chezmoitemplates/sdkman-library
+{{ template "universal/scripts-library" }}
+{{ template "universal/sdkman-library" }}
+
+# {{ includeTemplate "universal/next-update" . }}
 
 if ! sdk version &>/dev/null; then
   log_task "Installing SDKMAN!"
@@ -18,8 +19,7 @@ if ! sdk version &>/dev/null; then
   mv -f "${original_sdkman_config}" "${temp_sdkman_config}"
   rm -rf "${SDKMAN_DIR}"
 
-  sdkman_install_script=$(curl -fsSL "https://get.sdkman.io/?rcupdate=false")
-  bash -c "${sdkman_install_script}"
+  curl -fsSL "https://get.sdkman.io/?rcupdate=false" | bash
 
   mv -f "${temp_sdkman_config}" "${original_sdkman_config}"
 fi
@@ -39,3 +39,5 @@ if ! sdk current maven | grep -q "${identifier}"; then
   c sdk install maven "${identifier}"
   c sdk default maven "${identifier}"
 fi
+
+{{- end -}}
