@@ -42,6 +42,8 @@
 {{- $_ := set $distro "id" "archlinux"                                                 -}}
 {{- end                                                                                -}}
 
+{{- $wsl := or (env "WSL_DISTRO_NAME") (env "IS_WSL") | not | not                      -}}
+
 {{- $toolchainsEnabled := dict                                                          }}
 {{- range $toolchain := $toolchains                                                     }}
 {{-   $withoutToolchains := env "WITHOUT_TOOLCHAINS"                                   -}}
@@ -90,6 +92,7 @@ data:
     distro:
       family: "{{ $distro.family }}"
       id: "{{ $distro.id }}"
+    is_wsl: {{ $wsl }}
   toolchains:
     {{- range $toolchain, $enabled := $toolchainsEnabled }}
       {{ $toolchain}}: {{ $enabled }}
