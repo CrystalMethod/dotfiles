@@ -3,8 +3,8 @@
 
 source $HOME/.local/share/shell/env.zsh
 
-{{ template "universal/scripts-library" }}
-{{ template "universal/sdkman-library" }}
+# {{ template "universal/scripts-library" }}
+# {{ template "universal/sdkman-library" }}
 
 # {{ includeTemplate "universal/next-update" . }}
 
@@ -39,5 +39,7 @@ if ! sdk current maven | grep -q "${identifier}"; then
   c sdk install maven "${identifier}"
   c sdk default maven "${identifier}"
 fi
+
+log_green "✅  You are ready to Java! ✨ 🌟 ✨"
 
 {{- end -}}

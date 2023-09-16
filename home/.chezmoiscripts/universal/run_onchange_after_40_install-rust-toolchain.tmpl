@@ -3,7 +3,7 @@
 
 source $HOME/.local/share/shell/env.zsh
 
-{{ template "universal/scripts-library" }}
+# {{ template "universal/scripts-library" }}
 
 # {{ includeTemplate "universal/next-update" . }}
 
@@ -12,5 +12,7 @@ log_task "Installing Rust toolchain"
 RUSTUP_INIT_SKIP_PATH_CHECK=yes rustup-init -y --no-modify-path
 rustup self update || true
 rustup update || true
+
+log_green "✅  You are ready to Rust! ✨ 🌟 ✨"
 
 {{- end -}}

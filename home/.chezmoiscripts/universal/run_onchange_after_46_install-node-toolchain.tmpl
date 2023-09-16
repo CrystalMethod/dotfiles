@@ -4,7 +4,7 @@
 
 source $HOME/.local/share/shell/env.zsh
 
-{{ template "universal/scripts-library" }}
+# {{ template "universal/scripts-library" }}
 
 # {{ includeTemplate "universal/next-update" . }}
 
@@ -16,5 +16,7 @@ if command -v volta &> /dev/null; then
   c volta install pnpm@latest
   c volta install yarn@latest
 fi
+
+log_green "✅  You are ready to Node! ✨ 🌟 ✨"
 
 {{- end -}}
