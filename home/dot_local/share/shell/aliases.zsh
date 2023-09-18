@@ -11,3 +11,5 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ~="cd ~"
+
+command -v kubecolor &>/dev/null && alias kubectl='kubecolor'

@@ -39,3 +39,17 @@ plugin:
     args:
       - -c
       - "helm get values $COL-NAME -n $NAMESPACE --kube-context $CONTEXT | less"
+  images:
+    shortCut: Shift-I
+    confirm: false
+    description: get images
+    scopes:
+      - pods
+    command: kubectl
+    background: false
+    args:
+      - images
+      - -n
+      - $NAMESPACE
+      - --context
+      - $CONTEXT
