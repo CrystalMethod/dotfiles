@@ -1,1 +1,5 @@
+{{- if eq .host.distro.family "darwin" -}}
+next update {{ output "gdate" "--date=next monday" -}}
+{{- else -}}
 next update {{ output "date" "--date=next monday" -}}
+{{- end -}}
