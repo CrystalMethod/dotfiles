@@ -10,8 +10,8 @@ source $HOME/.local/share/shell/env.zsh
 
 if command -v volta &> /dev/null; then
   log_task "Installing Node.js toolchain"
-  c volta install bun@latest
   c volta install node@lts
+  c volta install bun@latest
   c volta install npm@latest
   c volta install pnpm@latest
   c volta install yarn@latest
