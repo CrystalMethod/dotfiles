@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+xcode-select -p >/dev/null 2>&1 || xcode-select --install
+
+# {{ includeTemplate "universal/next-update" . }}
+
+brew update
+brew bundle --verbose --no-lock --file=/dev/stdin <<EOF
+{{ includeTemplate "darwin/brewfile" . }}
+EOF

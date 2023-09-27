@@ -1,4 +1,5 @@
 {{- $packages := list
+  "coreutils"
   "curl"
   "git"
   "tmux"

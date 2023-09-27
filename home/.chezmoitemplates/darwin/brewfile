@@ -1,0 +1,17 @@
+{{- $taps := list -}}
+{{- $brews := list -}}
+{{- $casks := list -}}
+
+{{- $brews = splitList " " (includeTemplate "darwin/packages" .) }}
+
+{{- $casks = list
+"brave-browser"
+-}}
+
+{{ range ($brews | sortAlpha | uniq) }}
+brew "{{ . }}"
+{{- end }}
+
+{{- range ($casks | sortAlpha | uniq) }}
+cask "{{ . }}"
+{{- end }}

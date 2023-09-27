@@ -1,0 +1,9 @@
+{{- $packages := splitList " " (includeTemplate "universal/common-packages" .) }}
+{{- $packages = concat $packages (list
+"mas"
+"pinentry-mac"
+"reattach-to-user-namespace"
+)
+-}}
+
+{{- $packages | sortAlpha | join " " -}}
