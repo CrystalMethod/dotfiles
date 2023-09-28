@@ -18,6 +18,14 @@ return {
       end,
       desc = "Pick to close",
     },
+    -- better buffer navigation
+    ["<C-d>"] = { "<C-d>zz" },
+    ["<C-u>"] = { "<C-u>zz" },
+    -- resize with arrows
+    ["<S-Up>"] = { "<cmd>resize +2<cr>" },
+    ["<S-Down>"] = { "<cmd>resize -2<cr>" },
+    ["<S-Left>"] = { "<cmd>vertical resize -2<cr>" },
+    ["<S-Right>"] = { "<cmd>vertical resize +2<cr>" },
     -- tables with the `name` key will be registered with which-key if it's installed
     -- this is useful for naming menus
     ["<leader>b"] = { name = "Buffers" },
