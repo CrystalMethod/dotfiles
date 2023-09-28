@@ -55,4 +55,15 @@ return {
     "rest-nvim/rest.nvim",
     opts = { skip_ssl_verification = true },
   },
+  {
+    "folke/flash.nvim",
+    opts = {
+      label = {
+        rainbow = {
+          enabled = true,
+        },
+        style = "overlay",
+      },
+    },
+  },
 }
