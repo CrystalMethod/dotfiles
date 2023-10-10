@@ -17,6 +17,7 @@ return {
   { import = "astrocommunity.motion.harpoon" },
   { import = "astrocommunity.motion.nvim-surround" },
   { import = "astrocommunity.motion.flash-nvim" },
+  { import = "astrocommunity.note-taking.neorg" },
   { import = "astrocommunity.pack.ansible" },
   { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.cue" },
@@ -63,6 +64,25 @@ return {
           enabled = true,
         },
         style = "overlay",
+      },
+    },
+  },
+  {
+    "nvim-neorg/neorg",
+    run = ":Neorg sync-parsers",
+    opts = {
+      load = {
+        ["core.defaults"] = {},
+        ["core.dirman"] = {
+          config = {
+            workspaces = {
+              notes = "~/notes",
+              work = "~/notes/work",
+              journal = "~/notes/journal",
+              book = "~/notes/book",
+            },
+          },
+        },
       },
     },
   },
