@@ -21,6 +21,8 @@ return {
     -- better buffer navigation
     ["<C-d>"] = { "<C-d>zz" },
     ["<C-u>"] = { "<C-u>zz" },
+    ["j"] = { "jzz" },
+    ["k"] = { "kzz" },
     -- resize with arrows
     ["<S-Up>"] = { "<cmd>resize +2<cr>" },
     ["<S-Down>"] = { "<cmd>resize -2<cr>" },
