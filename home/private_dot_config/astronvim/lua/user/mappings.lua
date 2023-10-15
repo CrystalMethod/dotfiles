@@ -46,7 +46,16 @@ return {
     -- ui/ux
     ["<leader>uH"] = { "<cmd>Hardtime toggle<cr>", desc = "Toggle Hardtime" },
     ["<leader>uT"] = false,
-
+    -- toggleterm
+    ["<leader>td"] = {
+      function()
+        if vim.fn.executable("lazydocker") == 1 and require("astronvim.utils").is_available("toggleterm.nvim") then
+          require("astronvim.utils").toggle_term_cmd("lazydocker")
+        end
+      end,
+      desc = "ToggleTerm lazydocker",
+    },
+    -- SOPS
     ["<leader>O"] = { name = "SOPS" },
     ["<leader>Od"] = { "<cmd>!sops -d -i %<cr><cr>", desc = "Decrypt SOPS file" },
     ["<leader>Oe"] = { "<cmd>!sops -e -i %<cr><cr>", desc = "Encrypt SOPS file" },
