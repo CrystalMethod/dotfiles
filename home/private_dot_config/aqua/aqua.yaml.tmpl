@@ -86,11 +86,11 @@ packages:
   - name: pkgxdev/pkgx@v1.0.1
   {{ if .toolchains.azure -}}
   - name: Azure/kubelogin@v0.0.32
-  {{- end }}
+  {{ end -}}
   - name: chenjiandongx/kubectl-images@v0.6.3
   {{ if .toolchains.node -}}
   - name: volta-cli/volta@v1.1.1
-  {{- end }}
+  {{ end -}}
   - name: go-gitea/tea
     version: main
     registry: local
