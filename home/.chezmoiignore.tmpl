@@ -2,6 +2,20 @@
 !.chezmoiscripts/{{ .host.distro.id }}/**
 !.chezmoiscripts/universal/**
 
-{{ if not .toolchains.java }}
+{{ if eq .chezmoi.os "windows" -}}
+!.config/chezmoi
+!.config/git
+!.config/pwsh
+!.config/starship.toml
+.local/share/shell/*
+.config/*
+bin/*
+.zshenv
+.zshrc
+{{ else -}}
+AppData/*
+{{ end -}}
+
+{{ if not .toolchains.java -}}
 .sdkman/
-{{ end }}
+{{ end -}}
