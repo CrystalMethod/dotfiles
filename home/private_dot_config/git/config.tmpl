@@ -11,13 +11,16 @@
 [user]
   name = Lars Martin
   email = lars.martin@smb-tec.com
-  signingkey = 1C2E503B01284025417AF1DF9A402B3201A859F0
+  signingkey = ~/.ssh/id_ed25519.pub
 
 [commit]
   gpgsign = true
 
+[tag]
+  gpgsign = true
+
 [gpg]
-  program = gpg
+  format = ssh
 
 [alias]
   append = town append
@@ -30,6 +33,7 @@
   repo = town repo
   ship = town ship
   sync = town sync
+  graph = log --graph --all --format='%h %s%n        (%an, %ar)%d' --abbrev-commit
 
 [includeIf "gitdir:~/repos/work/czm/"]
   path = ~/.config/git/config-zdi
