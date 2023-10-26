@@ -1,4 +1,10 @@
-.config/nvim:
+{{- $nvim := "" -}}
+{{- if eq .chezmoi.os "windows" }}
+{{-   $nvim = "AppData/Local/nvim" -}}
+{{- else -}}
+{{-   $nvim = ".config/nvim" -}}
+{{- end -}}
+"{{ $nvim }}":
   type: git-repo
   url: https://github.com/AstroNvim/AstroNvim.git
   exact: true
