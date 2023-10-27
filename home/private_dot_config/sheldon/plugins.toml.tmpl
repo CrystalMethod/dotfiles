@@ -16,9 +16,8 @@ github = "greymd/docker-zsh-completion"
 
 # Sourced
 
-[plugins.pure]
-github = "sindresorhus/pure"
-use = ["{async,pure}.zsh"]
+[plugins.starship]
+inline = 'eval "$(starship init zsh)"'
 
 [plugins.env]
 local = "{{ .chezmoi.homeDir }}/.local/share/shell"

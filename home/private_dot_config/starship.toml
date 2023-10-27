@@ -1,0 +1,77 @@
+[cmd_duration]
+min_time = 1000
+format = "[$duration]($style)"
+style = "yellow"
+
+[git_branch]
+format = "[$branch]($style) "
+style = "242"
+
+[git_status]
+modified = "[*](218)"
+stashed = "[≡](cyan)"
+ahead = "[⇡](cyan)"
+diverged = "[⇡⇣](cyan)"
+behind = "[⇣](cyan)"
+format = '([$modified $ahead_behind]($style) )'
+
+[directory]
+truncate_to_repo = false
+truncation_length = 0
+read_only = " 🔒"
+style = "blue"
+
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+
+[username]
+style_user = "242"
+format = "[$user]($style) @ "
+
+[hostname]
+style = "242"
+format = "[$hostname]($style) "
+
+[package]
+format = " [$symbol$version]($style) "
+style = "242"
+
+[python]
+disabled = true
+
+[java]
+disabled = true
+
+[swift]
+disabled = true
+
+[golang]
+disabled = true
+
+[kotlin]
+disabled = true
+
+[dart]
+disabled = true
+
+[conda]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[cmake]
+disabled = true
+
+[lua]
+disabled = true
+
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
