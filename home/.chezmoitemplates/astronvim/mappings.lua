@@ -56,9 +56,9 @@ return {
       desc = "ToggleTerm lazydocker",
     },
     -- SOPS
-    ["<leader>O"] = { name = "SOPS" },
-    ["<leader>Od"] = { "<cmd>!sops -d -i %<cr><cr>", desc = "Decrypt SOPS file" },
-    ["<leader>Oe"] = { "<cmd>!sops -e -i %<cr><cr>", desc = "Encrypt SOPS file" },
+    ["<leader>s"] = { name = " SOPS" },
+    ["<leader>sd"] = { "<cmd>!sops -d -i %<cr><cr>", desc = "Decrypt SOPS file" },
+    ["<leader>se"] = { "<cmd>!sops -e -i %<cr><cr>", desc = "Encrypt SOPS file" },
   },
   t = {
     -- setting a mapping to false will disable it
