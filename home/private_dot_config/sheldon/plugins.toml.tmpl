@@ -16,9 +16,6 @@ github = "greymd/docker-zsh-completion"
 
 # Sourced
 
-[plugins.starship]
-inline = 'eval "$(starship init zsh)"'
-
 [plugins.env]
 local = "{{ .chezmoi.homeDir }}/.local/share/shell"
 use = ["**/env.zsh"]
@@ -26,6 +23,9 @@ use = ["**/env.zsh"]
 [plugins.path]
 local = "{{ .chezmoi.homeDir }}/.local/share/shell"
 use = ["**/path.zsh"]
+
+[plugins.starship]
+inline = 'eval "$(starship init zsh)"'
 
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
