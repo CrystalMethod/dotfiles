@@ -1,6 +1,7 @@
 .chezmoiscripts/*/**
 !.chezmoiscripts/{{ .host.distro.id }}/**
 !.chezmoiscripts/universal/**
+**/key.txt.age
 
 {{ if eq .chezmoi.os "windows" -}}
 !.config/chezmoi
