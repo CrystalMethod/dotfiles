@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+### Codestats
+export CODESTATS_API_KEY="{{ if (stat (joinPath .chezmoi.sourceDir ".chezmoitemplates" "secrets" "CODESTATS_API_KEY")) }}{{ includeTemplate "secrets/CODESTATS_API_KEY" | decrypt | trim }}{{ else }}{{ env "CODESTATS_API_KEY" }}{{ end }}"
+
+### Github
+export GH_TOKEN="{{ if (stat (joinPath .chezmoi.sourceDir ".chezmoitemplates" "secrets" "GITHUB_TOKEN")) }}{{ includeTemplate "secrets/GITHUB_TOKEN" | decrypt | trim }}{{ else }}{{ env "GITHUB_TOKEN" }}{{ end }}"
+export GITHUB_TOKEN="$GH_TOKEN"
+
+### OpenAI
+export OPENAI_API_KEY="{{ if (stat (joinPath .chezmoi.sourceDir ".chezmoitemplates" "secrets" "OPENAI_API_KEY")) }}{{ includeTemplate "secrets/OPENAI_API_KEY" | decrypt | trim }}{{ else }}{{ env "OPENAI_API_KEY" }}{{ end }}"
