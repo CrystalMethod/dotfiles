@@ -6,6 +6,10 @@ Personal dotfiles, managed with [chezmoi](https://github.com/twpayne/chezmoi).
 
 ### Darwin / Ubuntu
 
+```console
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/CrystalMethod/dotfiles/v2/install.sh)"
+```
+
 ### Windows
 
 ```powershell
