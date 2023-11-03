@@ -3,7 +3,11 @@
 echo "Decrypting age key file..."
 if [ ! -f "${HOME}/.config/sops/age/key.txt" ]; then
     mkdir -p "${HOME}/.config/sops/age"
-    chezmoi age decrypt --output "${HOME}/.config/sops/age/key.txt" --passphrase "{{ .chezmoi.sourceDir }}/private_dot_config/sops/age/key.txt.age"
+    chezmoi=chezmoi
+    if ! command -v chezmoi >/dev/null 2>&1; then
+        chezmoi=$HOME/.local/bin/chezmoi
+    fi
+    $chezmoi age decrypt --output "${HOME}/.config/sops/age/key.txt" --passphrase "{{ .chezmoi.sourceDir }}/private_dot_config/sops/age/key.txt.age"
     chmod 600 "${HOME}/.config/sops/age/key.txt"
 else
     echo "Age key file already exists"
