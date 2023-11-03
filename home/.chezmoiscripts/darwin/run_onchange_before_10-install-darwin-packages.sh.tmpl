@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-xcode-select -p >/dev/null 2>&1 || xcode-select --install
+{{ template "darwin/load-brew" . }}
 
 # {{ includeTemplate "universal/next-update" . }}
 
