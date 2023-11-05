@@ -13,6 +13,7 @@
 "wezterm"
 
 "qlmarkdown"
+"qlimagesize"
 -}}
 
 {{ range ($brews | sortAlpha | uniq) }}
