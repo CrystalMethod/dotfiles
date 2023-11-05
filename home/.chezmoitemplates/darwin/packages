@@ -1,5 +1,6 @@
 {{- $packages := splitList " " (includeTemplate "universal/common-packages" .) }}
 {{- $packages = concat $packages (list
+"gpg"
 "mas"
 "pinentry-mac"
 "reattach-to-user-namespace"
