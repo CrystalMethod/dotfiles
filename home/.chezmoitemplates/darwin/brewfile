@@ -17,6 +17,7 @@
 "qlstephen"
 "qlvideo"
 "quicklook-json"
+"webpquicklook"
 -}}
 
 {{ range ($brews | sortAlpha | uniq) }}
