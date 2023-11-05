@@ -15,6 +15,7 @@
 "qlmarkdown"
 "qlimagesize"
 "qlstephen"
+"qlvideo"
 -}}
 
 {{ range ($brews | sortAlpha | uniq) }}
