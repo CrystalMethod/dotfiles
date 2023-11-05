@@ -5,6 +5,7 @@
 "nvim"
 "pinentry-mac"
 "reattach-to-user-namespace"
+"switchaudio-osx"
 )
 -}}
 
