@@ -9,6 +9,8 @@
 "bitwarden"
 "brave-browser"
 "google-chrome"
+
+"wezterm"
 -}}
 
 {{ range ($brews | sortAlpha | uniq) }}
