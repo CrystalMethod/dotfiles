@@ -11,6 +11,8 @@
 "google-chrome"
 
 "wezterm"
+
+"qlmarkdown"
 -}}
 
 {{ range ($brews | sortAlpha | uniq) }}
