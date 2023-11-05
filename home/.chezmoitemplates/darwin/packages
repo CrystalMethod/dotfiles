@@ -2,6 +2,7 @@
 {{- $packages = concat $packages (list
 "gpg"
 "mas"
+"nvim"
 "pinentry-mac"
 "reattach-to-user-namespace"
 )
