@@ -18,6 +18,7 @@
 "qlvideo"
 "quicklook-json"
 "webpquicklook"
+"suspicious-package"
 -}}
 
 {{ range ($brews | sortAlpha | uniq) }}
