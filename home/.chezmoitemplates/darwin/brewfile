@@ -16,6 +16,7 @@
 "qlimagesize"
 "qlstephen"
 "qlvideo"
+"quicklook-json"
 -}}
 
 {{ range ($brews | sortAlpha | uniq) }}
