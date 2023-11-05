@@ -8,6 +8,7 @@
 "alfred"
 "bitwarden"
 "brave-browser"
+"google-chrome"
 -}}
 
 {{ range ($brews | sortAlpha | uniq) }}
