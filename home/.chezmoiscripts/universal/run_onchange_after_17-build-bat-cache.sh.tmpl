@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+{{ template "universal/load-aqua" . }}
+{{ template "universal/scripts-library" . }}
+
+# bat theme hash: {{ joinPath .chezmoi.homeDir ".config/bat/themes/Catppuccin-frappe.tmTheme" | include | sha256sum }}
+
+log_task "Updating bat theme cache"
+
+if command -v bat > /dev/null 2>&1; then
+  c bat cache --build
+else
+  log_manual_action "bat is not installed"
+fi
+
+log_green "✅  Setup bat ✨ 🌟 ✨"
