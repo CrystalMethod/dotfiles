@@ -34,8 +34,10 @@ style = "242"
 format = "[$hostname]($style) "
 
 [package]
-format = " [$symbol$version]($style) "
-style = "242"
+disabled = true
+
+[battery]
+disabled = true
 
 [python]
 disabled = true
