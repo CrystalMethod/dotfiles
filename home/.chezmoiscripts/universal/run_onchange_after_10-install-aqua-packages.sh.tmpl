@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
 set -eufo pipefail
 
-source $HOME/.local/share/shell/env.zsh
-
-# {{ template "universal/scripts-library" }}
+{{ template "universal/load-aqua" . }}
+{{ template "universal/scripts-library" . }}
 
 # renovate: depName=aquaproj/aqua datasource=github-releases
 current_aqua_version=v2.16.4
 
+log_task "Installing Aqua"
+
 if [ ! $(command -v aqua) ] || [ $(aqua -v | head -n1 | cut -d" " -f3 | sed "s/^/v/") != $current_aqua_version ]; then
-  log_task "Installing Aqua"
-  curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v2.1.2/aqua-installer | bash -s -- -v $current_aqua_version
+  c curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v2.1.2/aqua-installer | bash -s -- -v $current_aqua_version
+else
+  log_yellow "Aqua already installed"
 fi
 
 {{- $files := list -}}
@@ -19,5 +21,7 @@ fi
 {{- end }}
 
 # aqua.yaml.tmpl hash: {{ $files | join "" | sha256sum }}
-log_task "Installing tooling"
+log_task "Installing tools"
 c aqua install -a
+
+log_green "✅  Setup Aqua ✨ 🌟 ✨"
