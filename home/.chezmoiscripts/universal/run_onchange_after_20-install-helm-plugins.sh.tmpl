@@ -1,9 +1,8 @@
 {{- if .toolchains.kubernetes -}}
 #!/usr/bin/env bash
 
-source $HOME/.local/share/shell/env.zsh
-
-# {{ template "universal/scripts-library" }}
+{{ template "universal/load-aqua" . }}
+{{ template "universal/scripts-library" . }}
 
 # {{ includeTemplate "universal/next-update" . }}
 
