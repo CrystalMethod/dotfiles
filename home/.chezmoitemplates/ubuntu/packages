@@ -1,5 +1,13 @@
 {{- $packages := splitList " " (includeTemplate "universal/common-packages" .) }}
 
+{{- $javaPackages := list
+"ca-certificates-java"
+-}}
+
+{{- if .toolchains.java }}
+{{- $packages = concat $packages $javaPackages -}}
+{{- end}}
+
 {{- $azurePackages := list
 "azure-cli"
 -}}
