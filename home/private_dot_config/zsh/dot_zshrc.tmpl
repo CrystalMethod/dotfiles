@@ -1,9 +1,1 @@
-#!/usr/bin/env zsh
-
-{{ include (joinPath .chezmoi.homeDir ".local/share/shell/init.zsh") }}
-
-{{ $sheldon := lookPath (joinPath .chezmoi.homeDir ".local" "share" "aquaproj-aqua" "bin" "sheldon") -}}
-{{ if $sheldon -}}
-# Source sheldon plugins
-{{   output $sheldon "source" | trim }}
-{{- end }}
+source <(sheldon source)
