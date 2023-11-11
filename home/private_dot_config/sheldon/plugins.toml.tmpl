@@ -17,6 +17,10 @@ github = "zsh-users/zsh-completions"
 
 # Sourced
 
+[plugins.private]
+local = "{{ .chezmoi.homeDir }}/.config/shell"
+use = ["**/private.zsh"]
+
 [plugins.history]
 github = "ohmyzsh/ohmyzsh"
 dir = "lib"
@@ -58,6 +62,11 @@ apply = ["defer"]
 
 [plugins.zsh-fzf-history-search]
 github = "joshskidmore/zsh-fzf-history-search"
+apply = ["defer"]
+
+[plugins.codestats]
+git = "https://gitlab.com/code-stats/code-stats-zsh"
+use = ["codestats.plugin.zsh"]
 apply = ["defer"]
 
 [plugins.compinit]
