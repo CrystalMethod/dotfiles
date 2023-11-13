@@ -42,6 +42,9 @@ apply = ["defer"]
 [plugins.rtx]
 inline = 'zsh-defer eval "$(rtx activate zsh)"'
 
+[plugins.konf]
+inline = 'zsh-defer eval "$(konf-go shellwrapper zsh)"'
+
 [plugins.zimfw-exa]
 github = "zimfw/exa"
 apply = ["defer"]
