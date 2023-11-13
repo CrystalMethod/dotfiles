@@ -15,5 +15,11 @@ log_task "Adding apt repos"
 {{ if .toolchains.azure -}}
 app_apt_repo "azure-cli" \
 "https://packages.microsoft.com/keys/microsoft.asc" \
-"deb https://packages.microsoft.com/repos/azure-cli $(lsb_release -cs) main"
+"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/trusted.gpg.d/azure-cli.gpg]https://packages.microsoft.com/repos/azure-cli $(lsb_release -cs) main"
+{{- end }}
+
+{{ if .toolchains.docker -}}
+app_apt_repo "docker" \
+"https://download.docker.com/linux/ubuntu/gpg" \
+"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/trusted.gpg.d/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 {{- end }}

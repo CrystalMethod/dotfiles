@@ -8,6 +8,19 @@
 {{- $packages = concat $packages $javaPackages -}}
 {{- end}}
 
+{{- $dockerPackages := list
+"containerd.io"
+"docker-ce"
+"docker-ce-cli"
+"docker-compose-plugin"
+"docker-buildx-plugin"
+"docker-scan-plugin"
+-}}
+
+{{- if .toolchains.docker }}
+{{- $packages = concat $packages $dockerPackages -}}
+{{- end}}
+
 {{- $azurePackages := list
 "azure-cli"
 -}}

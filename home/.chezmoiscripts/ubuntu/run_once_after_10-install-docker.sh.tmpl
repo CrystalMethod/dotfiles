@@ -1,0 +1,10 @@
+{{- if .toolchains.docker -}}
+#!/usr/bin/env bash
+
+{{ template "universal/scripts-library" . }}
+
+log_task "Setup Docker"
+
+c sudo usermod $USER --append --group docker
+
+{{- end -}}
