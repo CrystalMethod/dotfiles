@@ -72,5 +72,10 @@ git = "https://gitlab.com/code-stats/code-stats-zsh"
 use = ["codestats.plugin.zsh"]
 apply = ["defer"]
 
+[plugins.zsh]
+local = "{{ .chezmoi.homeDir }}/.config/shell"
+use = ["{aliases}.zsh"]
+apply = ["defer"]
+
 [plugins.compinit]
 inline = 'autoload -Uz compinit && zsh-defer compinit'

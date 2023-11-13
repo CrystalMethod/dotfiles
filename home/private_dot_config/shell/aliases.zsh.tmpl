@@ -1,0 +1,24 @@
+#!/usr/bin/env zsh
+
+### bat
+if command -v bat > /dev/null; then
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+  alias cat='bat'
+fi
+
+### curlie
+if command -v curlie > /dev/null; then
+  alias curl='curlie'
+fi
+
+### vim
+if command -v vim > /dev/null; then
+  alias vi='vim'
+  alias v='vim'
+fi
+
+### reload current shell
+alias reload='exec ${SHELL} -l'
+
+### show ip address
+alias ip-address='curl http://ipecho.net/plain; echo'
