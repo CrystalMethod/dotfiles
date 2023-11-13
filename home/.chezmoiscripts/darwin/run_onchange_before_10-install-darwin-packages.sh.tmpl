@@ -8,3 +8,7 @@ brew update
 brew bundle --verbose --no-lock --file=/dev/stdin <<EOF
 {{ includeTemplate "darwin/brewfile" . }}
 EOF
+
+brew upgrade
+brew upgrade --cask --greedy
+brew cleanup
