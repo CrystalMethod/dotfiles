@@ -22,3 +22,8 @@ alias reload='exec ${SHELL} -l'
 
 ### show ip address
 alias ip-address='curl http://ipecho.net/plain; echo'
+
+###
+export BW_SESSION={{ env "BW_SESSION" }}
+export DOTFILES=$HOME/.local/share/chezmoi
+export REPOS=$HOME/repos
