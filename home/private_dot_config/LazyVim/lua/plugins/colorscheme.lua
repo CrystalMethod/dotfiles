@@ -44,11 +44,4 @@ return {
       flavour = "frappe",
     },
   },
-
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "catppuccin-frappe",
-    },
-  },
 }
