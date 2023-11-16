@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -eufo pipefail
+
+{{ template "universal/load-aqua" . }}
+{{ template "universal/scripts-library" . }}
+
+# ~/.config/rtx/config.toml: {{ include (joinPath .chezmoi.homeDir ".config" "rtx" "config.toml") | sha256sum }}
+
+log_task "Setup dev toolchains"
+
+c rtx trust $HOME/.config/rtx/config.toml
+c rtx install -y
+
+log_green "✅  Setup dev toolchains ✨ 🌟 ✨"
