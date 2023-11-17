@@ -1,3 +1,6 @@
+{{- $githubUsername := (default "CrystalMethod" (env "GITHUB_USERNAME"))               -}}
+{{- $hostname := (default "DDMGT-MARL-DT" (env "HOST"))                                -}}
+{{- $name := (default "Lars Martin" (env "FULLNAME"))                                  -}}
 {{- /* Checks if running interactively, which is not the case for GitHub Codespaces */ -}}
 {{- $interactive := stdinIsATTY                                                        -}}
 
@@ -43,6 +46,7 @@
 
 {{- $data := .                                                                          }}
 {{- $_ := set $data "host" (default (dict) (get $data "host"))                         -}}
+{{- $_ := set $data "user" (default (dict) (get $data "user"))                         -}}
 {{- $_ := set $data "toolchains" (default (dict) (get $data "toolchains"))             -}}
 
 {{- $distro := dict "family" .chezmoi.os "id" (get .chezmoi.osRelease "id" | default .chezmoi.os) -}}
@@ -75,6 +79,13 @@
 {{-   end -}}
 {{-   $_ := set $toolchainsEnabled $toolchain $enabled }}
 {{- end }}
+{{- if not (env "FULLNAME")                                                            -}}
+{{-   $name = promptStringOnce $data.user "name" "Full name" $name                     -}}
+{{- end                                                                                -}}
+{{- if not (env "HOST")                                                                -}}
+{{-  $hostname = promptStringOnce $data.host "hostname" "Hostname ID" $hostname        -}}
+{{- end                                                                                -}}
+
 {{- writeToStdout "💡 Tip: you can re-enter your name and email with `chezmoi init --data=false`.\n" -}}
 
 {{- else                                                                               -}}
@@ -96,16 +107,20 @@ diff:
   format: git
 
 data:
-  username: {{ $username }}
-  email: {{ $email }}
-  fullname: {{ $fullname }}
   host:
     arch: {{ .chezmoi.arch | quote }}
     distro:
       family: {{ $distro.family | quote }}
       id: {{ $distro.id | quote }}
     is_wsl: {{ $wsl }}
+    hostname: {{ $hostname | quote }}
   toolchains:
     {{- range $toolchain, $enabled := $toolchainsEnabled }}
       {{ $toolchain}}: {{ $enabled }}
     {{- end }}
+  user:
+    email: {{ $email | quote }}
+    github:
+      username: {{ $githubUsername | quote }}
+    name: {{ $name | quote }}
+    username: {{ (default "user" (env "USER")) | quote }}
