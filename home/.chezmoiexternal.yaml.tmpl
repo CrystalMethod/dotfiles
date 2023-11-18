@@ -18,3 +18,19 @@
   stripComponents: 1
   include:
     - "*/*.tmTheme"
+
+{{- $NerdFontsRelease := gitHubLatestRelease "ryanoasis/nerd-fonts" }}
+{{- $url_download := replace "releases/tag" "releases/download" $NerdFontsRelease.GetHTMLURL }}
+{{- $fontPath := "" }}
+{{- if eq .chezmoi.os "linux" }}
+{{-   $fontPath = ".local/share/fonts" }}
+{{- else if eq .chezmoi.os "darwin" }}
+{{-   $fontPath = "Library/Fonts" }}
+{{- end }}
+{{- range (list "VictorMono") }}
+'{{- joinPath $fontPath (substr 0 1 . | lower) . -}}':
+  url: '{{- $url_download -}} / {{- . -}} .zip'
+  type: 'archive'
+  executable: true
+  refreshPeriod: '720h' # 30 days
+{{- end }}
