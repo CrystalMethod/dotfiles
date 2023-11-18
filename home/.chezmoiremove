@@ -1,4 +1,5 @@
 .config/starship/
+.local/bin/rustup-init
 .gitconfig
 .sdkman/
 .zshrc
