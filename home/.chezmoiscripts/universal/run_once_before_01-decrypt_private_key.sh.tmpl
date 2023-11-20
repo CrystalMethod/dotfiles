@@ -1,14 +1,18 @@
-#!/bin/sh
+#!/usr/bin/env bash
+set -eufo pipefail
 
-echo "Decrypting age key file..."
+{{ template "universal/scripts-library" . }}
+
+log_task "Decrypting age key file..."
+
 if [ ! -f "${HOME}/.config/sops/age/key.txt" ]; then
     mkdir -p "${HOME}/.config/sops/age"
     chezmoi=chezmoi
     if ! command -v chezmoi >/dev/null 2>&1; then
         chezmoi=$HOME/.local/bin/chezmoi
     fi
-    $chezmoi age decrypt --output "${HOME}/.config/sops/age/key.txt" --passphrase "{{ .chezmoi.sourceDir }}/private_dot_config/sops/age/key.txt.age"
+    c $chezmoi age decrypt --output "${HOME}/.config/sops/age/key.txt" --passphrase "{{ .chezmoi.sourceDir }}/private_dot_config/sops/age/key.txt.age"
     chmod 600 "${HOME}/.config/sops/age/key.txt"
 else
-    echo "Age key file already exists"
+    log_info "Age key file already exists"
 fi

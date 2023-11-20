@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -eufo pipefail
+
+{{ template "universal/scripts-library" . }}
+
+function cleanup_executable() {
+    local dir=$2
+    local path=$dir/$1
+    if [[ -f $path ]]; then
+      c rm $path
+    fi
+  }
+
+log_task "Starting cleanup"
+
+cleanup_executable "chezmoi" "{{ .chezmoi.homeDir }}/.local/bin"
+
+log_green "✅  Cleanup ✨ 🌟 ✨"
