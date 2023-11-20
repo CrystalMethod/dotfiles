@@ -28,7 +28,11 @@ config.text_background_opacity = 1.0
 
 config.warn_about_missing_glyphs = false
 config.font = wezterm.font("VictorMono Nerd Font", { weight = "Medium" })
+{{- if eq .host.hostname "DDMGT-MARL-LT" }}
+config.font_size = 16
+{{- else }}
 config.font_size = 12
+{{- end }}
 -- config.cell_width = 1.1
 config.line_height = 1.1
 config.dpi = 96.0
