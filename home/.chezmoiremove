@@ -1,3 +1,10 @@
+{{ if ne .chezmoi.os "windows" }}
+.config/AstroNvim/
+.config/nvim/
+{{ else -}}
+AppData/Local/astronvim/
+AppData/local/nvim/
+{{ end -}}
 .config/starship/
 .local/bin/rustup-init
 .gitconfig
