@@ -1,7 +1,8 @@
 #!/usr/bin/env zsh
 
 ### Codestats
-export CODESTATS_API_KEY="{{ if (stat (joinPath .chezmoi.sourceDir ".chezmoitemplates" "secrets" .host.hostname "CODESTATS_API_KEY")) }}{{ includeTemplate "secrets/DDMGT-MARL-DT/CODESTATS_API_KEY" | decrypt | trim }}{{ else }}{{ env "CODESTATS_API_KEY" }}{{ end }}"
+{{ $codestats := joinPath .chezmoi.sourceDir ".chezmoitemplates" "secrets" .host.hostname "CODESTATS_API_KEY" }}
+export CODESTATS_API_KEY="{{ if stat $codestats }}{{ includeTemplate $codestats | decrypt | trim }}{{ else }}{{ env "CODESTATS_API_KEY" }}{{ end }}"
 
 ### Github
 export GH_TOKEN="{{ if (stat (joinPath .chezmoi.sourceDir ".chezmoitemplates" "secrets" "GITHUB_TOKEN")) }}{{ includeTemplate "secrets/GITHUB_TOKEN" | decrypt | trim }}{{ else }}{{ env "GITHUB_TOKEN" }}{{ end }}"
