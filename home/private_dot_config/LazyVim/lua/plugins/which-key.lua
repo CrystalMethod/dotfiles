@@ -3,7 +3,7 @@ return {
   opts = {
     window = {
       -- Add border to WhichKey window.
-      border = "rounded",
+      border = BORDER_STYLE,
     },
   },
 }
