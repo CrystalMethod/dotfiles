@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -eufo pipefail
+
+{{ template "universal/scripts-library" . }}
+
+log_task "[macos]: install custom app icons"
+
+{{- range $icon := glob (joinPath .chezmoi.workingTree "icons/macos/Applications/*.icns") }}
+{{-   $app := base $icon | replace ".icns" "" | printf "%s.app" }}
+{{-   $app_dir := joinPath "/Applications" $app }}
+  if [ -d {{ quote $app_dir }} ]; then
+    c fileicon set {{ quote $app_dir }} {{ quote $icon }}
+  fi
+{{- end }}
+
+{{- range $icon := glob (joinPath .chezmoi.workingTree "icons/macos/**/*.icns") }}
+  # run_onchange hash: {{ include $icon | sha256sum }}
+{{- end }}
