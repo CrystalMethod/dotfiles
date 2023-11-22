@@ -1,0 +1,26 @@
+*
+
+{{/* General */}}
+.chezmoiscripts/*/**
+!.chezmoiscripts/{{ .host.distro.id }}/**
+!.chezmoiscripts/universal/**
+!.config
+!.local
+
+{{/* Linux and macOS */}}
+{{ if eq .chezmoi.os "linux" "darwin" }}
+{{ end }}
+
+{{/* macOS */}}
+{{ if eq .chezmoi.os "darwin" }}
+!Library
+{{ end }}
+
+{{/* Linux */}}
+{{ if eq .chezmoi.os "linux" }}
+{{ end }}
+
+{{/* Windows */}}
+{{ if eq .chezmoi.os "windows" }}
+!AppData
+{{ end -}}

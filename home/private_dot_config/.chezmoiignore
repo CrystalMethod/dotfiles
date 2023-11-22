@@ -1,0 +1,38 @@
+*
+**/*.age
+
+{{/* General */}}
+!wezterm
+
+{{/* Linux and macOS */}}
+{{ if eq .chezmoi.os "linux" "darwin" }}
+!LazyVim
+!aqua
+!bat
+!direnv
+!gh
+!git
+!k9s
+!lazygit
+!rtx
+!sheldon
+!shell
+!sops
+!starship
+!tmux
+!zsh
+!starship.toml
+{{ end }}
+
+{{/* macOS */}}
+{{ if eq .chezmoi.os "darwin" }}
+{{ end }}
+
+{{/* Linux */}}
+{{ if eq .chezmoi.os "linux" }}
+{{ end }}
+
+{{/* Windows */}}
+{{ if eq .chezmoi.os "windows" }}
+!pwsh
+{{ end -}}
