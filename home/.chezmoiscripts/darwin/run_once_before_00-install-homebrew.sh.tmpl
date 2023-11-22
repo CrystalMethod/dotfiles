@@ -1,14 +1,15 @@
 #!/usr/bin/env sh
+set -eufo pipefail
 
-echo "Install Homebrew"
+{{ template "universal/scripts-library" . }}
+
+log_task "[macos] Install Homebrew"
 
 if command -v brew >/dev/null 2>&1; then
-  echo "Homebrew already installed"
+  log_yellow "Homebrew already installed"
   exit 0
 fi
 
-echo "Installing Homebrew..."
+c bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-echo "Homebrew installed"
+log_green "✅  Setup Homebrew ✨ 🌟 ✨"

@@ -11,7 +11,7 @@ function cleanup_executable() {
     fi
   }
 
-log_task "Starting cleanup"
+log_task "[all] Start cleanup"
 
 cleanup_executable "chezmoi" "{{ .chezmoi.homeDir }}/.local/bin"
 

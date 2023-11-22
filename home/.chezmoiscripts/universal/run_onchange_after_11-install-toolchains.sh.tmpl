@@ -7,7 +7,7 @@ set -eufo pipefail
 
 # ~/.config/rtx/config.toml: {{ include (joinPath .chezmoi.homeDir ".config" "rtx" "config.toml") | sha256sum }}
 
-log_task "Setup dev toolchains"
+log_task "[all] Setup dev toolchains"
 
 c rtx trust $HOME/.config/rtx/config.toml
 c rtx install -y

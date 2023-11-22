@@ -5,7 +5,7 @@
 
 # bat theme hash: {{ joinPath .chezmoi.homeDir ".config/bat/themes/Catppuccin-frappe.tmTheme" | include | sha256sum }}
 
-log_task "Updating bat theme cache"
+log_task "[all] Update bat theme cache"
 
 if command -v bat > /dev/null 2>&1; then
   c bat cache --build

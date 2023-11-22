@@ -11,10 +11,13 @@ helm_plugins=(
   https://github.com/jkroepke/helm-secrets
 )
 
-log_task "Installing Helm plugins"
+log_task "[all] Install Helm plugins"
+
 for plugin in "${helm_plugins[@]}"
 do
     log_c "helm plugin install $plugin"
     helm plugin install $plugin 2>/dev/null || true
 done
+
+log_green "✅  Setup plugins ✨ 🌟 ✨"
 {{- end -}}

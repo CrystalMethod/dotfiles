@@ -3,7 +3,7 @@ set -eufo pipefail
 
 {{ template "universal/scripts-library" . }}
 
-log_task "Decrypting age key file..."
+log_task "[all] Decrypt age key file..."
 
 if [ ! -f "${HOME}/.config/sops/age/key.txt" ]; then
     mkdir -p "${HOME}/.config/sops/age"

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# {{ template "universal/scripts-library" }}
+{{ template "universal/scripts-library" }}
 
 function app_apt_repo {
   if [ ! -f /etc/apt/sources.list.d/$1.list ]; then
@@ -10,7 +10,7 @@ function app_apt_repo {
   fi
 }
 
-log_task "Adding apt repos"
+log_task "[ubuntu] Add apt repos"
 
 {{ if .toolchains.azure -}}
 app_apt_repo "azure-cli" \
@@ -23,3 +23,5 @@ app_apt_repo "docker" \
 "https://download.docker.com/linux/ubuntu/gpg" \
 "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/trusted.gpg.d/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 {{- end }}
+
+log_green "✅  Setup apt repos ✨ 🌟 ✨"

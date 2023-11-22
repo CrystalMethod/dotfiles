@@ -1,11 +1,10 @@
 {{- if and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "arm64") -}}
 #!/usr/bin/env bash
+set -eufo pipefail
 
 {{ template "universal/scripts-library" . }}
 
-set -eufo pipefail
-
-log_task "Installing Rosetta"
+log_task "[macos] Install Rosetta"
 
 if ! pkgutil --pkg-info=com.apple.pkg.RosettaUpdateAuto > /dev/null 2>&1; then
   c sudo softwareupdate --install-rosetta --agree-to-license
