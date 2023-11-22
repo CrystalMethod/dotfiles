@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -eufo pipefail
+
+{{ template "universal/scripts-library" . }}
+
+log_task "[macos]: Finetune macOS settings"
+
+# close any open System Preferences panes, to prevent them from overriding settings we’re about to change
+osascript -e 'tell application "System Preferences" to quit'
+
+# ask for the administrator password upfront
+sudo -v
+
+# set default browser to Brave Browser
+if command -v defaultbrowser >/dev/null 2>&1; then
+  defaultbrowser browser
+fi
+
+log_green "✅  Setup settings ✨ 🌟 ✨"

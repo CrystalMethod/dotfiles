@@ -1,5 +1,6 @@
 {{- $packages := splitList " " (includeTemplate "universal/common-packages" .) }}
 {{- $packages = concat $packages (list
+"defaultbrowser"
 "docker"
 "fileicon"
 "gpg"

@@ -1,7 +1,5 @@
 # shellcheck shell=bash
 
-set -euo pipefail
-
 if [[ -n "${DOTFILES_DEBUG:-}" ]]; then
   set -x
 fi
