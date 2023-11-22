@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -eufo pipefail
+
+{{ template "universal/scripts-library" . }}
+
+# .extensions: {{ include "private_dot_config/gh/.extensions" | sha256sum }}
+
+log_task "[all] Installing GitHub CLI extensions"
+
+if ! command -v gh &> /dev/null; then
+  log_error "GitHub CLI is not installed"
+  exit 1
+fi
+
+while read -r extension; do
+  log_info "Installing GitHub CLI extension: $extension"
+  c gh extension install "$extension"
+done < {{ joinPath .chezmoi.sourceDir "private_dot_config" "gh" ".extensions" }}
