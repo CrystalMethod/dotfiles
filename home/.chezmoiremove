@@ -10,3 +10,4 @@ AppData/local/nvim/
 .gitconfig
 .sdkman/
 .zshrc
+.zsh_history
