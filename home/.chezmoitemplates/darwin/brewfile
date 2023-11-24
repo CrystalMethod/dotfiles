@@ -5,6 +5,7 @@
 {{- $brews = splitList " " (includeTemplate "darwin/packages" .) }}
 
 {{- $casks = list
+"adobe-acrobat-reader"
 "alfred"
 "bitwarden"
 "brave-browser"
