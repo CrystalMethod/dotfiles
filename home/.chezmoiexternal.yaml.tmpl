@@ -7,6 +7,14 @@
   include:
     - "*/*.tmTheme"
 
+".config/btop/themes":
+  type: archive
+  url: https://github.com/catppuccin/btop/archive/refs/heads/main.zip
+  refreshPeriod: 168h
+  stripComponents: 2
+  include:
+    - "*/themes/*.theme"
+
 {{- $NerdFontsRelease := gitHubLatestRelease "ryanoasis/nerd-fonts" }}
 {{- $url_download := replace "releases/tag" "releases/download" $NerdFontsRelease.GetHTMLURL }}
 {{- $fontPath := "" }}
