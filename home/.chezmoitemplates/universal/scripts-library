@@ -22,11 +22,11 @@ function log_color() {
 }
 
 function log_red() {
-  log_color "0;31" "$@"
+  log_color "1;31" "$@"
 }
 
 function log_blue() {
-  log_color "0;34" "$@"
+  log_color "1;34" "$@"
 }
 
 function log_green() {
@@ -38,15 +38,15 @@ function log_yellow() {
 }
 
 function log_task() {
-  log_blue "🔃" "$@"
+  log_blue "" "$@"
 }
 
 function log_manual_action() {
-  log_red "⚠️" "$@"
+  log_red "" "$@"
 }
 
 function log_c() {
-  log_yellow "👉" "$@"
+  log_yellow "" "$@"
 }
 
 function c() {
@@ -60,11 +60,15 @@ function c_exec() {
 }
 
 function log_error() {
-  log_red "❌" "$@"
+  log_red "" "$@"
 }
 
 function log_info() {
-  log_blue "ℹ️" "$@"
+  log_blue "" "$@"
+}
+
+function log_success() {
+  log_green "" "$@"
 }
 
 function error() {

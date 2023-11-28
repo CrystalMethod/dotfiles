@@ -10,4 +10,4 @@ log_task "[ubuntu] Install required packages"
 sudo apt-get update
 sudo apt-get install -y --no-install-recommends {{ $packages | sortAlpha | uniq | join " " -}}
 
-log_green "✅  Setup packages ✨ 🌟 ✨"
+log_success "[ubuntu] Install required packages"

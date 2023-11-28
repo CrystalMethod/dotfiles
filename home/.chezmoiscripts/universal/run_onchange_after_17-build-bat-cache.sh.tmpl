@@ -10,7 +10,7 @@ log_task "[all] Update bat theme cache"
 if command -v bat > /dev/null 2>&1; then
   c bat cache --build
 else
-  log_manual_action "bat is not installed"
+  log_error "bat is not installed"
 fi
 
-log_green "✅  Setup bat ✨ 🌟 ✨"
+log_success "[all] Update bat theme cache"

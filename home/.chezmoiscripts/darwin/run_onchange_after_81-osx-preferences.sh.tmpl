@@ -3,10 +3,20 @@ set -eufo pipefail
 
 {{ template "universal/scripts-library" . }}
 
-log_task "[macos]: Finetune macOS settings"
+log_task "[macos]: Finetune settings"
 
 # close any open System Preferences panes, to prevent them from overriding settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
+
+#######################################
+# DOCK
+#######################################
+
+# Sets "System Preferences > Dock & Menu Bar > Dock > Automatically hide and shiw the Dock
+# Tested on macOS 12.4
+# Requires 'killall Dock'
+log_info "Dock: Automatically hide"
+c defaults write com.apple.dock 'autohide' -bool yes
 
 # ask for the administrator password upfront
 sudo -v
@@ -16,4 +26,4 @@ if command -v defaultbrowser >/dev/null 2>&1; then
   defaultbrowser browser
 fi
 
-log_green "✅  Setup settings ✨ 🌟 ✨"
+log_success "Setup settings"

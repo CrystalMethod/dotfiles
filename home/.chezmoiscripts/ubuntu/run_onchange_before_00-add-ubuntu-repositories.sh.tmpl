@@ -24,4 +24,4 @@ app_apt_repo "docker" \
 "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/trusted.gpg.d/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 {{- end }}
 
-log_green "✅  Setup apt repos ✨ 🌟 ✨"
+log_success "[ubuntu] Add apt repos"

@@ -13,6 +13,8 @@ if [ ! -f "${HOME}/.config/sops/age/key.txt" ]; then
     fi
     c $chezmoi age decrypt --output "${HOME}/.config/sops/age/key.txt" --passphrase "{{ .chezmoi.sourceDir }}/private_dot_config/sops/age/key.txt.age"
     chmod 600 "${HOME}/.config/sops/age/key.txt"
+
+    log_success "[all] Decrypt age key file..."
 else
     log_info "Age key file already exists"
 fi

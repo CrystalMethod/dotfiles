@@ -8,7 +8,7 @@ log_task "[macos] Install Rosetta"
 
 if ! pkgutil --pkg-info=com.apple.pkg.RosettaUpdateAuto > /dev/null 2>&1; then
   c sudo softwareupdate --install-rosetta --agree-to-license
-  log_green "✅  Setup Rosetta ✨ 🌟 ✨"
+  log_success "[macos] Install Rosetta"
 else
   log_yellow "Rosetta already installed"
 fi
