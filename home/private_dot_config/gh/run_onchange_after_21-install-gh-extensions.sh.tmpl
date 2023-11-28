@@ -5,7 +5,7 @@ set -eufo pipefail
 
 # .extensions: {{ include "private_dot_config/gh/.extensions" | sha256sum }}
 
-log_task "[all] Installing GitHub CLI extensions"
+log_task "[all] Install GitHub CLI extensions"
 
 if ! command -v gh &> /dev/null; then
   log_error "GitHub CLI is not installed"
@@ -13,6 +13,8 @@ if ! command -v gh &> /dev/null; then
 fi
 
 while read -r extension; do
-  log_info "Installing GitHub CLI extension: $extension"
+  log_info "Install GitHub CLI extension: $extension"
   c gh extension install "$extension"
 done < {{ joinPath .chezmoi.sourceDir "private_dot_config" "gh" ".extensions" }}
+
+log_success "[all] Install GitHub CLI extensions"
