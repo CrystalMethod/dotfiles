@@ -2,6 +2,10 @@
 {{- $brews := list -}}
 {{- $casks := list -}}
 
+{{- $taps = list
+"hpedrorodrigues/tools"
+-}}
+
 {{- $brews = splitList " " (includeTemplate "darwin/packages" .) }}
 
 {{- $casks = list
@@ -13,7 +17,6 @@
 "google-chrome"
 "google-drive"
 "grandtotal"
-"hpedrorodrigues/tools/dockutil"
 "spotify"
 "yubico-yubikey-manager"
 "whatsapp"
@@ -27,9 +30,15 @@
 "quicklook-json"
 "webpquicklook"
 "suspicious-package"
+
+"hpedrorodrigues/tools/dockutil"
 -}}
 
-{{ range ($brews | sortAlpha | uniq) }}
+{{- range ($taps | sortAlpha | uniq) }}
+tap "{{ . }}"
+{{- end }}
+
+{{- range ($brews | sortAlpha | uniq) }}
 brew "{{ . }}"
 {{- end }}
 
