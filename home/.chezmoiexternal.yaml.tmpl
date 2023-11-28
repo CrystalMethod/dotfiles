@@ -15,6 +15,22 @@
   include:
     - "*/themes/*.theme"
 
+".config/spicetify/Themes/catppuccin":
+  type: archive
+  url: https://github.com/catppuccin/spicetify/archive/refs/heads/main.zip
+  exact: true
+  refreshPeriod: 168h
+  stripComponents: 2
+  include:
+    - "spicetify-main/catppuccin/*"
+
+".config/spicetify/CustomApps/marketplace":
+  type: archive
+  url: '{{ gitHubLatestRelease "spicetify/spicetify-marketplace" | toJson | fromJson | jq ".assets[0].browser_download_url" | first }}'
+  exact: true
+  stripComponents: 1
+  refreshPeriod: 168h
+
 {{- $NerdFontsRelease := gitHubLatestRelease "ryanoasis/nerd-fonts" }}
 {{- $url_download := replace "releases/tag" "releases/download" $NerdFontsRelease.GetHTMLURL }}
 {{- $fontPath := "" }}

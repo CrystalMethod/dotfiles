@@ -9,6 +9,7 @@
 "nvim"
 "pinentry-mac"
 "reattach-to-user-namespace"
+"spicetify-cli"
 "switchaudio-osx"
 "tmux"
 )
