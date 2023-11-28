@@ -4,6 +4,7 @@
 
 {{- $taps = list
 "hpedrorodrigues/tools"
+"koekeishiya/formulae"
 -}}
 
 {{- $brews = splitList " " (includeTemplate "darwin/packages" .) }}
