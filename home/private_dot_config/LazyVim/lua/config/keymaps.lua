@@ -7,6 +7,7 @@ local wk = require("which-key")
 
 wk.register({
   ["<leader>D"] = { name = "+docker" },
+  ["<leader>m"] = { name = "+markdown" },
 })
 
 local keymap = vim.keymap
@@ -22,3 +23,5 @@ end, { desc = "Lazydocker" })
 keymap.set("n", "<leader>Dc", function()
   util.terminal.open({ "ctop" }, { cwd = util.root.get() })
 end, { desc = "Ctop" })
+
+keymap.set("n", "<leader>mg", "<cmd>Glow<CR>", { desc = "Markdown Preview (Glow)" })
