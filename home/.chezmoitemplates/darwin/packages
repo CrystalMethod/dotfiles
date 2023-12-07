@@ -2,6 +2,7 @@
 {{- $packages = concat $packages (list
 "defaultbrowser"
 "docker"
+"ffmpeg"
 "fileicon"
 "gpg"
 "lima"
