@@ -12,5 +12,5 @@ yarn = "1.19.2" # latest release with all artifacts available
 golang = 'latest'
 {{ end -}}
 {{ if .toolchains.rust -}}
-rust = 'latest'
+rust = [ 'nightly', 'latest' ]
 {{ end -}}
