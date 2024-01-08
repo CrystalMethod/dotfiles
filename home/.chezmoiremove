@@ -6,6 +6,7 @@ AppData/Local/astronvim/
 AppData/local/nvim/
 {{ end -}}
 .config/starship/
+.config/rtx/
 .local/bin/rustup-init
 .gitconfig
 .sdkman/

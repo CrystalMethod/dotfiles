@@ -39,8 +39,8 @@ github = "zsh-users/zsh-autosuggestions"
 use = ["{{- "{{ name }}.zsh" -}}"]
 apply = ["defer"]
 
-[plugins.rtx]
-inline = 'zsh-defer eval "$(rtx activate zsh)"'
+[plugins.mise]
+inline = 'zsh-defer eval "$(mise activate zsh)"'
 
 [plugins.konf]
 inline = 'zsh-defer eval "$(konf-go shellwrapper zsh)"'

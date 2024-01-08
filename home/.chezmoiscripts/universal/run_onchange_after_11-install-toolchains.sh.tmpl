@@ -5,11 +5,11 @@ set -eufo pipefail
 {{ template "universal/load-aqua" . }}
 {{ template "universal/scripts-library" . }}
 
-# ~/.config/rtx/config.toml: {{ include (joinPath .chezmoi.homeDir ".config" "rtx" "config.toml") | sha256sum }}
+# ~/.config/mise/config.toml: {{ include (joinPath .chezmoi.homeDir ".config" "mise" "config.toml") | sha256sum }}
 
 log_task "[all] Setup dev toolchains"
 
-c rtx trust $HOME/.config/rtx/config.toml
-c rtx install -y
+c mise trust $HOME/.config/mise/config.toml
+c mise install -y
 
 log_success "[all] Setup dev toolchains"
