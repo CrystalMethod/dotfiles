@@ -1,0 +1,11 @@
+[settings]
+debug = false
+hidefilenames = false
+ignore =
+    COMMIT_EDITMSG$
+    PULLREQ_EDITMSG$
+    MERGE_MSG$
+    TAG_EDITMSG$
+api_key = {{ if (stat (joinPath .chezmoi.sourceDir ".chezmoitemplates" "secrets" "WAKATIME_API_KEY")) }}{{
+  includeTemplate "secrets/WAKATIME_API_KEY" | decrypt | trim }}{{ else }}{{ env "WAKATIME_API_KEY" }}{{ end }}
+hostname = {{ .host.hostname }}
