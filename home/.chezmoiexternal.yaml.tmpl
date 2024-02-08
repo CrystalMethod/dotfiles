@@ -53,3 +53,10 @@
   executable: true
   refreshPeriod: '720h' # 30 days
 {{- end }}
+
+{{- $SketchybarAppFontRelease := gitHubLatestRelease "kvndrsslr/sketchybar-app-font" }}
+{{- $url_download = replace "releases/tag" "releases/download" $SketchybarAppFontRelease.GetHTMLURL }}
+'{{ $fontPath }}/skeytchybar-app-font.ttf':
+  url: '{{- $url_download -}}/sketchybar-app-font.ttf'
+  type: file
+  refreshPeriod: '720h' # 30 days
