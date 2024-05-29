@@ -5,6 +5,7 @@
 AppData/Local/astronvim/
 AppData/local/nvim/
 {{ end -}}
+.config/sheldon/
 .config/starship.toml
 .config/rtx/
 .local/bin/rustup-init
