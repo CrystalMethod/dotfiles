@@ -9,6 +9,7 @@ registries:
     path: registry.yaml
 
 packages:
+  - name: x-motemen/ghq@v1.6.1
   - name: argoproj/argo-cd@v2.11.2
 {{- if (eq .chezmoi.os "darwin") -}}
   {{/* https://github.com/aristocratos/btop/releases/tag/v1.3.0 */}}

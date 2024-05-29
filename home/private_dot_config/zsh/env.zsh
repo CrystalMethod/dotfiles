@@ -16,6 +16,7 @@ export PATH="$AQUA_ROOT_DIR/bin:$PATH"
 
 export DOTFILES=$HOME/.local/share/chezmoi
 export REPOS=$HOME/repos
+export GHQ_ROOT=$REPOS
 
 export NVIM_APPNAME=LazyVim
 export COLEMAK=true
