@@ -22,7 +22,6 @@
 !starship
 !tmux
 !zsh
-!starship.toml
 {{ end }}
 
 {{/* macOS */}}
