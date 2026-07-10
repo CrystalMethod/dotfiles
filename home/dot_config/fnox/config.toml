@@ -1,0 +1,15 @@
+default_provider = "age"
+
+[providers.age]
+type = "age"
+recipients = ["age16zfjz3ud2u0guxvkecj3jjehzpnqnkr2ezac7q0k0d2ra2s9venqz26slm"]
+
+[providers.bitwarden]
+type = "bitwarden"
+backend = "rbw"
+auth_command = "rbw unlock"
+
+[secrets]
+ADESSO_AI_HUB_API_KEY = { provider = "bitwarden", value = "ADESSO_AI_HUB_API_KEY" }
+CURSEFORGE_API_KEY = { provider = "bitwarden", value = "CURSEFORGE_API_KEY" }
+OPENROUTER_AI_API_KEY = { provider = "bitwarden", value = "OPENROUTER_AI_API_KEY" }

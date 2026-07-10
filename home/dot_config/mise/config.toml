@@ -1,0 +1,41 @@
+[tools]
+ast-grep = "latest"
+bat = "latest"
+bottom = "latest"
+bun = "latest"
+chezmoi = "latest"
+eza = "latest"
+fd = "latest"
+fnox = "latest"
+gh = "latest"
+ghq = "latest"
+"github:Abdenasser/neohtop-cli" = { version = "latest", rename_exe = "neohtop" }
+"github:joshmedeski/sesh" = "latest"
+"github:mfontanini/presenterm" = "latest"
+"github:rtk-ai/rtk" = { version = "latest", postinstall = "rtk init -g --opencode" }
+"github:str4d/rage" = "latest"
+herdr = "latest"
+jq = "latest"
+lazygit = "latest"
+neovim = "latest"
+node = "lts"
+opencode = "latest"
+pipx = "latest"
+python = "3.12"
+television = "latest"
+tmux = "latest"
+uv = "latest"
+yazi = "latest"
+
+[env]
+EDITOR = "nvim"
+PAGER = "bat --plain"
+FNOX_AGE_KEY_FILE = "~/.config/age/keys.txt"
+VISUAL = "nvim"
+
+[shell_alias]
+opencode = "fnox exec -- opencode --port --log-level WARN"
+
+[settings]
+experimental = true
+lockfile = true
