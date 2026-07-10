@@ -1,0 +1,22 @@
+# Use Bitwarden Desktop SSH Agent for all hosts
+IdentityAgent ~/.bitwarden-ssh-agent.sock
+
+# ─── GitHub ───────────────────────────────────────────────────────
+# Port 22 is blocked; use Port 443 instead
+Host github.com
+    HostName ssh.github.com
+    Port 443
+    User git
+
+# ─── SMB-TEC Servers ──────────────────────────────────────────────
+Host 10.54.9.203
+    User lars.martin
+
+Host 10.54.9.213
+    User lars
+
+Host 10.54.9.121
+    User lars
+
+Host 10.54.9.198
+    User lars

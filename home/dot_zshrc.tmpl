@@ -1,22 +1,20 @@
-# Universal Base Config
-# This file includes profile-specific configurations
+# Shell Configuration
 # Profile can be set via: export CHEZMOI_PROFILE=work
 
-# === Profile Includes ===
 {{- if eq (env "CHEZMOI_PROFILE") "work" -}}
-# Homebrew user-space installation
+# === Work Profile (no sudo) ===
 export HOMEBREW_PREFIX="$HOME/local"
 export HOMEBREW_CASK_OPTS="--appdir=$HOME/Applications"
 export PATH="$HOME/local/bin:$PATH"
-
-# Mise shell integration
-eval "$($HOME/.local/bin/mise activate zsh 2>/dev/null)"
-
-# History filtering
+eval "$($HOME/.local/bin/mise activate zsh)"
 HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..|fnox)"
-
-# Bitwarden SSH Agent
 export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
 {{- else -}}
-# Default profile (private) - no specific config yet
+# === Private Profile ===
+export HOMEBREW_PREFIX="$HOME/usr/local"
+export HOMEBREW_CASK_OPTS="--appdir=$HOME/Applications"
+export PATH="$HOME/homebrew/bin:$HOME/usr/local/bin:$PATH"
+eval "$($HOME/.local/bin/mise activate zsh)"
+HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..|fnox)"
+export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
 {{- end -}}
