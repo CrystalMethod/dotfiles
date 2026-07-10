@@ -1,0 +1,17 @@
+# Work Profile Template (No Root Access)
+# This profile is used for work machines without sudo access.
+# It installs Homebrew to user space and configures tools accordingly.
+
+# Homebrew user-space installation
+export HOMEBREW_PREFIX="$HOME/local"
+export HOMEBREW_CASK_OPTS="--appdir=$HOME/Applications"
+export PATH="$HOME/local/bin:$PATH"
+
+# Mise shell integration
+eval "$($HOME/.local/bin/mise activate zsh 2>/dev/null)"
+
+# History filtering
+HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..|fnox)"
+
+# Bitwarden SSH Agent
+export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
