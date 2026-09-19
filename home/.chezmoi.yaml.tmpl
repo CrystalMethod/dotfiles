@@ -22,10 +22,21 @@
 {{-   $system = promptString "System (client or server)" -}}
 {{- end -}}
 
+{{- $mode := "" -}}
+{{- if hasKey . "mode" -}}
+{{-   $mode = .mode -}}
+{{- /* Prefer the mode chosen by setup.sh when present */ -}}
+{{- else if env "DOTFILES_MODE" -}}
+{{-   $mode = env "DOTFILES_MODE" -}}
+{{- else -}}
+{{-   $mode = promptString "Mode (privileged or user)" -}}
+{{- end -}}
+
 data:
     name: {{ $name | quote }}
     email: {{ $email | quote }}
     system: {{ $system | quote }}
+    mode: {{ $mode | quote }}
 
 {{ if ne (env "CI") "true" -}}
 encryption: "age"

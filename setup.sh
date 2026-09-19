@@ -381,6 +381,10 @@ function main() {
     parse_args "$@"
     validate_mode
 
+    # Make the chosen mode available to chezmoi's config template so it is
+    # persisted into the chezmoi data as `mode`.
+    export DOTFILES_MODE="${MODE}"
+
     echo "Running in ${MODE} mode."
     if is_dry_run; then
         echo "DRY RUN: Showing what would be done without executing anything."

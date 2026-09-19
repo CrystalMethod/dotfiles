@@ -2,6 +2,17 @@
 
 # @file home/dot_zprofile.tmpl
 # @brief Select the server shim or client mise activation mode.
+{{- if eq .chezmoi.os "darwin" }}
+{{-   if eq .mode "user" }}
+
+eval "$({{ .chezmoi.homeDir }}/.homebrew/bin/brew shellenv)"
+export HOMEBREW_CASK_OPTS=--appdir={{ .chezmoi.homeDir }}/Applications
+{{-   else if eq .chezmoi.arch "arm64" }}
+eval "$(/opt/homebrew/bin/brew shellenv)"
+{{-   else }}
+eval "$(/usr/local/bin/brew shellenv)"
+{{-   end }}
+{{- end }}
 
 if (( ! ${+functions[mise_zsh_activate]} )); then
     _zprofile_mise="${HOME}/.config/shell/mise.zsh"
