@@ -1,0 +1,23 @@
+# Minimum mise version compatible with this dotfiles configuration.
+# Raise this only when a configuration or tool change requires newer mise behavior.
+# Declarative system bootstrap and automatic dangling npm install repair require mise 2026.8.15 or newer.
+min_version = "2026.8.15"
+
+[bootstrap.packages]
+"brew:rbw"                        = { os = "macos" }
+
+[tools]
+
+# CLI tools
+bat = "0.26.1"
+fd = "10.5.0"
+fnox = "1.35.2"
+lazygit = "0.65.1"
+neovim = "0.12.5"
+television = "0.15.9"
+
+# Aqua tools
+"aqua:twpayne/chezmoi" = "2.72.1"
+
+# npm tools
+opencode = "1.18.31"
