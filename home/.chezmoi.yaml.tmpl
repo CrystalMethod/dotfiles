@@ -1,0 +1,35 @@
+{{- $name := "" -}}
+{{- if hasKey . "name" -}}
+{{-   $name = .name -}}
+{{- else -}}
+{{-   $name = promptString "Display name" -}}
+{{- end -}}
+
+{{- $email := "" -}}
+{{- if hasKey . "email" -}}
+{{-   $email = .email -}}
+{{- else -}}
+{{-   $email = promptString "Email address" -}}
+{{- end -}}
+
+{{- $system := "" -}}
+{{- if hasKey . "system" -}}
+{{-   $system = .system -}}
+{{- /* Set client to the MacOS default system */ -}}
+{{- else if eq .chezmoi.os "darwin" -}}
+{{    $system = "client" -}}
+{{- else -}}
+{{-   $system = promptString "System (client or server)" -}}
+{{- end -}}
+
+data:
+    name: {{ $name | quote }}
+    email: {{ $email | quote }}
+    system: {{ $system | quote }}
+
+{{ if ne (env "CI") "true" -}}
+encryption: "age"
+age:
+    identity: "~/.config/age/key.txt"
+    recipient: "age1vhjw9eclwdtcsc47wspfkgakyvqehlgkuqd8m338ql7nnp9y0s0qwnw9sx"
+{{- end }}
