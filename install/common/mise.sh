@@ -6,7 +6,7 @@
 #   Reads the minimum compatible mise version from the mise config, installs or
 #   updates the standalone `mise` binary when needed, and runs `mise install`.
 
-# set -Eeuo pipefail
+set -Eeuo pipefail
 
 if [ "${DOTFILES_DEBUG:-}" ]; then
     set -x
