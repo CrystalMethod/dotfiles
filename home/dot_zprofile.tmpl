@@ -12,6 +12,12 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 {{-   else }}
 eval "$(/usr/local/bin/brew shellenv)"
 {{-   end }}
+{{- else if eq .chezmoi.os "linux" }}
+{{-   if (stat "/home/linuxbrew/.linuxbrew/bin/brew") }}
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+{{-   else if (stat (joinPath .chezmoi.homeDir ".linuxbrew/bin/brew")) }}
+eval "$({{ .chezmoi.homeDir }}/.linuxbrew/bin/brew shellenv)"
+{{-   end }}
 {{- end }}
 
 if (( ! ${+functions[mise_zsh_activate]} )); then
