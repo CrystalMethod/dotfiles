@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-# @file install/macos/common/dependencies.sh
-# @brief Install essential Homebrew packages for macOS.
+# @file install/macos/common/misc.sh
+# @brief Install optional Homebrew packages for macOS.
 # @description
-#   Installs the core command-line packages required by the dotfiles.
-#   Optional utilities and GUI applications live in
-#   `install/macos/common/misc.sh`.
+#   Installs non-essential Homebrew packages that are not prerequisites for
+#   the dotfiles setup. Essential packages live in
+#   `install/macos/common/dependencies.sh`.
 
 set -Eeuo pipefail
 
@@ -20,16 +20,11 @@ if ! declare -F install_brew_packages >/dev/null 2>&1; then
 fi
 
 BREW_PACKAGES=(
-    cmake
-    git
-    gpg
-    pinentry-mac
-    vim
-    zsh
+    rbw
 )
 
 #
-# @description Install the required Homebrew dependencies.
+# @description Install the optional Homebrew packages.
 #
 function main() {
     install_brew_packages "${BREW_PACKAGES[@]}"

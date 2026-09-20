@@ -1,11 +1,11 @@
 #!/usr/bin/env bats
 
-# @file tests/install/macos/common/dependencies.bats
-# @brief Unit tests for install/macos/common/dependencies.sh.
+# @file tests/install/macos/common/misc.bats
+# @brief Unit tests for install/macos/common/misc.sh.
 
 bats_require_minimum_version 1.5.0
 
-readonly SCRIPT_PATH="./install/macos/common/dependencies.sh"
+readonly SCRIPT_PATH="./install/macos/common/misc.sh"
 
 function setup() {
     export BREW_CALLS_PATH="${BATS_TEST_TMPDIR}/brew_calls.txt"
@@ -32,47 +32,42 @@ BREW
 }
 
 @test "[macos] is_brew_package_installed reports installed packages" {
-    printf 'gpg\n' > "${INSTALLED_PACKAGES_FILE}"
+    printf 'rbw\n' > "${INSTALLED_PACKAGES_FILE}"
 
-    run is_brew_package_installed gpg
+    run is_brew_package_installed rbw
     [ "${status}" -eq 0 ]
 }
 
 @test "[macos] is_brew_package_installed reports missing packages" {
-    run is_brew_package_installed gpg
+    run is_brew_package_installed rbw
     [ "${status}" -ne 0 ]
 }
 
 @test "[macos] install_brew_packages skips brew install when all packages are installed" {
-    printf '%s\n' cmake git gpg pinentry-mac vim zsh > "${INSTALLED_PACKAGES_FILE}"
+    printf 'rbw\n' > "${INSTALLED_PACKAGES_FILE}"
 
     run install_brew_packages
     [ "${status}" -eq 0 ]
     run ! grep -q '^install --force ' "${BREW_CALLS_PATH}"
 }
 
-@test "[macos] install_brew_packages installs only the missing packages" {
-    printf '%s\n' cmake git > "${INSTALLED_PACKAGES_FILE}"
-
+@test "[macos] install_brew_packages installs the missing packages" {
     run install_brew_packages "${BREW_PACKAGES[@]}"
     [ "${status}" -eq 0 ]
-    [ "$(< "${BREW_CALLS_PATH}")" = $'list cmake\nlist git\nlist gpg\nlist pinentry-mac\nlist vim\nlist zsh\ninstall --force gpg pinentry-mac vim zsh' ]
+    [ "$(< "${BREW_CALLS_PATH}")" = $'list rbw\ninstall --force rbw' ]
 }
 
 @test "[macos] install_brew_packages shows brew info instead of installing in CI" {
-    printf '%s\n' cmake git > "${INSTALLED_PACKAGES_FILE}"
     export CI=true
 
     run install_brew_packages "${BREW_PACKAGES[@]}"
     [ "${status}" -eq 0 ]
     run ! grep -q '^install --force ' "${BREW_CALLS_PATH}"
-    grep -q '^info gpg pinentry-mac vim zsh$' "${BREW_CALLS_PATH}"
+    grep -q '^info rbw$' "${BREW_CALLS_PATH}"
 }
 
 @test "[macos] main installs the missing packages" {
-    printf 'cmake\n' > "${INSTALLED_PACKAGES_FILE}"
-
     run main
     [ "${status}" -eq 0 ]
-    grep -q '^install --force git gpg pinentry-mac vim zsh$' "${BREW_CALLS_PATH}"
+    grep -q '^install --force rbw$' "${BREW_CALLS_PATH}"
 }

@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-# @file install/macos/common/dependencies.sh
-# @brief Install essential Homebrew packages for macOS.
+# @file install/ubuntu/common/dependencies.sh
+# @brief Install essential Homebrew packages for Ubuntu.
 # @description
-#   Installs the core command-line packages required by the dotfiles.
-#   Optional utilities and GUI applications live in
-#   `install/macos/common/misc.sh`.
+#   Installs the core command-line packages required by the dotfiles on Ubuntu
+#   (including WSL2) via Homebrew. Optional utilities live in
+#   `install/ubuntu/common/misc.sh`.
 
 set -Eeuo pipefail
 
@@ -23,7 +23,6 @@ BREW_PACKAGES=(
     cmake
     git
     gpg
-    pinentry-mac
     vim
     zsh
 )

@@ -23,8 +23,8 @@ function run_os_specific_test() {
     macos | darwin)
         bats -r "tests/install/macos/"
         ;;
-    linux)
-        bats -r "tests/install/linux/"
+    linux | ubuntu)
+        bats -r "tests/install/ubuntu/"
         ;;
     *)
         echo "${TARGET_OS:-<unset>} are not supported" >&2

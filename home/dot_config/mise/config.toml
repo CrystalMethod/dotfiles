@@ -3,9 +3,6 @@
 # Declarative system bootstrap and automatic dangling npm install repair require mise 2026.8.15 or newer.
 min_version = "2026.8.15"
 
-[bootstrap.packages]
-"brew:rbw"                        = { os = "macos" }
-
 [tools]
 
 # CLI tools

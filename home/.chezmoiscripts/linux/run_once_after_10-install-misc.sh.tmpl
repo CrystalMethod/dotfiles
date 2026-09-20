@@ -1,0 +1,4 @@
+{{ if eq .chezmoi.os "linux" -}}
+{{   include "../install/common/brew.sh" }}
+{{   include "../install/ubuntu/common/misc.sh" }}
+{{- end }}
