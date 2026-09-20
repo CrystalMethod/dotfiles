@@ -125,8 +125,8 @@ and on Linux/WSL2 picks the most appropriate TUI pinentry:
 1. `pinentry-curses` (`/usr/bin/pinentry-curses`)
 2. `pinentry-tty` (`/usr/bin/pinentry-tty`)
 
-This keeps `rbw` unlock working non-interactively on Linux/WSL2, where the
-macOS `pinentry` default is not available.
+This keeps `rbw` unlock working in a terminal on Linux/WSL2, where the macOS
+GUI `pinentry` default is not available.
 
 ### `mise` install failure propagation
 
