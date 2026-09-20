@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+# @file home/dot_zshrc
+# @brief Interactive Zsh configuration.
+# @description
+#   Loaded for every interactive shell (including `chezmoi cd`), exposing
+#   helper functions that must be available regardless of login status.
+
+function opencode() {
+    rbw unlock && fnox exec -- opencode "$@"
+}
