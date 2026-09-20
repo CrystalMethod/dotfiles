@@ -7,6 +7,14 @@
   "notifications_url": null,
   "lock_timeout": 3600,
   "sync_interval": 3600,
-  "pinentry": "pinentry",
+{{- $pinentry := "pinentry" }}
+{{- if eq .chezmoi.os "linux" }}
+{{-   if (stat "/usr/bin/pinentry-curses") }}
+{{-     $pinentry = "pinentry-curses" }}
+{{-   else if (stat "/usr/bin/pinentry-tty") }}
+{{-     $pinentry = "pinentry-tty" }}
+{{-   end }}
+{{- end }}
+  "pinentry": "{{ $pinentry }}",
   "client_cert_path": null
 }
