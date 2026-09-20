@@ -21,6 +21,14 @@ function install_command_line_tool() {
     if [ ! -e "${git_cmd_path}" ]; then
         # Install command line developer tool
         xcode-select --install
+        # TTY guard: in non-interactive environments (CI, SSH, automated installs)
+        # stdin is not a TTY, so the blocking `read` below would hang forever.
+        # Detect that and return without blocking instead.
+        if [ ! -t 0 ]; then
+            echo "Xcode Command Line Tools installation was triggered."
+            echo "This is a non-interactive environment; please complete the installation manually."
+            return
+        fi
         # Want for user input
         echo "Press any key when the installation has completed."
         IFS= read -r -n 1 -d ''
