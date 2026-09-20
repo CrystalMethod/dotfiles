@@ -165,10 +165,24 @@ function ensure_mise_min_version() {
 }
 
 #
-# @description Activate the installed mise binary for the current Bash process.
+# @description Detect the current interactive shell (bash or zsh).
+# @stdout The detected shell name, or `bash` when it cannot be determined.
+#
+function detect_shell() {
+    if [[ -n "${ZSH_VERSION:-}" ]]; then
+        printf '%s\n' "zsh"
+    else
+        printf '%s\n' "bash"
+    fi
+}
+
+#
+# @description Activate the installed mise binary for the current shell process.
 #
 function activate_mise() {
-    eval "$("${MISE_INSTALL_PATH}" activate bash)"
+    local shell_name
+    shell_name="$(detect_shell)"
+    eval "$("${MISE_INSTALL_PATH}" activate "${shell_name}")"
 }
 
 #
