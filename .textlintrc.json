@@ -1,0 +1,11 @@
+{
+  "rules": {
+    "textlint-rule-write-good": true,
+    "textlint-rule-common-misspellings": true,
+    "textlint-rule-en-capitalization": true,
+    "textlint-rule-no-todo": true,
+    "textlint-rule-max-doc-width": {
+      "max": 100
+    }
+  }
+}

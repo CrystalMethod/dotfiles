@@ -1,3 +1,8 @@
+.PHONY: setup
+setup:
+	mise install
+	prek install
+
 .PHONY: test
 test:
 	TARGET_OS=macos bash ./scripts/run_unit_test.sh

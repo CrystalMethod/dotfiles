@@ -5,5 +5,5 @@
 
 ## Repository Context
 
-- Tooling: This repository is managed with [`chezmoi`](https://www.chezmoi.io/) ([GitHub](https://github.com/twpayne/chezmoi)).
-- Public source: Files under `home/` are the public source state and are applied by `chezmoi` into the user's `$HOME` directory.
+- Tooling: [`chezmoi`](https://www.chezmoi.io/) ([GitHub](https://github.com/twpayne/chezmoi)) manages this repository.
+- Public source: Files under `home/` hold the public source state; `chezmoi` applies them into `$HOME`.
