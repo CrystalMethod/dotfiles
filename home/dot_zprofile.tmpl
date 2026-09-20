@@ -31,3 +31,7 @@ if (( ${+functions[mise_zsh_activate]} )); then
     mise_zsh_activate client
 fi
 {{- end }}
+
+function opencode() {
+    rbw unlock && fnox exec -- opencode "$@"
+}
