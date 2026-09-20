@@ -21,6 +21,15 @@ fi
 function is_brew_package_installed() {
     local package="$1"
 
+    # Distinguish a genuinely missing package (exit 1) from a broken brew
+    # (exit 2). If brew itself is unavailable, that is a hard environment
+    # failure, not "package not installed" — surface it instead of silently
+    # treating it as a missing package.
+    if ! command -v brew &> /dev/null; then
+        echo "error: Homebrew (brew) is not installed or not on PATH" >&2
+        return 2
+    fi
+
     brew list "${package}" &> /dev/null
 }
 
