@@ -51,3 +51,11 @@ function install_brew_packages() {
         brew install --force "${missing_packages[@]}"
     fi
 }
+
+#
+# @description Install the required Homebrew dependencies from the given list.
+# @arg $@ string Homebrew package names.
+#
+function install_brew_dependencies() {
+    install_brew_packages "$@"
+}

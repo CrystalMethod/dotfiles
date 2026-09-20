@@ -15,7 +15,7 @@ fi
 
 # shellcheck source-path=SCRIPTDIR
 # shellcheck source=../../common/brew.sh
-if ! declare -F install_brew_packages >/dev/null 2>&1; then
+if ! declare -F install_brew_dependencies >/dev/null 2>&1; then
     source "$(dirname "${BASH_SOURCE[0]}")/../../common/brew.sh"
 fi
 
@@ -31,7 +31,7 @@ BREW_PACKAGES=(
 # @description Install the required Homebrew dependencies.
 #
 function main() {
-    install_brew_packages "${BREW_PACKAGES[@]}"
+    install_brew_dependencies "${BREW_PACKAGES[@]}"
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
