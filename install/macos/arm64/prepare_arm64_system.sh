@@ -11,12 +11,13 @@ if [ "${DOTFILES_DEBUG:-}" ]; then
     set -x
 fi
 
+ROSETTA_PATH="${ROSETTA_PATH:-/Library/Apple/usr/share/rosetta/rosetta}"
+
 #
 # @description Install Rosetta if the system has not installed it yet.
 #
 function install_rosetta() {
-    local rosetta_path="/Library/Apple/usr/share/rosetta/rosetta"
-    if ! [[ -f "${rosetta_path}" ]]; then
+    if ! [[ -f "${ROSETTA_PATH}" ]]; then
         softwareupdate --install-rosetta --agree-to-license
     fi
 }
