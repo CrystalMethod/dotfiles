@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
 # @file home/.chezmoiscripts/common/run_after_20-install-mise-tools.sh.tmpl
-# @brief Install pinned mise tools after `chezmoi apply`.
+# @brief Install and activate mise and install pinned mise tools after `chezmoi apply`.
 # @description
-#   Keeps mise itself and mise-managed tools aligned with the applied pinned
-#   versions after every `chezmoi apply`.
+#   Single hook responsible for installing and activating mise itself and for
+#   keeping mise-managed tools aligned with the applied pinned versions after
+#   every `chezmoi apply`. This runs mise install/activate/install-tools exactly
+#   once per apply.
 
 set -Eeuo pipefail
 
