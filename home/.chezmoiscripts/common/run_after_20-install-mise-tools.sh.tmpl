@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# @file home/.chezmoiscripts/common/run_after_20-install-mise-tools.sh.tmpl
+# @brief Install pinned mise tools after `chezmoi apply`.
+# @description
+#   Keeps mise itself and mise-managed tools aligned with the applied pinned
+#   versions after every `chezmoi apply`.
+
+set -Eeuo pipefail
+
+{{ include "../install/common/mise.sh" }}

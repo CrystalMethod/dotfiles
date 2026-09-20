@@ -7,6 +7,8 @@ min_version = "2026.8.15"
 
 # CLI tools
 bat = "0.26.1"
+bun = "1.4.2"
+eza = "0.23.5"
 fd = "10.5.0"
 fnox = "1.35.2"
 lazygit = "0.65.1"
