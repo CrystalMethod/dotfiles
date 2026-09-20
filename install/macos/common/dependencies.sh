@@ -13,7 +13,7 @@ if [ "${DOTFILES_DEBUG:-}" ]; then
     set -x
 fi
 
-readonly BREW_PACKAGES=(
+BREW_PACKAGES=(
     cmake
     git
     gpg
