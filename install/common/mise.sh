@@ -160,7 +160,7 @@ function ensure_mise_min_version() {
     }
 
     if ! is_mise_version_at_least "${current}" "${required}"; then
-        install_mise
+        install_mise || return 1
     fi
 }
 

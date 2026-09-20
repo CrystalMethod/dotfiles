@@ -181,6 +181,47 @@ EOF
     [ -e "${CURL_ARGS_PATH}" ]
 }
 
+@test "[common] ensure_mise_min_version propagates install_mise failure when stale" {
+    write_mise_config "2026.8.15"
+    write_mise_stub "2026.8.14"
+
+    function install_mise() {
+        printf 'install_mise called\n' >> "${BATS_TEST_TMPDIR}/install_calls.txt"
+        return 1
+    }
+
+    run ensure_mise_min_version
+    [ "${status}" -eq 1 ]
+    [ "$(< "${BATS_TEST_TMPDIR}/install_calls.txt")" = "install_mise called" ]
+}
+
+@test "[common] ensure_mise_min_version returns install_mise exit code when mise missing" {
+    write_mise_config "2026.8.15"
+
+    function install_mise() {
+        printf 'install_mise called\n' >> "${BATS_TEST_TMPDIR}/install_calls.txt"
+        return 3
+    }
+
+    run ensure_mise_min_version
+    [ "${status}" -eq 3 ]
+    [ "$(< "${BATS_TEST_TMPDIR}/install_calls.txt")" = "install_mise called" ]
+}
+
+@test "[common] ensure_mise_min_version happy path does not call install_mise" {
+    write_mise_config "2026.8.15"
+    write_mise_stub "2026.8.15"
+
+    function install_mise() {
+        printf 'install_mise called\n' >> "${BATS_TEST_TMPDIR}/install_calls.txt"
+        return 1
+    }
+
+    run ensure_mise_min_version
+    [ "${status}" -eq 0 ]
+    [ ! -e "${BATS_TEST_TMPDIR}/install_calls.txt" ]
+}
+
 @test "[common] run_mise_install unsets installer envvars" {
     write_mise_stub
     export MISE_CURRENT_VERSION="should-not-leak"
