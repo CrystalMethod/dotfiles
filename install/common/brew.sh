@@ -39,10 +39,6 @@ function install_brew_packages() {
     done
 
     if [[ ${#missing_packages[@]} -gt 0 ]]; then
-        if "${CI:-false}"; then
-            brew info "${missing_packages[@]}"
-        else
-            brew install --force "${missing_packages[@]}"
-        fi
+        brew install --force "${missing_packages[@]}"
     fi
 }
