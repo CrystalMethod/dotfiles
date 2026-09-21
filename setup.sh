@@ -57,7 +57,7 @@ function at_exit() {
 }
 
 function usage() {
-    cat <<'EOF'
+    cat << 'EOF'
 Usage: setup.sh [--mode <privileged|user>] [--dry-run]
 
 Options:
@@ -73,44 +73,44 @@ EOF
 function parse_args() {
     while [[ $# -gt 0 ]]; do
         case "$1" in
-            --mode)
-                if [[ $# -lt 2 || "$2" == -* ]]; then
-                    echo "Error: --mode requires an argument." >&2
-                    usage >&2
-                    exit 1
-                fi
-                MODE="$2"
-                shift 2
-                ;;
-            --mode=*)
-                MODE="${1#*=}"
-                shift
-                ;;
-            --dry-run)
-                DRY_RUN=true
-                shift
-                ;;
-            -h|--help)
-                usage
-                exit 0
-                ;;
-            *)
-                echo "Error: Unknown option: $1" >&2
+        --mode)
+            if [[ $# -lt 2 || "$2" == -* ]]; then
+                echo "Error: --mode requires an argument." >&2
                 usage >&2
                 exit 1
-                ;;
+            fi
+            MODE="$2"
+            shift 2
+            ;;
+        --mode=*)
+            MODE="${1#*=}"
+            shift
+            ;;
+        --dry-run)
+            DRY_RUN=true
+            shift
+            ;;
+        -h | --help)
+            usage
+            exit 0
+            ;;
+        *)
+            echo "Error: Unknown option: $1" >&2
+            usage >&2
+            exit 1
+            ;;
         esac
     done
 }
 
 function validate_mode() {
     case "${MODE}" in
-        privileged|user) ;;
-        *)
-            echo "Error: Invalid mode '${MODE}'. Expected 'privileged' or 'user'." >&2
-            usage >&2
-            exit 1
-            ;;
+    privileged | user) ;;
+    *)
+        echo "Error: Invalid mode '${MODE}'. Expected 'privileged' or 'user'." >&2
+        usage >&2
+        exit 1
+        ;;
     esac
 }
 
