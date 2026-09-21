@@ -18,10 +18,13 @@ television = "0.15.9"
 # Aqua tools
 "aqua:anomalyco/opencode" = "1.18.31"
 "aqua:bats-core/bats-core" = "1.14.0"
+"aqua:cli/cli" = "2.101.0"
 "aqua:j178/prek" = "0.5.2"
 "aqua:koalaman/shellcheck" = "0.11.0"
 "aqua:mvdan/sh" = "3.14.1"
+"github:raine/workmux" = "0.1.263"
 "aqua:twpayne/chezmoi" = "2.72.1"
+"aqua:x-motemen/ghq" = "1.10.1"
 
 # Language runtimes
 node = "lts"
