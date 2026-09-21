@@ -32,6 +32,10 @@
 {{-   $mode = promptString "Mode (privileged or user)" -}}
 {{- end -}}
 
+diff:
+  exclude:
+    - scripts
+
 data:
     name: {{ $name | quote }}
     email: {{ $email | quote }}
