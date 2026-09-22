@@ -106,7 +106,7 @@ readonly TEMPLATE="./home/.chezmoitemplates/common/rbw"
 
     local out status
     out="$(HOME="${iso_home}" chezmoi execute-template \
-        --init --promptString email=test@example.com < "${TEMPLATE}" 2>&1)"
+        --init --override-data '{"email":"test@example.com"}' < "${TEMPLATE}" 2>&1)"
     status=$?
 
     [ "${status}" -eq 0 ]
