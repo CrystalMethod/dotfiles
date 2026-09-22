@@ -163,9 +163,27 @@ function get_os_type() {
 }
 
 function keepalive_sudo_linux() {
-    # Might as well ask for password up-front, right?
-    echo "Checking for \`sudo\` access which may request your password."
-    sudo -v
+    if is_dry_run; then
+        echo "[dry-run] Would keep sudo alive (sudo -v / sudo keep-alive loop)."
+        return 0
+    fi
+
+    if is_wsl2; then
+        # In WSL2, /dev/tty is often unavailable in non-interactive scenarios
+        # (e.g. a Windows-launched terminal or CI). Skip the interactive
+        # `sudo -v` password prompt when there is no TTY so we do not hang.
+        if is_tty; then
+            echo "Checking for \`sudo\` access which may request your password."
+            sudo -v
+        else
+            echo "Non-interactive WSL2: skipping sudo password prompt."
+        fi
+    else
+        # Native Linux: unchanged behavior.
+        # Might as well ask for password up-front, right?
+        echo "Checking for \`sudo\` access which may request your password."
+        sudo -v
+    fi
 
     # Keep-alive: update existing sudo time stamp if set, otherwise do nothing.
     while true; do
