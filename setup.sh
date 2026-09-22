@@ -27,6 +27,9 @@ declare -r DOTFILES_LOGO='
 declare -r DOTFILES_REPO_URL="${DOTFILES_REPO_URL:-https://github.com/crystalmethod/dotfiles}"
 declare -r BRANCH_NAME="${BRANCH_NAME:-main}"
 
+# Centralized WSL2 detection helper (provides is_wsl2).
+source "$(dirname "${BASH_SOURCE[0]}")/install/common/wsl2.sh"
+
 # Run mode: "privileged" (default, uses sudo) or "user" (no sudo, Homebrew in user space).
 declare MODE="privileged"
 
@@ -271,7 +274,11 @@ function initialize_os_macos() {
 }
 
 function initialize_os_linux() {
-    :
+    # Detect WSL2 so it is recognized at setup time. Native Linux behavior is
+    # unchanged; WSL2-specific behaviors are handled in later tasks.
+    if is_wsl2; then
+        echo "Detected WSL2 environment."
+    fi
 }
 
 function initialize_os_env() {
