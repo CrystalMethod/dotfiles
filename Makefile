@@ -5,7 +5,7 @@ setup:
 
 .PHONY: test
 test:
-	TARGET_OS=macos bash ./scripts/run_unit_test.sh
+	TARGET_OS=$${TARGET_OS:-macos} bash ./scripts/run_unit_test.sh
 
 .PHONY: format
 format:

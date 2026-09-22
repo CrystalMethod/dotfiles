@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+        include:
+          - os: macos-latest
+            target_os: macos
+          - os: ubuntu-latest
+            target_os: ubuntu
+    env:
+      TARGET_OS: ${{ matrix.target_os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install shellcheck
+        run: |
+          if [ "$TARGET_OS" = "macos" ]; then
+            brew install shellcheck
+          else
+            sudo apt-get update && sudo apt-get install -y shellcheck
+          fi
+
+      - name: Install shfmt
+        run: |
+          SHFMT_VERSION=v3.14.1
+          case "$(uname -s)" in
+            Darwin) SHFMT_OS=darwin ;;
+            Linux) SHFMT_OS=linux ;;
+            *) echo "unsupported OS: $(uname -s)" >&2; exit 1 ;;
+          esac
+          case "$(uname -m)" in
+            x86_64|amd64) SHFMT_ARCH=amd64 ;;
+            arm64|aarch64) SHFMT_ARCH=arm64 ;;
+            *) echo "unsupported arch: $(uname -m)" >&2; exit 1 ;;
+          esac
+          curl -fsSL \
+            "https://github.com/mvdan/sh/releases/download/${SHFMT_VERSION}/shfmt_${SHFMT_VERSION}_${SHFMT_OS}_${SHFMT_ARCH}" \
+            -o /tmp/shfmt
+          chmod +x /tmp/shfmt
+          sudo mv /tmp/shfmt /usr/local/bin/shfmt
+          shfmt --version
+
+      - name: Install bats
+        run: |
+          if [ "$TARGET_OS" = "macos" ]; then
+            brew install bats-core
+          else
+            sudo apt-get update && sudo apt-get install -y bats
+          fi
+
+      - name: Lint
+        run: make lint
+
+      - name: Format
+        run: make format
+
+      - name: Test
+        run: make test

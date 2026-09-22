@@ -18,7 +18,7 @@ function render_linux() {
     local home_dir="$1"
     local data_file="${BATS_TEST_TMPDIR}/data.json"
 
-    cat > "${data_file}" <<EOF
+    cat > "${data_file}" << EOF
 {
   "chezmoi": { "os": "linux", "arch": "arm64", "homeDir": "${home_dir}" },
   "mode": "user",
@@ -55,7 +55,7 @@ EOF
 
 @test "[zprofile] linux: evals brew shellenv from /home/linuxbrew when present" {
     local brew_path="/home/linuxbrew/.linuxbrew/bin/brew"
-    if ! mkdir -p "$(dirname "${brew_path}")" 2>/dev/null; then
+    if ! mkdir -p "$(dirname "${brew_path}")" 2> /dev/null; then
         skip "cannot create ${brew_path} on this host (SIP-protected /home)"
     fi
     touch "${brew_path}"

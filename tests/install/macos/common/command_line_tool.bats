@@ -81,17 +81,17 @@ EOF
     # watchdog detects that hang and fails the test.
     local pid
     local waited=0
-    ( install_command_line_tool < <(sleep 30) ) > "${out_file}" 2>&1 &
+    (install_command_line_tool < <(sleep 30)) > "${out_file}" 2>&1 &
     pid=$!
 
-    while kill -0 "${pid}" 2>/dev/null && [ "${waited}" -lt 20 ]; do
+    while kill -0 "${pid}" 2> /dev/null && [ "${waited}" -lt 20 ]; do
         sleep 0.1
         waited=$((waited + 1))
     done
 
-    if kill -0 "${pid}" 2>/dev/null; then
-        kill "${pid}" 2>/dev/null
-        wait "${pid}" 2>/dev/null
+    if kill -0 "${pid}" 2> /dev/null; then
+        kill "${pid}" 2> /dev/null
+        wait "${pid}" 2> /dev/null
         fail "install_command_line_tool blocked on read when stdin is not a TTY"
     fi
     wait "${pid}"

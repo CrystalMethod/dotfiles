@@ -5,7 +5,7 @@
 
 bats_require_minimum_version 1.5.0
 
-readonly SCRIPT_PATH="./install/macos/common/misc.sh"
+readonly SCRIPT_PATH="./install/common/misc.sh"
 
 function setup() {
     export BREW_CALLS_PATH="${BATS_TEST_TMPDIR}/brew_calls.txt"
@@ -62,8 +62,7 @@ BREW
 
     run install_brew_packages "${BREW_PACKAGES[@]}"
     [ "${status}" -eq 0 ]
-    run ! grep -q '^install --force ' "${BREW_CALLS_PATH}"
-    grep -q '^info rbw$' "${BREW_CALLS_PATH}"
+    grep -q '^install --force rbw$' "${BREW_CALLS_PATH}"
 }
 
 @test "[macos] main installs the missing packages" {

@@ -27,7 +27,7 @@ function render_rbw() {
     local email="$2"
     local data_file="${BATS_TEST_TMPDIR}/data.json"
 
-    cat > "${data_file}" <<EOF
+    cat > "${data_file}" << EOF
 {
   "chezmoi": { "os": "${os}", "arch": "arm64", "homeDir": "/home/test" },
   "email": "${email}"
@@ -43,7 +43,7 @@ EOF
 function assert_pinentry() {
     local expected="$1"
     local pinentry
-    pinentry="$(jq -r '.pinentry' <<<"${output}")"
+    pinentry="$(jq -r '.pinentry' <<< "${output}")"
     [ "${status}" -eq 0 ]
     [ "${pinentry}" = "${expected}" ]
 }
@@ -56,7 +56,7 @@ function assert_pinentry() {
 @test "[rbw] macOS output is valid JSON" {
     run render_rbw "darwin" "test@example.com"
     [ "${status}" -eq 0 ]
-    jq -e . <<<"${output}" >/dev/null
+    jq -e . <<< "${output}" > /dev/null
     [ "${output}" != "" ]
 }
 
@@ -71,7 +71,7 @@ function assert_pinentry() {
 }
 
 @test "[rbw] linux: uses 'pinentry-curses' when /usr/bin/pinentry-curses exists" {
-    if ! touch /usr/bin/pinentry-curses 2>/dev/null; then
+    if ! touch /usr/bin/pinentry-curses 2> /dev/null; then
         skip "cannot write /usr/bin/pinentry-curses on this host (SIP-protected /usr/bin)"
     fi
 
@@ -80,7 +80,7 @@ function assert_pinentry() {
 }
 
 @test "[rbw] linux: uses 'pinentry-tty' when only /usr/bin/pinentry-tty exists" {
-    if ! touch /usr/bin/pinentry-tty 2>/dev/null; then
+    if ! touch /usr/bin/pinentry-tty 2> /dev/null; then
         skip "cannot write /usr/bin/pinentry-tty on this host (SIP-protected /usr/bin)"
     fi
 
@@ -91,6 +91,6 @@ function assert_pinentry() {
 @test "[rbw] linux output is valid JSON" {
     run render_rbw "linux" "test@example.com"
     [ "${status}" -eq 0 ]
-    jq -e . <<<"${output}" >/dev/null
+    jq -e . <<< "${output}" > /dev/null
     [ "${output}" != "" ]
 }

@@ -14,7 +14,7 @@ fi
 
 # shellcheck source-path=SCRIPTDIR
 # shellcheck source=brew.sh
-if ! declare -F install_brew_packages >/dev/null 2>&1; then
+if ! declare -F install_brew_packages > /dev/null 2>&1; then
     source "$(dirname "${BASH_SOURCE[0]}")/brew.sh"
 fi
 

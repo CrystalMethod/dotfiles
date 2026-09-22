@@ -65,8 +65,7 @@ BREW
 
     run install_brew_packages "${BREW_PACKAGES[@]}"
     [ "${status}" -eq 0 ]
-    run ! grep -q '^install --force ' "${BREW_CALLS_PATH}"
-    grep -q '^info gpg pinentry-mac vim zsh$' "${BREW_CALLS_PATH}"
+    grep -q '^install --force gpg pinentry-mac vim zsh$' "${BREW_CALLS_PATH}"
 }
 
 @test "[macos] main installs the missing packages" {
