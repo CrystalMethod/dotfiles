@@ -5,7 +5,7 @@
 
 bats_require_minimum_version 1.5.0
 
-readonly SCRIPT_PATH="./install/ubuntu/common/misc.sh"
+readonly SCRIPT_PATH="./install/common/misc.sh"
 
 function setup() {
     export BREW_CALLS_PATH="${BATS_TEST_TMPDIR}/brew_calls.txt"

@@ -52,8 +52,7 @@ BREW
 
     run install_brew_packages "${BREW_PACKAGES[@]}"
     [ "${status}" -eq 0 ]
-    run ! grep -q '^install --force ' "${BREW_CALLS_PATH}"
-    grep -q '^info cmake git gpg vim zsh$' "${BREW_CALLS_PATH}"
+    grep -q '^install --force cmake git gpg vim zsh$' "${BREW_CALLS_PATH}"
 }
 
 @test "[ubuntu] main installs the missing packages" {
