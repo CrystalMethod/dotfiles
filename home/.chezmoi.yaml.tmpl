@@ -18,6 +18,9 @@
 {{- /* Set client to the MacOS default system */ -}}
 {{- else if eq .chezmoi.os "darwin" -}}
 {{    $system = "client" -}}
+{{- /* Auto-select client on WSL2 (WSL_DISTRO_NAME is set in WSL2) */ -}}
+{{- else if env "WSL_DISTRO_NAME" -}}
+{{-   $system = "client" -}}
 {{- else -}}
 {{-   $system = promptString "System (client or server)" -}}
 {{- end -}}
