@@ -9,10 +9,17 @@
   "sync_interval": 3600,
 {{- $pinentry := "pinentry" }}
 {{- if eq .chezmoi.os "linux" }}
-{{-   if (stat "/usr/bin/pinentry-curses") }}
-{{-     $pinentry = "pinentry-curses" }}
-{{-   else if (stat "/usr/bin/pinentry-tty") }}
-{{-     $pinentry = "pinentry-tty" }}
+{{-   if env "WSL_DISTRO_NAME" }}
+{{- /* WSL2: prefer a TTY-based pinentry (no native X11/Wayland display) */ -}}
+{{-     if (stat "/usr/bin/pinentry-tty") }}
+{{-       $pinentry = "pinentry-tty" }}
+{{-     end }}
+{{-   else }}
+{{-     if (stat "/usr/bin/pinentry-curses") }}
+{{-       $pinentry = "pinentry-curses" }}
+{{-     else if (stat "/usr/bin/pinentry-tty") }}
+{{-       $pinentry = "pinentry-tty" }}
+{{-     end }}
 {{-   end }}
 {{- end }}
   "pinentry": "{{ $pinentry }}",

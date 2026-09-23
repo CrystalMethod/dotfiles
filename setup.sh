@@ -27,6 +27,9 @@ declare -r DOTFILES_LOGO='
 declare -r DOTFILES_REPO_URL="${DOTFILES_REPO_URL:-https://github.com/crystalmethod/dotfiles}"
 declare -r BRANCH_NAME="${BRANCH_NAME:-main}"
 
+# Centralized WSL2 detection helper (provides is_wsl2).
+source "$(dirname "${BASH_SOURCE[0]}")/install/common/wsl2.sh"
+
 # Run mode: "privileged" (default, uses sudo) or "user" (no sudo, Homebrew in user space).
 declare MODE="privileged"
 
@@ -160,9 +163,27 @@ function get_os_type() {
 }
 
 function keepalive_sudo_linux() {
-    # Might as well ask for password up-front, right?
-    echo "Checking for \`sudo\` access which may request your password."
-    sudo -v
+    if is_dry_run; then
+        echo "[dry-run] Would keep sudo alive (sudo -v / sudo keep-alive loop)."
+        return 0
+    fi
+
+    if is_wsl2; then
+        # In WSL2, /dev/tty is often unavailable in non-interactive scenarios
+        # (e.g. a Windows-launched terminal or CI). Skip the interactive
+        # `sudo -v` password prompt when there is no TTY so we do not hang.
+        if is_tty; then
+            echo "Checking for \`sudo\` access which may request your password."
+            sudo -v
+        else
+            echo "Non-interactive WSL2: skipping sudo password prompt."
+        fi
+    else
+        # Native Linux: unchanged behavior.
+        # Might as well ask for password up-front, right?
+        echo "Checking for \`sudo\` access which may request your password."
+        sudo -v
+    fi
 
     # Keep-alive: update existing sudo time stamp if set, otherwise do nothing.
     while true; do
@@ -271,7 +292,11 @@ function initialize_os_macos() {
 }
 
 function initialize_os_linux() {
-    :
+    # Detect WSL2 so it is recognized at setup time. Native Linux behavior is
+    # unchanged; WSL2-specific behaviors are handled in later tasks.
+    if is_wsl2; then
+        echo "Detected WSL2 environment."
+    fi
 }
 
 function initialize_os_env() {
