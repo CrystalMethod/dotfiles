@@ -70,3 +70,17 @@ BREW
     [ "${status}" -eq 0 ]
     grep -q '^install --force rbw$' "${BREW_CALLS_PATH}"
 }
+
+@test "[macos] macOS misc.sh BREW_PACKAGES contains bash only" {
+    source "./install/macos/common/misc.sh"
+    [[ " ${BREW_PACKAGES[*]} " == *" bash "* ]]
+    [[ " ${BREW_PACKAGES[*]} " != *" rbw "* ]]
+}
+
+@test "[macos] macOS misc.sh main installs bash" {
+    source "./install/macos/common/misc.sh"
+
+    run main
+    [ "${status}" -eq 0 ]
+    grep -q '^install --force bash$' "${BREW_CALLS_PATH}"
+}
