@@ -1,0 +1,29 @@
+# Television channel for Bitwarden vault entries via rbw
+# https://github.com/doy/rbw
+
+[metadata]
+name = "bitwarden"
+description = "Bitwarden vault entries via rbw"
+requirements = ["rbw"]
+
+[source]
+# rbw list prints one entry name per line; fails closed when the vault is locked
+command = "rbw unlocked && rbw list"
+
+[preview]
+# Show field names only, never the password
+command = "rbw get --list-fields '{}'"
+
+[keybindings]
+enter = "actions:copy_password"
+ctrl-u = "actions:copy_username"
+
+[actions.copy_password]
+description = "Copy password to clipboard"
+command = "rbw get --clipboard '{}'"
+mode = "execute"
+
+[actions.copy_username]
+description = "Copy username to clipboard"
+command = "rbw get --field username --clipboard '{}'"
+mode = "execute"
