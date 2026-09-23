@@ -6,3 +6,4 @@ auth_command = "rbw unlock"
 [secrets]
 ADESSO_AI_HUB_API_KEY = { provider = "bitwarden", value = "ADESSO_AI_HUB_API_KEY" }
 GROQ_AI_API_KEY = { provider = "bitwarden", value = "GROQ_AI_API_KEY" }
+ADESSO_AI_HUB_SOVEREIGN_API_KEY= { provider = "bitwarden", value = "ADESSO_AI_HUB_SOVEREIGN_API_KEY" }
