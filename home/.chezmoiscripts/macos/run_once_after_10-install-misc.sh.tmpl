@@ -1,4 +1,5 @@
 {{ if eq .chezmoi.os "darwin" -}}
 {{   include "../install/common/brew.sh" }}
 {{   include "../install/common/misc.sh" }}
+{{   include "../install/macos/common/misc.sh" }}
 {{- end }}
