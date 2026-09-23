@@ -32,9 +32,9 @@ function setup() {
     # redefinition error would otherwise abort the source, so we re-apply
     # `set +e` on ERR for the duration of the source.
     main() { :; }
-    readonly -f main 2>/dev/null
+    readonly -f main 2> /dev/null
     trap 'set +e' ERR
-    source "${SETUP_PATH}" 2>/dev/null
+    source "${SETUP_PATH}" 2> /dev/null
     trap - ERR
 
     # Log of every `sudo` invocation made by the function under test.
@@ -46,7 +46,10 @@ function setup() {
 #   calling sudo at all (FR-003: no hang/failure; the dry-run contract).
 @test "[ubuntu] keepalive_sudo_linux returns early in dry-run without calling sudo" {
     is_dry_run() { return 0; }
-    sudo() { echo "$*" >> "${SUDO_LOG}"; return 0; }
+    sudo() {
+        echo "$*" >> "${SUDO_LOG}"
+        return 0
+    }
 
     output="$(keepalive_sudo_linux 2>&1)"
     status=$?
@@ -67,7 +70,10 @@ function setup() {
     # keep-alive loop under bats. Overriding it to `return 1` is logically
     # identical (not dry-run) and keeps the test isolated from that quirk.
     is_dry_run() { return 1; }
-    sudo() { echo "$*" >> "${SUDO_LOG}"; return 0; }
+    sudo() {
+        echo "$*" >> "${SUDO_LOG}"
+        return 0
+    }
 
     keepalive_sudo_linux > "${BATS_TEST_TMPDIR}/out.txt" 2>&1
     status=$?
@@ -81,7 +87,7 @@ function setup() {
     fi
 
     # Terminate the background keep-alive loop.
-    kill "$!" 2>/dev/null || true
+    kill "$!" 2> /dev/null || true
 }
 
 # Test 3 — Native Linux: behavior is byte-for-byte unchanged, i.e. the
@@ -90,7 +96,10 @@ function setup() {
     is_wsl2() { return 1; }
     is_tty() { return 0; }
     is_dry_run() { return 1; }
-    sudo() { echo "$*" >> "${SUDO_LOG}"; return 0; }
+    sudo() {
+        echo "$*" >> "${SUDO_LOG}"
+        return 0
+    }
 
     keepalive_sudo_linux > "${BATS_TEST_TMPDIR}/out.txt" 2>&1
     status=$?
@@ -101,7 +110,7 @@ function setup() {
     grep -q -- '-v' "${SUDO_LOG}"
     [ "${output}" = 'Checking for `sudo` access which may request your password.' ]
 
-    kill "$!" 2>/dev/null || true
+    kill "$!" 2> /dev/null || true
 }
 
 # Test 4 — Keep-alive loop: the `sudo -n true` / `sleep 60` / `kill -0 $$`
@@ -118,7 +127,10 @@ function setup() {
     is_wsl2() { return 0; }
     is_tty() { return 0; }
     is_dry_run() { return 1; }
-    sudo() { echo "$*" >> "${SUDO_LOG}"; return 0; }
+    sudo() {
+        echo "$*" >> "${SUDO_LOG}"
+        return 0
+    }
 
     keepalive_sudo_linux > "${BATS_TEST_TMPDIR}/out.txt" 2>&1
     status=$?
@@ -128,5 +140,5 @@ function setup() {
     grep -q -- '-v' "${SUDO_LOG}"
     [ "${output}" = 'Checking for `sudo` access which may request your password.' ]
 
-    kill "$!" 2>/dev/null || true
+    kill "$!" 2> /dev/null || true
 }

@@ -23,9 +23,9 @@ function setup() {
     # redefinition error would otherwise abort the source, so we re-apply
     # `set +e` on ERR for the duration of the source.
     main() { :; }
-    readonly -f main 2>/dev/null
+    readonly -f main 2> /dev/null
     trap 'set +e' ERR
-    source "${SETUP_PATH}" 2>/dev/null
+    source "${SETUP_PATH}" 2> /dev/null
     trap - ERR
 }
 

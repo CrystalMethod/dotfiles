@@ -97,7 +97,7 @@ readonly TEMPLATE="./home/.chezmoitemplates/common/rbw"
 #   break `chezmoi apply` entirely. Skipped when chezmoi is not installed
 #   (CI does not install chezmoi).
 @test "[ubuntu] rbw template renders with chezmoi execute-template" {
-    command -v chezmoi >/dev/null 2>&1 || skip "chezmoi not installed"
+    command -v chezmoi > /dev/null 2>&1 || skip "chezmoi not installed"
 
     # Use an isolated HOME so the user's real chezmoi config does not
     # interfere with the render.
