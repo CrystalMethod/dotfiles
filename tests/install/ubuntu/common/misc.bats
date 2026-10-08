@@ -1,7 +1,7 @@
 #!/usr/bin/env bats
 
 # @file tests/install/ubuntu/common/misc.bats
-# @brief Unit tests for install/ubuntu/common/misc.sh.
+# @brief Unit tests for install/common/misc.sh (shared optional packages, exercised on Ubuntu).
 
 bats_require_minimum_version 1.5.0
 
