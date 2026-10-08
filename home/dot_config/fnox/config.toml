@@ -5,5 +5,9 @@ auth_command = "rbw unlock"
 
 [secrets]
 ADESSO_AI_HUB_API_KEY = { provider = "bitwarden", value = "ADESSO_AI_HUB_API_KEY" }
+ADESSO_AI_HUB_SOVEREIGN_API_KEY = { provider = "bitwarden", value = "ADESSO_AI_HUB_SOVEREIGN_API_KEY" }
 GROQ_AI_API_KEY = { provider = "bitwarden", value = "GROQ_AI_API_KEY" }
-ADESSO_AI_HUB_SOVEREIGN_API_KEY= { provider = "bitwarden", value = "ADESSO_AI_HUB_SOVEREIGN_API_KEY" }
+NINEROUTER_API_KEY = { provider = "bitwarden", value = "NINEROUTER_API_KEY/password"}
+OPENCODE_ZEN_API_KEY = { provider = "bitwarden", value = "OPENCODE_ZEN_API_KEY" }
+OPENROUTER_AI_API_KEY = { provider = "bitwarden", value = "OPENROUTER_AI_API_KEY" }
+TAVILY_API_KEY = { provider = "bitwarden", value = "TAVILY_API_KEY/password" }
