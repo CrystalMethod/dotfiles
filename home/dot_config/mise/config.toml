@@ -18,7 +18,7 @@ television = "0.15.9"
 
 # Aqua tools
 "aqua:anomalyco/opencode" = "1.18.35"
-"aqua:astral-sh/uv" = "0.12.23"
+"aqua:astral-sh/uv" = "0.12.24"
 "aqua:bats-core/bats-core" = "1.14.0"
 "aqua:biomejs/biome" = "2.5.14"
 "aqua:BurntSushi/ripgrep" = "15.2.0"
