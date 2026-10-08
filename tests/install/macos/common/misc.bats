@@ -27,16 +27,17 @@ BREW
     PATH="${BATS_TEST_TMPDIR}:${PATH}" export PATH
 }
 
-@test "[macos] macOS misc.sh BREW_PACKAGES contains bash only" {
+@test "[macos] macOS misc.sh BREW_PACKAGES holds optional macOS packages, not common rbw" {
     source "./install/macos/common/misc.sh"
-    [[ " ${BREW_PACKAGES[*]} " == *" bash "* ]]
+    [ "${BREW_PACKAGES[*]}" = "ast-grep bash colima docker docker-buildx docker-compose openjdk@21" ]
+    # rbw lives in install/common/misc.sh (common requirement, all platforms)
     [[ " ${BREW_PACKAGES[*]} " != *" rbw "* ]]
 }
 
-@test "[macos] macOS misc.sh main installs bash" {
+@test "[macos] macOS misc.sh main installs the optional packages" {
     source "./install/macos/common/misc.sh"
 
     run main
     [ "${status}" -eq 0 ]
-    grep -q '^install --force bash$' "${BREW_CALLS_PATH}"
+    grep -q '^install --force ast-grep bash colima docker docker-buildx docker-compose openjdk@21$' "${BREW_CALLS_PATH}"
 }
