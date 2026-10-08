@@ -29,7 +29,7 @@ television = "0.15.9"
 "aqua:joshmedeski/sesh" = { version = "2.32.0", os = ["macos", "linux"] }
 "aqua:koalaman/shellcheck" = "0.11.0"
 "aqua:mvdan/sh" = "3.14.1"
-"github:raine/workmux" = "0.1.269"
+"github:raine/workmux" = "0.1.271"
 "aqua:rtk-ai/rtk" = "0.51.0"
 "aqua:tmux/tmux-builds" = "3.7c"
 "aqua:twpayne/chezmoi" = "2.73.0"
