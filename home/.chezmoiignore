@@ -4,3 +4,6 @@ Library/Application Support/rbw
 {{ if ne .chezmoi.os "linux" -}}
 .config/rbw
 {{- end }}
+
+# DOX docs: repo tooling only, never applied to $HOME
+**/AGENTS.md

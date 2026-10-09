@@ -2,10 +2,49 @@
 
 # @file tests/install/common/mise.bats
 # @brief Unit tests for install/common/mise.sh.
+#
+# Overview
+# --------
+# This test suite validates the install/common/mise.sh script, which bootstraps
+# mise (the version manager) and runs mise install against the pinned
+# configuration. The tests:
+#
+# - Parse the mise configuration file to extract min_version and other settings.
+# - Compare installed mise version against the required minimum.
+# - Mock network and installation to verify mise is downloaded and installed
+#   correctly when missing or stale.
+# - Ensure environment variables are handled safely during mise install.
+# - Verify that the actual repository mise config pins a valid http:jdtls tool
+#   with the expected version, URL, and checksum.
+#
+# Testing Approach
+# ----------------
+# - Uses bats 1.5.0+ test framework for isolated test execution.
+# - Mocks binaries (curl, mise) via temporary stubs in a test-specific PATH.
+# - Uses temporary directories for HOME, PATH, and test artifacts.
+# - Each test sets up a clean environment in setup() and sources the script.
+# - Tests the script functions directly, as well as the main entry point.
+#
+# Key Fixtures
+# ------------
+# - TEST_BIN_DIR: Location for mocked binaries.
+# - MISE_INSTALL_PATH: Mock mise binary location.
+# - MISE_CONFIG_PATH: Test mise config file (temporary).
+# - REPO_MISE_CONFIG_PATH: Actual repo mise config for structural validation.
+# - MISE_CALLS_PATH, CURL_ARGS_PATH, INSTALLER_ENV_PATH: Captured call logs.
+#
+# Running
+# -------
+# Run from repo root: `bats tests/install/common/mise.bats`
+# Or with verbose output: `bats -v tests/install/common/mise.bats`
 
 bats_require_minimum_version 1.5.0
 
 readonly SCRIPT_PATH="./install/common/mise.sh"
+# Source mise config, relative to the repo root (the working directory when
+# bats runs with -r tests/install/common/). Asserted structurally, matching the
+# pinentry-wsl2.bats / system-select-wsl2.bats approach.
+readonly REPO_MISE_CONFIG_PATH="./home/dot_config/mise/config.toml"
 
 function setup() {
     export HOME="${BATS_TEST_TMPDIR}/home"
@@ -241,4 +280,26 @@ EOF
     [ "${status}" -eq 0 ]
     [ -x "${MISE_INSTALL_PATH}" ]
     [ "$(< "${MISE_CALLS_PATH}")" = $'install\nMISE_CURRENT_VERSION=\nMISE_VERSION=' ]
+}
+
+@test "[common] mise config pins a valid http:jdtls tool" {
+    local block version sha256
+
+    [ -f "${REPO_MISE_CONFIG_PATH}" ]
+
+    # The pin is a [tools."http:jdtls"] block table; capture its body so the
+    # assertions do not depend on the compact inline-table form.
+    block="$(awk '/^\[tools\."http:jdtls"\]/{f=1;next} /^\[/{f=0} f' "${REPO_MISE_CONFIG_PATH}")"
+    [ -n "${block}" ]
+
+    # The pinned version drives both the milestone URL and the tarball name.
+    [[ "${block}" =~ version[[:space:]]*=[[:space:]]*\"([0-9]+\.[0-9]+\.[0-9]+)\" ]]
+    version="${BASH_REMATCH[1]}"
+    [[ "${block}" == *"jdtls/milestones/${version}/"* ]]
+    [[ "${block}" == *"jdt-language-server-${version}-"* ]]
+
+    # A checksum is required so the mise http backend verifies the download.
+    [[ "${block}" =~ sha256[[:space:]]*=[[:space:]]*\"([0-9a-f]{64})\" ]]
+    sha256="${BASH_REMATCH[1]}"
+    [ "${#sha256}" -eq 64 ]
 }

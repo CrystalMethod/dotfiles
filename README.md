@@ -13,6 +13,19 @@ target files into `$HOME`.
   Linux/WSL2, with an architecture-aware `brew shellenv` in the login profile.
 - **mise-managed tools** — The mise config pins tool versions and
   auto-installs them after every `chezmoi apply`.
+
+  ### Language runtimes
+
+  ```toml
+  # Language runtimes
+  java = "temurin-25"
+  http:jdtls = {
+    version = "1.58.0"
+    url = "https://download.eclipse.org/jdtls/milestones/1.58.0/jdt-language-server-1.58.0-202604151538.tar.gz"
+    sha256 = "2a5bbe55ec91b4325392050dc422cead3220a2459b3766be35e1fff45b4a50d9"
+  }
+  node = "lts"
+  ```
 - **Encrypted secrets** — `age`-encrypted files (separate from the public
   source) for sensitive configuration.
 
