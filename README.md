@@ -93,8 +93,8 @@ platforms:
   Line Tools installer with a TTY guard.
 - `install/macos/common/dependencies.sh`, `install/ubuntu/common/dependencies.sh`
   — essential Homebrew packages per OS.
-- `install/macos/common/misc.sh`, `install/ubuntu/common/misc.sh` — optional
-  Homebrew packages (e.g. `rbw`).
+- `install/common/misc.sh`, `install/macos/common/misc.sh` — optional
+  Homebrew packages (`rbw` on all platforms, extras for macOS).
 
 ## Platform support
 

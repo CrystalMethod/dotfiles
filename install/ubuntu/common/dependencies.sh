@@ -5,7 +5,7 @@
 # @description
 #   Installs the core command-line packages required by the dotfiles on Ubuntu
 #   (including WSL2) via Homebrew. Optional utilities live in
-#   `install/ubuntu/common/misc.sh`.
+#   `install/common/misc.sh`.
 
 set -Eeuo pipefail
 

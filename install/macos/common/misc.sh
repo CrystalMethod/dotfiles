@@ -21,7 +21,13 @@ if ! declare -F install_brew_packages > /dev/null 2>&1; then
 fi
 
 BREW_PACKAGES=(
+    ast-grep
     bash
+    colima
+    docker
+    docker-buildx
+    docker-compose
+    openjdk@21
 )
 
 #
