@@ -13,7 +13,7 @@ fd = "10.5.0"
 fnox = "1.39.0"
 lazygit = "0.66.0"
 maven = "3.9.16"
-neovim = "0.12.5"
+neovim = "0.12.6"
 television = "0.15.9"
 
 # Aqua tools
