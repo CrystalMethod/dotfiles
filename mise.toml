@@ -1,5 +1,6 @@
 [tools]
 "aqua:bats-core/bats-core" = "1.14.0"
+"aqua:twpayne/chezmoi" = "2.73.1"
 "aqua:j178/prek" = "0.5.5"
 "aqua:koalaman/shellcheck" = "0.11.0"
 "aqua:mvdan/sh" = "3.14.1"
