@@ -19,29 +19,24 @@ television = "0.15.9"
 # Aqua tools
 "aqua:anomalyco/opencode" = "1.18.35"
 "aqua:astral-sh/uv" = "0.13.1"
-"aqua:bats-core/bats-core" = "1.14.0"
 "aqua:biomejs/biome" = "2.5.14"
 "aqua:BurntSushi/ripgrep" = "15.2.0"
 "aqua:charmbracelet/glow" = "3.0.0"
 "aqua:charmbracelet/gum" = "2.0.2"
 "aqua:cli/cli" = "2.102.0"
 "aqua:FiloSottile/age" = "1.3.2"
-"aqua:j178/prek" = "0.5.5"
 "aqua:joshmedeski/sesh" = { version = "2.32.0", os = ["macos", "linux"] }
-"aqua:koalaman/shellcheck" = "0.11.0"
-"aqua:mvdan/sh" = "3.14.1"
 "github:raine/workmux" = "0.1.276"
 "aqua:rtk-ai/rtk" = "0.52.0"
 "aqua:tmux/tmux-builds" = "3.7c"
 "aqua:twpayne/chezmoi" = "2.73.1"
 "aqua:x-motemen/ghq" = "1.11.2"
 
+"forgejo:gitea/tea" = { version = "v0.15.1", api_url = "https://gitea.com/api/v1" }
+
 # Language runtimes
 java = "temurin-25"
 node = "lts"
-
-# npm tools
-"npm:textlint" = "15.8.0"
 
 [tools."http:jdtls"]
 version = "1.58.0"
