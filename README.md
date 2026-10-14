@@ -56,15 +56,20 @@ dotfiles with chezmoi:
 2. **Keeps sudo alive** — via the macOS Keychain on Darwin, via `sudo -v` on
    Linux. Skipped when running non-interactively (e.g. CI).
 3. **Bootstraps Homebrew** — system-wide under `sudo` in privileged mode, or
-   into `~/.homebrew` in user mode.
+   into `~/.homebrew` in user mode. Linux privileged mode installs its apt
+   prerequisites and uses `/home/linuxbrew/.linuxbrew`.
 4. **Runs chezmoi** — downloads the `chezmoi` binary, runs `chezmoi init` from
    this repository, then `chezmoi apply`.
 
 Run modes:
 
 - `privileged` (default): installs Homebrew system-wide with `sudo`
-  (`/opt/homebrew` on Apple Silicon, `/usr/local` on Intel).
+  (`/opt/homebrew` on Apple Silicon, `/usr/local` on Intel, or
+  `/home/linuxbrew/.linuxbrew` on Linux). Linux mode installs `build-essential`,
+  `procps`, `curl`, `file`, and `git` with apt first.
 - `user`: installs Homebrew in user space (`~/.homebrew`) without `sudo`.
+  On Linux, install `build-essential`, `procps`, `curl`, and `git` first.
+  Custom-prefix installs may build formulae from source instead of using bottles.
 
 ```sh
 # Interactive, privileged install

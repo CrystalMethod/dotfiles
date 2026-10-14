@@ -13,7 +13,9 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(/usr/local/bin/brew shellenv)"
 {{-   end }}
 {{- else if eq .chezmoi.os "linux" }}
-{{-   if (stat "/home/linuxbrew/.linuxbrew/bin/brew") }}
+{{-   if and (eq .mode "user") (stat (joinPath .chezmoi.homeDir ".homebrew/bin/brew")) }}
+eval "$({{ .chezmoi.homeDir }}/.homebrew/bin/brew shellenv)"
+{{-   else if (stat "/home/linuxbrew/.linuxbrew/bin/brew") }}
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 {{-   else if (stat (joinPath .chezmoi.homeDir ".linuxbrew/bin/brew")) }}
 eval "$({{ .chezmoi.homeDir }}/.linuxbrew/bin/brew shellenv)"

@@ -26,6 +26,8 @@ into `$HOME` on `chezmoi apply`.
   (`*.age`). On CI (`--no-tty`), drop encrypted targets from chezmoi control
   because decryption needs a TTY.
 - Declarative bootstrap and tool pinning live in `home/dot_config/mise/config.toml`.
+- Linux privileged setup installs Homebrew at `/home/linuxbrew/.linuxbrew`;
+  user mode uses `~/.homebrew`.
 - DOX docs are repo tooling, never applied to `$HOME`: `home/.chezmoiignore`
   ignores `**/AGENTS.md`.
 

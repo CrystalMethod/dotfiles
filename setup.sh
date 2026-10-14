@@ -52,6 +52,14 @@ function is_ci_or_not_tty() {
     is_ci || is_not_tty
 }
 
+function is_homebrew_exists() {
+    command -v brew &> /dev/null || [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]
+}
+
+function is_linux_homebrew_exists() {
+    [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]
+}
+
 function at_exit() {
     AT_EXIT+="${AT_EXIT:+$'\n'}"
     AT_EXIT+="${*?}"
@@ -66,7 +74,8 @@ Usage: setup.sh [--mode <privileged|user>] [--dry-run]
 Options:
   --mode <mode>   Run mode (default: privileged).
                   privileged: Install Homebrew system-wide using sudo
-                              (/opt/homebrew on Apple Silicon, /usr/local on Intel).
+                              (/opt/homebrew on Apple Silicon, /usr/local on Intel,
+                              /home/linuxbrew/.linuxbrew on Linux).
                   user:       Install Homebrew in user space (~/.homebrew) without sudo.
   --dry-run       Show what would be done without executing anything.
   -h, --help      Show this help message and exit.
@@ -266,10 +275,6 @@ function initialize_homebrew_user() {
 }
 
 function initialize_os_macos() {
-    function is_homebrew_exists() {
-        command -v brew &> /dev/null
-    }
-
     if is_user_mode; then
         initialize_homebrew_user
         return 0
@@ -277,6 +282,7 @@ function initialize_os_macos() {
 
     # Instal Homebrew if needed.
     if ! is_homebrew_exists; then
+        # shellcheck disable=SC2016
         logAndExec '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
     fi
 
@@ -292,11 +298,23 @@ function initialize_os_macos() {
 }
 
 function initialize_os_linux() {
-    # Detect WSL2 so it is recognized at setup time. Native Linux behavior is
-    # unchanged; WSL2-specific behaviors are handled in later tasks.
     if is_wsl2; then
         echo "Detected WSL2 environment."
     fi
+
+    if is_user_mode; then
+        initialize_homebrew_user
+        return 0
+    fi
+
+    if ! is_linux_homebrew_exists; then
+        run sudo apt-get update
+        run sudo apt-get install -y build-essential procps curl file git
+        # shellcheck disable=SC2016
+        logAndExec 'installer="$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && NONINTERACTIVE=1 /bin/bash -c "$installer"'
+    fi
+
+    run_brew_shellenv /home/linuxbrew/.linuxbrew/bin/brew
 }
 
 function initialize_os_env() {
