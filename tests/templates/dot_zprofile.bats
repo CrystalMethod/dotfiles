@@ -30,6 +30,10 @@ EOF
 }
 
 @test "[zprofile] linux: evals brew shellenv from \${HOME}/.linuxbrew when present" {
+    if [[ -e "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+        skip "host /home/linuxbrew prefix takes precedence"
+    fi
+
     local home_dir="${BATS_TEST_TMPDIR}/home"
     mkdir -p "${home_dir}/.linuxbrew/bin"
     touch "${home_dir}/.linuxbrew/bin/brew"
@@ -44,6 +48,10 @@ EOF
 }
 
 @test "[zprofile] linux: is a no-op when no brew prefix exists" {
+    if [[ -e "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+        skip "host /home/linuxbrew prefix is present"
+    fi
+
     local home_dir="${BATS_TEST_TMPDIR}/nobrew"
     mkdir -p "${home_dir}"
 
@@ -55,10 +63,9 @@ EOF
 
 @test "[zprofile] linux: evals brew shellenv from /home/linuxbrew when present" {
     local brew_path="/home/linuxbrew/.linuxbrew/bin/brew"
-    if ! mkdir -p "$(dirname "${brew_path}")" 2> /dev/null; then
-        skip "cannot create ${brew_path} on this host (SIP-protected /home)"
+    if [[ ! -e "${brew_path}" ]]; then
+        skip "host /home/linuxbrew prefix is absent"
     fi
-    touch "${brew_path}"
 
     local home_dir="${BATS_TEST_TMPDIR}/home"
     mkdir -p "${home_dir}"

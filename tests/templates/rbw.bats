@@ -48,6 +48,12 @@ function assert_pinentry() {
     [ "${pinentry}" = "${expected}" ]
 }
 
+function teardown() {
+    if [[ -n "${CREATED_PINENTRY:-}" ]]; then
+        rm -f "${CREATED_PINENTRY}"
+    fi
+}
+
 @test "[rbw] macOS renders pinentry 'pinentry'" {
     run render_rbw "darwin" "test@example.com"
     assert_pinentry "pinentry"
@@ -71,8 +77,11 @@ function assert_pinentry() {
 }
 
 @test "[rbw] linux: uses 'pinentry-curses' when /usr/bin/pinentry-curses exists" {
-    if ! touch /usr/bin/pinentry-curses 2> /dev/null; then
-        skip "cannot write /usr/bin/pinentry-curses on this host (SIP-protected /usr/bin)"
+    if [[ ! -e /usr/bin/pinentry-curses ]]; then
+        if ! touch /usr/bin/pinentry-curses 2> /dev/null; then
+            skip "cannot write /usr/bin/pinentry-curses on this host"
+        fi
+        CREATED_PINENTRY=/usr/bin/pinentry-curses
     fi
 
     run render_rbw "linux" "test@example.com"
@@ -80,8 +89,14 @@ function assert_pinentry() {
 }
 
 @test "[rbw] linux: uses 'pinentry-tty' when only /usr/bin/pinentry-tty exists" {
-    if ! touch /usr/bin/pinentry-tty 2> /dev/null; then
-        skip "cannot write /usr/bin/pinentry-tty on this host (SIP-protected /usr/bin)"
+    if [[ -e /usr/bin/pinentry-curses ]]; then
+        skip "host pinentry-curses takes precedence"
+    fi
+    if [[ ! -e /usr/bin/pinentry-tty ]]; then
+        if ! touch /usr/bin/pinentry-tty 2> /dev/null; then
+            skip "cannot write /usr/bin/pinentry-tty on this host"
+        fi
+        CREATED_PINENTRY=/usr/bin/pinentry-tty
     fi
 
     run render_rbw "linux" "test@example.com"
