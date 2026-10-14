@@ -40,6 +40,8 @@ function setup() {
 @test "[ubuntu] initialize_os_linux detects WSL2 and echoes a message" {
     # Mock is_wsl2 to report a WSL2 environment.
     is_wsl2() { return 0; }
+    MODE=user
+    initialize_homebrew_user() { :; }
 
     output="$(initialize_os_linux)"
     status=$?
@@ -50,9 +52,69 @@ function setup() {
 @test "[ubuntu] initialize_os_linux preserves native Linux behavior when not WSL2" {
     # Mock is_wsl2 to report a native (non-WSL2) Linux environment.
     is_wsl2() { return 1; }
+    MODE=user
+    initialize_homebrew_user() { :; }
 
     output="$(initialize_os_linux)"
     status=$?
     [ "${status}" -eq 0 ]
     [ -z "${output}" ]
+}
+
+@test "[ubuntu] privileged Linux setup installs prerequisites and Homebrew" {
+    is_wsl2() { return 1; }
+    is_linux_homebrew_exists() { return 1; }
+    run() {
+        printf '[run]'
+        printf ' %q' "$@"
+        printf '\n'
+    }
+    logAndExec() { printf '[exec] %s\n' "$1"; }
+    run_brew_shellenv() { printf '[shellenv] %s\n' "$1"; }
+
+    MODE=privileged
+    DRY_RUN=true
+    output="$(initialize_os_linux)"
+
+    [[ "${output}" == *"[run] sudo apt-get update"* ]]
+    [[ "${output}" == *"[run] sudo apt-get install -y build-essential procps curl file git"* ]]
+    [[ "${output}" == *"NONINTERACTIVE=1 /bin/bash -c"* ]]
+    [[ "${output}" == *"[shellenv] /home/linuxbrew/.linuxbrew/bin/brew"* ]]
+}
+
+@test "[ubuntu] privileged Linux setup skips installation when Homebrew exists" {
+    is_wsl2() { return 1; }
+    is_linux_homebrew_exists() { return 0; }
+    run() {
+        printf '[run]'
+        printf ' %q' "$@"
+        printf '\n'
+    }
+    logAndExec() { printf '[exec] %s\n' "$1"; }
+    run_brew_shellenv() { printf '[shellenv] %s\n' "$1"; }
+    MODE=privileged
+    output="$(initialize_os_linux)"
+
+    [[ "${output}" != *"apt-get"* ]]
+    [[ "${output}" != *"Homebrew/install"* ]]
+    [[ "${output}" == *"[shellenv] /home/linuxbrew/.linuxbrew/bin/brew"* ]]
+}
+
+@test "[ubuntu] user Linux setup uses user-space Homebrew without sudo" {
+    is_wsl2() { return 1; }
+    initialize_homebrew_user() { printf '[user-homebrew]\n'; }
+    run() {
+        printf '[run]'
+        printf ' %q' "$@"
+        printf '\n'
+    }
+    logAndExec() { printf '[exec] %s\n' "$1"; }
+    run_brew_shellenv() { printf '[shellenv] %s\n' "$1"; }
+
+    MODE=user
+    output="$(initialize_os_linux)"
+
+    [[ "${output}" == *"[user-homebrew]"* ]]
+    [[ "${output}" != *"sudo"* ]]
+    [[ "${output}" != *"/home/linuxbrew/.linuxbrew/bin/brew"* ]]
 }

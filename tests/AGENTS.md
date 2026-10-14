@@ -12,7 +12,7 @@ the primary regression guard for installer behavior and rendered template output
   - `tests/install/common/` — shared installer tests (`mise.bats`, `brew.bats`).
   - `tests/install/macos/` — macOS installer tests (`common/`, `arm64/`).
   - `tests/install/ubuntu/` — Ubuntu/WSL2 installer tests (`common/`, WSL2 suite).
-- `tests/templates/` — template rendering tests (`dot_zprofile.bats`, `rbw.bats`).
+- `tests/templates/` — template rendering tests (`dot_zprofile.bats`, `linux-homebrew.bats`, `rbw.bats`).
 
 ## Local Contracts
 
