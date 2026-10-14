@@ -78,7 +78,7 @@ function setup() {
 
     [[ "${output}" == *"[run] sudo apt-get update"* ]]
     [[ "${output}" == *"[run] sudo apt-get install -y build-essential procps curl file git"* ]]
-    [[ "${output}" == *"NONINTERACTIVE=1 /bin/bash -c"* ]]
+    [[ "${output}" == *'installer="$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && NONINTERACTIVE=1 /bin/bash -c "$installer"'* ]]
     [[ "${output}" == *"[shellenv] /home/linuxbrew/.linuxbrew/bin/brew"* ]]
 }
 
@@ -117,4 +117,30 @@ function setup() {
     [[ "${output}" == *"[user-homebrew]"* ]]
     [[ "${output}" != *"sudo"* ]]
     [[ "${output}" != *"/home/linuxbrew/.linuxbrew/bin/brew"* ]]
+}
+
+@test "[ubuntu] Homebrew installer download failure aborts before Bash" {
+    curl() { return 22; }
+    DRY_RUN=false
+
+    if logAndExec 'installer="$(curl -fsSL https://example.invalid/install.sh)" && /bin/bash -c "$installer"'; then
+        status=0
+    else
+        status=$?
+    fi
+
+    [ "${status}" -ne 0 ]
+}
+
+@test "[ubuntu] Homebrew installer dry-run skips download" {
+    curl() {
+        printf 'curl-called\n'
+        return 22
+    }
+    DRY_RUN=true
+
+    output="$(logAndExec 'installer="$(curl -fsSL https://example.invalid/install.sh)" && /bin/bash -c "$installer"')"
+
+    [[ "${output}" == *"[dry-run]"* ]]
+    [[ "${output}" != *"curl-called"* ]]
 }

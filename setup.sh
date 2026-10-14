@@ -311,7 +311,7 @@ function initialize_os_linux() {
         run sudo apt-get update
         run sudo apt-get install -y build-essential procps curl file git
         # shellcheck disable=SC2016
-        logAndExec 'NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+        logAndExec 'installer="$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && NONINTERACTIVE=1 /bin/bash -c "$installer"'
     fi
 
     run_brew_shellenv /home/linuxbrew/.linuxbrew/bin/brew
