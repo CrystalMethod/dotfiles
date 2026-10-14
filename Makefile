@@ -13,4 +13,4 @@ format:
 
 .PHONY: lint
 lint:
-	shellcheck -x install/common/*.sh install/macos/common/*.sh install/ubuntu/common/*.sh scripts/*.sh
+	shellcheck -x install/common/*.sh install/macos/common/*.sh install/macos/arm64/*.sh install/ubuntu/common/*.sh scripts/*.sh
