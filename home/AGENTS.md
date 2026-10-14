@@ -12,8 +12,9 @@ into `$HOME` on `chezmoi apply`.
 - `home/.chezmoiscripts/` — `run_once_*` / `run_after_*` scripts executed by
   chezmoi during apply, grouped per OS (`common/`, `linux/`, `macos/`).
 - `home/.chezmoitemplates/` — cross-platform templates (e.g. the rbw config).
-- `home/dot_config/` — rendered app configs (`shell`, `git`, `mise`, `rbw`, etc.).
+- `home/dot_config/` — rendered app configs (`exact_shell`, `git`, `mise`, `rbw`, `fnox`, `television`).
 - `home/private_dot_ssh/` — SSH keys; private/encrypted files (`*.age`).
+- `home/Library/` — macOS app configs (`Application Support/rbw`).
 
 ## Local Contracts
 
@@ -32,12 +33,12 @@ into `$HOME` on `chezmoi apply`.
 
 - Verify template rendering before applying: `chezmoi execute-template`,
   `chezmoi cat`, or `chezmoi diff` (see root AGENTS.md / references).
-- Adding a managed tool means pinning it in `mise` config and, when it is a
+- Pin each managed tool in `mise` config. For runtimes,
   runtime, documenting the tool in the README "Language runtimes" list.
 
 ## Verification
 
-- Template tests: `bats tests/templates/*.bats`.
+- Template tests: `bats -r tests/templates/` (also run by `make test`).
 - Full suite: `TARGET_OS=macos ./scripts/run_unit_test.sh`.
 
 ## Child DOX Index

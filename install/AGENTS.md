@@ -33,7 +33,7 @@ them during bootstrap.
 
 ## Verification
 
-- Lint: `make lint` (shellcheck across `install/{common,macos/common,ubuntu/common}`).
+- Lint: `make lint` (shellcheck across `install/{common,macos/common,macos/arm64,ubuntu/common}`).
 - Format: `make format` (shfmt, `--indent 4 --space-redirects`).
 - Tests: `bats tests/install/...` for the affected OS subtree.
 
@@ -42,4 +42,4 @@ them during bootstrap.
 - `install/common/` — shared helpers (thin; covered here).
 - `install/macos/` — macOS installers (thin; covered here).
 - `install/ubuntu/` — Ubuntu/WSL2 installers (thin; covered here).
-- No child AGENTS.md files; these folders are closely coupled shared helpers.
+- No child AGENTS.md files; these folders share helper logic.

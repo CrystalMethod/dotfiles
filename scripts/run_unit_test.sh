@@ -16,6 +16,13 @@ function run_common_test() {
 }
 
 #
+# @description Run the chezmoi template rendering tests.
+#
+function run_template_test() {
+    bats -r "tests/templates/"
+}
+
+#
 # @description Run the OS-specific Bats suite for the active target.
 #
 function run_os_specific_test() {
@@ -38,6 +45,7 @@ function run_os_specific_test() {
 #
 function main() {
     run_common_test
+    run_template_test
     run_os_specific_test
 }
 
