@@ -38,8 +38,9 @@ the primary regression guard for installer behavior and rendered template output
 ## Verification
 
 - Run a single file: `bats tests/install/common/mise.bats`.
-- Full suite: `TARGET_OS=macos ./scripts/run_unit_test.sh` → 0 failures.
-- New/changed tests must be green before the change is done.
+- Full suite: `TARGET_OS=macos ./scripts/run_unit_test.sh` (common installs,
+  templates, and the OS subtree) → 0 failures.
+- New/changed tests must pass before closing the change.
 
 ## Child DOX Index
 

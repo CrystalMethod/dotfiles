@@ -1,3 +1,45 @@
+## Purpose
+
+- Cross-platform dotfiles managed with chezmoi (macOS, Linux, WSL2)
+- Repo is the source of truth for shell config, tool pinning, and the
+  bootstrap installer; `chezmoi apply` renders `home/` into `$HOME`
+
+## Ownership
+
+- Root owns: `setup.sh`, `Makefile`, `mise.toml`, `mise.ci.toml`,
+  `.github/workflows/`, `renovate.json`, `.pre-commit-config.yaml`,
+  `.textlintrc.json`, `.chezmoi*`,
+  `README.md`, `key.txt.age`
+- Child docs in the Child DOX Index own all remaining files
+
+## Local Contracts
+
+- `mise.toml` (repo root) pins project dev tools: bats, chezmoi, prek,
+  shellcheck, shfmt, textlint. It does not apply to `$HOME`. CI installs it via
+  `jdx/mise-action`; `mise.ci.toml` disables the `prek` and `textlint` tools in
+  CI; the pre-commit textlint hook pins its own copy
+- `home/dot_config/mise/config.toml` pins user-level tools applied to `$HOME`
+- Keep repo dev tools out of the user-level config
+- Renovate (`renovate.json`, managers: mise, pre-commit, github-actions)
+  updates both mise files; patch updates automerge
+- Never commit plaintext secrets
+
+## Work Guidance
+
+- Run `make setup` once to install project tools and the prek hooks
+- Shell formatting: shfmt with `--indent 4 --space-redirects`
+- Pre-commit runs textlint on Markdown prose
+- Commit messages use conventional commits (`chore(scope): ...`)
+- Change via branch and PR; do not commit directly to `main`
+
+## Verification
+
+- `make test` — bats suite: `tests/install/common`, `tests/templates`, and the
+  `TARGET_OS` subtree (defaults to `macos`)
+- `make lint` — shellcheck on `install/` and `scripts/`
+- `make format` — shfmt diff check
+- CI: `.github/workflows/ci.yml`
+
 # DOX framework
 
 - DOX is a performant AGENTS.md hierarchy installed here
@@ -67,6 +109,7 @@ or contracts may leave docs unchanged, but the DOX pass still must happen.
   exists yet, leave it empty and update it when one exists
 
 Default section order:
+
 - Purpose
 - Ownership
 - Local Contracts
