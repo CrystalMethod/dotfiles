@@ -6,31 +6,31 @@ min_version = "2026.8.15"
 [tools]
 
 # CLI tools
+age = "1.3.2"
 bat = "0.26.1"
+biome = "2.5.14"
 bun = "1.4.3"
+chezmoi = "2.73.3"
 eza = "0.23.5"
 fd = "10.5.0"
 fnox = "1.41.0"
+gh = "2.102.1"
+ghq = "1.11.2"
+glow = "3.0.0"
+gum = "2.0.2"
 lazygit = "0.66.2"
 maven = "3.9.16"
 neovim = "0.12.6"
+opencode = "1.19.3"
+ripgrep = "15.2.0"
+rtk = "1.0.1"
 television = "0.15.9"
+tmux = "3.7c"
+uv = "0.13.4"
+workmux = "0.1.276"
 
 # Aqua tools
-"aqua:anomalyco/opencode" = "1.19.3"
-"aqua:astral-sh/uv" = "0.13.4"
-"aqua:biomejs/biome" = "2.5.14"
-"aqua:BurntSushi/ripgrep" = "15.2.0"
-"aqua:charmbracelet/glow" = "3.0.0"
-"aqua:charmbracelet/gum" = "2.0.2"
-"aqua:cli/cli" = "2.102.1"
-"aqua:FiloSottile/age" = "1.3.2"
 "aqua:joshmedeski/sesh" = { version = "2.33.0", os = ["macos", "linux"] }
-"github:raine/workmux" = "0.1.276"
-"aqua:rtk-ai/rtk" = "1.0.1"
-"aqua:tmux/tmux-builds" = "3.7c"
-"aqua:twpayne/chezmoi" = "2.73.3"
-"aqua:x-motemen/ghq" = "1.11.2"
 
 "forgejo:gitea/tea" = { version = "v0.15.1", api_url = "https://gitea.com/api/v1" }
 
