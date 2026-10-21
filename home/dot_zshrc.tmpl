@@ -6,6 +6,11 @@
 #   Loaded for every interactive shell (including `chezmoi cd`), exposing
 #   helper functions that must be available regardless of login status.
 
+# Bitwarden SSH Agent socket (Desktop app)
+if [[ -S "${HOME}/.bitwarden-ssh-agent.sock" ]]; then
+    export SSH_AUTH_SOCK="${HOME}/.bitwarden-ssh-agent.sock"
+fi
+
 function opencode() {
     rbw unlock && fnox exec -- opencode "$@"
 }

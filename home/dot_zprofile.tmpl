@@ -30,6 +30,13 @@ if (( ! ${+functions[mise_zsh_activate]} )); then
     unset _zprofile_mise
 fi
 
+# Bitwarden SSH Agent socket (Desktop app)
+if [[ -S "${HOME}/.bitwarden-ssh-agent.sock" ]]; then
+    export SSH_AUTH_SOCK="${HOME}/.bitwarden-ssh-agent.sock"
+elif [[ -S "${HOME}/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock" ]]; then
+    export SSH_AUTH_SOCK="${HOME}/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock"
+fi
+
 {{- if eq .system "server" }}
 if (( ${+functions[mise_zsh_activate]} )); then
     mise_zsh_activate server
