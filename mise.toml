@@ -1,9 +1,9 @@
 [tools]
-"aqua:bats-core/bats-core" = "1.14.0"
-"aqua:twpayne/chezmoi" = "2.73.3"
-"aqua:j178/prek" = "0.5.7"
-"aqua:koalaman/shellcheck" = "0.11.0"
-"aqua:mvdan/sh" = "3.14.1"
+bats = "1.14.0"
+chezmoi = "2.73.3"
+prek = "0.5.7"
+shellcheck = "0.11.0"
+shfmt = "3.14.1"
 
 # npm tools
 "npm:textlint" = "15.8.0"
