@@ -12,7 +12,7 @@ into `$HOME` on `chezmoi apply`.
 - `home/.chezmoiscripts/` — `run_once_*` / `run_after_*` scripts executed by
   chezmoi during apply, grouped per OS (`common/`, `linux/`, `macos/`).
 - `home/.chezmoitemplates/` — cross-platform templates (e.g. the rbw config).
-- `home/dot_config/` — rendered app configs (`exact_shell`, `git`, `mise`, `rbw`, `fnox`, `television`).
+- `home/dot_config/` — rendered app configs (`exact_shell`, `ghostty`, `git`, `mise`, `rbw`, `fnox`, `television`).
 - `home/private_dot_ssh/` — SSH keys; private/encrypted files (`*.age`).
 - `home/Library/` — macOS app configs (`Application Support/rbw`).
 

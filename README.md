@@ -112,7 +112,7 @@ platforms:
 - `install/macos/common/dependencies.sh`, `install/ubuntu/common/dependencies.sh`
   — essential Homebrew packages per OS.
 - `install/common/misc.sh`, `install/macos/common/misc.sh` — optional
-  Homebrew packages (`rbw` on all platforms, extras for macOS).
+  Homebrew packages (`ghostty`, `rbw`, `tmux` on all platforms, extras for macOS).
 
 ## Platform support
 
