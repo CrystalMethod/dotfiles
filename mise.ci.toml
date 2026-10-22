@@ -1,2 +1,2 @@
 [settings]
-disable_tools = ["aqua:j178/prek", "npm:textlint"]
+disable_tools = ["prek", "npm:textlint"]
