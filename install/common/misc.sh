@@ -19,6 +19,7 @@ if ! declare -F install_brew_packages > /dev/null 2>&1; then
 fi
 
 BREW_PACKAGES=(
+    ghostty
     rbw
     tmux
 )

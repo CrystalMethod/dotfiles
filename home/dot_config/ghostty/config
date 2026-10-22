@@ -1,0 +1,25 @@
+# Ghostty configuration
+# Managed by chezmoi: home/dot_config/ghostty/config
+
+# Theme: Catppuccin Frappe (bundled with Ghostty)
+theme = Catppuccin Frappe
+
+# Font
+font-family = "JetBrains Mono"
+font-size = 13
+font-feature = "-calt, -liga"
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+
+# Window
+window-padding-x = 8
+window-padding-y = 8
+window-theme = ghostty
+background-opacity = 0.95
+
+# Behavior
+mouse-hide-while-typing = true
+shell-integration = detect
+confirm-close-surface = false
