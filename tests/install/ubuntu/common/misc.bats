@@ -34,11 +34,11 @@ BREW
 @test "[ubuntu] install_brew_packages installs the missing packages" {
     run install_brew_packages "${BREW_PACKAGES[@]}"
     [ "${status}" -eq 0 ]
-    [ "$(< "${BREW_CALLS_PATH}")" = $'list rbw\ninstall --force rbw' ]
+    [ "$(< "${BREW_CALLS_PATH}")" = $'list rbw\nlist tmux\ninstall --force rbw tmux' ]
 }
 
 @test "[ubuntu] install_brew_packages skips brew install when all packages are installed" {
-    printf 'rbw\n' > "${INSTALLED_PACKAGES_FILE}"
+    printf 'rbw\ntmux\n' > "${INSTALLED_PACKAGES_FILE}"
 
     run install_brew_packages "${BREW_PACKAGES[@]}"
     [ "${status}" -eq 0 ]
@@ -48,5 +48,5 @@ BREW
 @test "[ubuntu] main installs the missing packages" {
     run main
     [ "${status}" -eq 0 ]
-    grep -q '^install --force rbw$' "${BREW_CALLS_PATH}"
+    grep -q '^install --force rbw tmux$' "${BREW_CALLS_PATH}"
 }

@@ -30,8 +30,9 @@ BREW
 @test "[macos] macOS misc.sh BREW_PACKAGES holds optional macOS packages, not common rbw" {
     source "./install/macos/common/misc.sh"
     [ "${BREW_PACKAGES[*]}" = "ast-grep bash colima docker docker-buildx docker-compose openjdk@21" ]
-    # rbw lives in install/common/misc.sh (common requirement, all platforms)
+    # rbw and tmux live in install/common/misc.sh (common requirement, all platforms)
     [[ " ${BREW_PACKAGES[*]} " != *" rbw "* ]]
+    [[ " ${BREW_PACKAGES[*]} " != *" tmux "* ]]
 }
 
 @test "[macos] macOS misc.sh main installs the optional packages" {

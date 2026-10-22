@@ -20,6 +20,7 @@ fi
 
 BREW_PACKAGES=(
     rbw
+    tmux
 )
 
 #
