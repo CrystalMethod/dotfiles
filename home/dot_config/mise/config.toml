@@ -26,7 +26,7 @@ ripgrep = "15.2.0"
 rtk = "1.0.1"
 television = "0.15.9"
 tmux = "3.7c"
-uv = "0.13.4"
+uv = "0.13.5"
 workmux = "0.1.276"
 
 # Aqua tools
