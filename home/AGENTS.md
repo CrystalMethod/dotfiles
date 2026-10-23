@@ -15,9 +15,9 @@ into `$HOME` on `chezmoi apply`.
 - `home/dot_config/` — rendered app configs (`exact_shell`, `ghostty`, `git`, `mise`, `rbw`, `fnox`, `television`).
 - `home/private_dot_ssh/` — SSH keys; private/encrypted files (`*.age`).
 - `home/private_dot_local/share/fonts/` — age-encrypted Linux fonts
-  (`*.ttf.age`), decrypted to `~/.local/share/fonts/`.
+  (`encrypted_*.ttf.age`), decrypted to `~/.local/share/fonts/`.
 - `home/Library/` — macOS app configs and bundled fonts (`Application
-  Support/rbw`, `Fonts/MonoLisa/*.ttf.age` → `~/Library/Fonts/`).
+  Support/rbw`, `Fonts/MonoLisa/encrypted_*.ttf.age` → `~/Library/Fonts/`).
 
 ## Local Contracts
 
@@ -28,11 +28,14 @@ into `$HOME` on `chezmoi apply`.
 - Never commit plaintext secrets. Sensitive files use age encryption
   (`*.age`). On CI (`--no-tty`), drop encrypted targets from chezmoi control
   because decryption needs a TTY.
-- Bundled fonts ship as age-encrypted `.ttf.age` per platform, each
-  mapping directly to the platform font directory: macOS `home/Library/Fonts/`
+- Bundled fonts ship as age-encrypted sources per platform, each mapping
+  directly to the platform font directory: macOS `home/Library/Fonts/`
   → `~/Library/Fonts/`, Linux `home/private_dot_local/share/fonts/` →
-  `~/.local/share/fonts/`. `home/.chezmoiignore` hides the irrelevant half per
-  OS. The Linux `run_after_30-install-fonts` hook refreshes `fc-cache`.
+  `~/.local/share/fonts/`. Encrypted files need the `encrypted_` prefix
+  (`encrypted_*.ttf.age`); without it chezmoi copies the ciphertext verbatim
+  and macOS never registers the font. `home/.chezmoiignore` hides the
+  irrelevant half per OS. The Linux `run_after_30-install-fonts` hook refreshes
+  `fc-cache`.
 - Declarative bootstrap and tool pinning live in `home/dot_config/mise/config.toml`.
 - Linux privileged setup installs Homebrew at `/home/linuxbrew/.linuxbrew`;
   user mode uses `~/.homebrew`.

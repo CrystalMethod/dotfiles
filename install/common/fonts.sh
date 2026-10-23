@@ -3,9 +3,9 @@
 # @file install/common/fonts.sh
 # @brief Shared helper for refreshing the fontconfig cache for bundled fonts.
 # @description
-#   The repo bundles paid fonts (e.g. MonoLisa) as age-encrypted `*.ttf.age`
-#   sources. Each platform stores its own encrypted copy under a path that
-#   maps directly to the platform font directory:
+#   The repo bundles paid fonts (e.g. MonoLisa) as age-encrypted
+#   `encrypted_*.ttf.age` sources. Each platform stores its own encrypted copy
+#   under a path that maps directly to the platform font directory:
 #   - macOS:  `home/Library/Fonts/`  -> `~/Library/Fonts/`
 #   - Linux:  `home/private_dot_local/share/fonts/` -> `~/.local/share/fonts/`
 #
