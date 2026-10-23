@@ -22,18 +22,26 @@ target files into `$HOME`.
 
 ## Repository layout
 
-| Path | Purpose |
-| --- | --- |
-| `home/` | Chezmoi source tree (`.chezmoi.yaml.tmpl`, `dot_zprofile.tmpl`, `dot_zshrc.tmpl`, `dot_config/`) |
-| `home/.chezmoiscripts/` | `run_once_*` / `run_after_*` scripts that install tools and dependencies per OS |
-| `home/.chezmoitemplates/` | Cross-platform templates (e.g. the rbw config with `pinentry` selection) |
-| `home/Library/Fonts/` | Age-encrypted macOS fonts → `~/Library/Fonts/` (ignored off macOS) |
-| `home/private_dot_local/share/fonts/` | Age-encrypted Linux fonts → `~/.local/share/fonts/` (ignored on macOS) |
-| `install/` | Reusable install scripts, shared per OS: `common/`, `macos/`, `ubuntu/` |
-| `scripts/` | Project tooling, e.g. `run_unit_test.sh` |
-| `tests/` | [Bats](https://bats-core.readthedocs.io/)-based unit tests for the install scripts and templates |
-| `setup.sh` | One-shot bootstrap installer |
-| `Makefile` | Dev tasks: `make test`, `make lint`, `make format` |
+```text
+.
+├── home/
+│   ├── .chezmoi.yaml.tmpl              # chezmoi config template
+│   ├── .chezmoitemplates/              # cross-platform templates (e.g. rbw)
+│   ├── .chezmoiscripts/                # run_once_* and run_after_* install scripts
+│   ├── dot_config/                     # tool configs (~/.config)
+│   ├── dot_zprofile.tmpl               # login shell template
+│   ├── dot_zshrc.tmpl                  # interactive shell template
+│   ├── Library/Fonts/                  # macOS fonts (ignored off macOS via .chezmoiignore)
+│   └── private_dot_local/share/fonts/  # Linux fonts (run_after_30-install-fonts)
+├── install/
+│   ├── common/                         # shared installers (brew, mise, fonts)
+│   ├── macos/                          # macOS-specific scripts (deps, clt)
+│   └── ubuntu/                         # Ubuntu/WSL2 scripts (deps)
+├── scripts/                            # project tooling (run_unit_test.sh)
+├── tests/                              # Bats unit tests for install scripts and templates
+├── setup.sh                            # one-shot bootstrap installer
+└── Makefile                            # dev tasks (make test, lint, format)
+```
 
 ## Setup / install flow
 
