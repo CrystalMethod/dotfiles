@@ -19,42 +19,6 @@ pinning, and the bootstrap installer. `chezmoi apply` renders `home/` into
 | --- | --- | --- | --- | --- |
 | macOS · Linux · WSL2 | zsh | mise + Homebrew | age | MonoLisa |
 
-## 📦 Features
-
-| Feature | What it gives you | Deep dive |
-| --- | --- | --- |
-| 🍎🐧 **Cross-platform by default** | Shared source, OS-specific installs | [Details](#install-scripts) |
-| ⚡ **mise-managed tools** | Versions pinned, installed on apply | [Details](#install-scripts) |
-| 🔐 **Encrypted secrets** | Secrets stay out of the public repo | [Details](#cross-platform-behavior) |
-| 🎨 **Bundled paid fonts** | MonoLisa shipped age-encrypted | [Details](#bundled-fonts) |
-| 🍺 **Homebrew everywhere** | macOS/Linux/WSL2, arch-aware PATH | [Details](#cross-platform-behavior) |
-
-> [!NOTE]
-> Secrets are age-encrypted; `chezmoi apply` decrypts them only with your age key.
-
-## Repository layout
-
-```text
-.
-├── home/
-│   ├── .chezmoi.yaml.tmpl              # chezmoi config template
-│   ├── .chezmoitemplates/              # cross-platform templates (e.g. rbw)
-│   ├── .chezmoiscripts/                # run_once_* and run_after_* install scripts
-│   ├── dot_config/                     # tool configs (~/.config)
-│   ├── dot_zprofile.tmpl               # login shell template
-│   ├── dot_zshrc.tmpl                  # interactive shell template
-│   ├── Library/Fonts/                  # macOS fonts (ignored off macOS via .chezmoiignore)
-│   └── private_dot_local/share/fonts/  # Linux fonts (run_after_30-install-fonts)
-├── install/
-│   ├── common/                         # shared installers (brew, mise, fonts)
-│   ├── macos/                          # macOS-specific scripts (deps, clt)
-│   └── ubuntu/                         # Ubuntu/WSL2 scripts (deps)
-├── scripts/                            # project tooling (run_unit_test.sh)
-├── tests/                              # Bats unit tests for install scripts and templates
-├── setup.sh                            # one-shot bootstrap installer
-└── Makefile                            # dev tasks (make test, lint, format)
-```
-
 > [!WARNING]
 > This is someone's personal setup. Prefer `chezmoi init` with your own repo over blindly applying this one.
 
@@ -119,6 +83,56 @@ Run modes:
 
 Every `chezmoi apply` re-runs the `run_after_*` scripts, which re-align
 mise-managed tools with the pinned versions in the mise config.
+
+## 📦 Features
+
+| Feature | What it gives you | Deep dive |
+| --- | --- | --- |
+| 🍎🐧 **Cross-platform by default** | Shared source, OS-specific installs | [Details](#install-scripts) |
+| ⚡ **mise-managed tools** | Versions pinned, installed on apply | [Details](#install-scripts) |
+| 🔐 **Encrypted secrets** | Secrets stay out of the public repo | [Details](#cross-platform-behavior) |
+| 🎨 **Bundled paid fonts** | MonoLisa shipped age-encrypted | [Details](#bundled-fonts) |
+| 🍺 **Homebrew everywhere** | macOS/Linux/WSL2, arch-aware PATH | [Details](#cross-platform-behavior) |
+
+> [!NOTE]
+> Secrets are age-encrypted; `chezmoi apply` decrypts them only with your age key.
+
+## 📋 Repository layout
+
+```text
+.
+├── home/
+│   ├── .chezmoi.yaml.tmpl              # chezmoi config template
+│   ├── .chezmoitemplates/              # cross-platform templates (e.g. rbw)
+│   ├── .chezmoiscripts/                # run_once_* and run_after_* install scripts
+│   ├── dot_config/                     # tool configs (~/.config)
+│   ├── dot_zprofile.tmpl               # login shell template
+│   ├── dot_zshrc.tmpl                  # interactive shell template
+│   ├── Library/Fonts/                  # macOS fonts (ignored off macOS via .chezmoiignore)
+│   └── private_dot_local/share/fonts/  # Linux fonts (run_after_30-install-fonts)
+├── install/
+│   ├── common/                         # shared installers (brew, mise, fonts)
+│   ├── macos/                          # macOS-specific scripts (deps, clt)
+│   └── ubuntu/                         # Ubuntu/WSL2 scripts (deps)
+├── scripts/                            # project tooling (run_unit_test.sh)
+├── tests/                              # Bats unit tests for install scripts and templates
+├── setup.sh                            # one-shot bootstrap installer
+└── Makefile                            # dev tasks (make test, lint, format)
+```
+
+## ⚙️ Platform support
+
+| Platform | Homebrew location | Notable setup |
+| --- | --- | --- |
+| 🍎 macOS (arm64) | `/opt/homebrew` | Rosetta installed on Apple Silicon; Xcode Command Line Tools |
+| 🍎 macOS (x86_64 / Intel) | `/usr/local` | Xcode Command Line Tools |
+| 🐧 Linux (Ubuntu/WSL2) | `~/.linuxbrew` or `/home/linuxbrew/.linuxbrew` | Shared brew packages |
+| 🪟 Windows (native) | — | Planned as a stub; WSL2 is already covered by the Linux scripts |
+
+> [!CAUTION]
+> Native Windows is not yet supported; WSL2 lateral access does not expose fonts to native Windows apps.
+
+## 🔎 Deep dives
 
 <details>
 <summary>📦 Install scripts</summary>
@@ -197,18 +211,6 @@ Verify the mapping and decryption with `chezmoi target-path` (must end in
 `.ttf`) and `chezmoi cat ~/Library/Fonts/MonoLisa/MonoLisa-Regular.ttf`.
 
 </details>
-
-## Platform support
-
-| Platform | Homebrew location | Notable setup |
-| --- | --- | --- |
-| 🍎 macOS (arm64) | `/opt/homebrew` | Rosetta installed on Apple Silicon; Xcode Command Line Tools |
-| 🍎 macOS (x86_64 / Intel) | `/usr/local` | Xcode Command Line Tools |
-| 🐧 Linux (Ubuntu/WSL2) | `~/.linuxbrew` or `/home/linuxbrew/.linuxbrew` | Shared brew packages |
-| 🪟 Windows (native) | — | Planned as a stub; WSL2 is already covered by the Linux scripts |
-
-> [!CAUTION]
-> Native Windows is not yet supported; WSL2 lateral access does not expose fonts to native Windows apps.
 
 <details>
 <summary>🔗 Cross-platform behavior</summary>
