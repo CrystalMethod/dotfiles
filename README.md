@@ -13,19 +13,6 @@ target files into `$HOME`.
   Linux/WSL2, with an architecture-aware `brew shellenv` in the login profile.
 - **mise-managed tools** — The mise config pins tool versions and
   auto-installs them after every `chezmoi apply`.
-
-  ### Language runtimes
-
-  ```toml
-  # Language runtimes
-  java = "temurin-25"
-  http:jdtls = {
-    version = "1.58.0"
-    url = "https://download.eclipse.org/jdtls/milestones/1.58.0/jdt-language-server-1.58.0-202604151538.tar.gz"
-    sha256 = "2a5bbe55ec91b4325392050dc422cead3220a2459b3766be35e1fff45b4a50d9"
-  }
-  node = "lts"
-  ```
 - **Encrypted secrets** — `age`-encrypted files (separate from the public
   source) for sensitive configuration.
 - **Bundled paid fonts** — commercial fonts (e.g. MonoLisa) ship as
@@ -104,7 +91,10 @@ chezmoi apply
 Every `chezmoi apply` re-runs the `run_after_*` scripts, which re-align
 mise-managed tools with the pinned versions in the mise config.
 
-### What the install scripts provide
+<details>
+<summary>📦 Install scripts</summary>
+
+### Install scripts
 
 The `run_*` chezmoi scripts reference the `install/` scripts shared across
 platforms:
@@ -122,7 +112,25 @@ platforms:
 - `install/common/fonts.sh` — refreshes the fontconfig cache for the bundled
   fonts on Linux/WSL2 (see "Bundled paid fonts" below).
 
-### Bundled paid fonts
+### Language runtimes
+
+```toml
+# Language runtimes
+java = "temurin-25"
+http:jdtls = {
+  version = "1.58.0"
+  url = "https://download.eclipse.org/jdtls/milestones/1.58.0/jdt-language-server-1.58.0-202604151538.tar.gz"
+  sha256 = "2a5bbe55ec91b4325392050dc422cead3220a2459b3766be35e1fff45b4a50d9"
+}
+node = "lts"
+```
+
+</details>
+
+<details>
+<summary>🎨 Bundled fonts</summary>
+
+### Bundled fonts
 
 Homebrew and mise cannot install commercial fonts such as MonoLisa, so the
 repository carries them as `age`-encrypted sources. Chezmoi decrypts a source
@@ -156,6 +164,8 @@ age -r <RECIPIENT> -o home/private_dot_local/share/fonts/MonoLisa/encrypted_Mono
 Verify the mapping and decryption with `chezmoi target-path` (must end in
 `.ttf`) and `chezmoi cat ~/Library/Fonts/MonoLisa/MonoLisa-Regular.ttf`.
 
+</details>
+
 ## Platform support
 
 | Platform | Homebrew location | Notable setup |
@@ -165,7 +175,10 @@ Verify the mapping and decryption with `chezmoi target-path` (must end in
 | Linux (Ubuntu/WSL2) | `~/.linuxbrew` or `/home/linuxbrew/.linuxbrew` | Shared brew packages |
 | Windows (native) | — | Planned as a stub; WSL2 is already covered by the Linux scripts |
 
-## Cross-platform behavior
+<details>
+<summary>🔗 Cross-platform behavior</summary>
+
+### Cross-platform behavior
 
 ### Homebrew on Linux/WSL2 (`.zprofile`)
 
@@ -206,7 +219,12 @@ returns instead of hanging on the `read` prompt.
 no-op `brew info`. It now runs `brew install --force` for missing packages
 unconditionally, installing brew packages both locally and in CI.
 
-## Development
+</details>
+
+<details>
+<summary>🧪 Development</summary>
+
+### Development
 
 ```sh
 make test     # Run the Bats unit tests (targets macOS by default)
@@ -216,3 +234,5 @@ make format   # Check shell formatting with shfmt (diff only)
 
 `textlint` checks Markdown prose via pre-commit
 (`.pre-commit-config.yaml`).
+
+</details>
