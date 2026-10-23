@@ -184,10 +184,10 @@ Verify the mapping and decryption with `chezmoi target-path` (must end in
 
 | Platform | Homebrew location | Notable setup |
 | --- | --- | --- |
-| macOS (arm64) | `/opt/homebrew` | Rosetta installed on Apple Silicon; Xcode Command Line Tools |
-| macOS (x86_64 / Intel) | `/usr/local` | Xcode Command Line Tools |
-| Linux (Ubuntu/WSL2) | `~/.linuxbrew` or `/home/linuxbrew/.linuxbrew` | Shared brew packages |
-| Windows (native) | — | Planned as a stub; WSL2 is already covered by the Linux scripts |
+| 🍎 macOS (arm64) | `/opt/homebrew` | Rosetta installed on Apple Silicon; Xcode Command Line Tools |
+| 🍎 macOS (x86_64 / Intel) | `/usr/local` | Xcode Command Line Tools |
+| 🐧 Linux (Ubuntu/WSL2) | `~/.linuxbrew` or `/home/linuxbrew/.linuxbrew` | Shared brew packages |
+| 🪟 Windows (native) | — | Planned as a stub; WSL2 is already covered by the Linux scripts |
 
 <details>
 <summary>🔗 Cross-platform behavior</summary>
