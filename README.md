@@ -3,14 +3,19 @@
 <p align="center">Cross-platform dotfiles managed with chezmoi — macOS, Linux, WSL2</p>
 
 <p align="center">
-![chezmoi][chezmoi-badge] ![mise][mise-badge] ![age][age-badge]
-![homebrew][homebrew-badge] ![CI][ci-badge] ![platforms][platforms-badge] ![renovate][renovate-badge]
+<img src="https://img.shields.io/badge/-chezmoi-8caaee?style=flat-square&labelColor=303446" alt="chezmoi">
+<img src="https://img.shields.io/badge/-mise-8caaee?style=flat-square&labelColor=303446" alt="mise">
+<img src="https://img.shields.io/badge/-age-8caaee?style=flat-square&labelColor=303446" alt="age">
+<img src="https://img.shields.io/badge/-homebrew-8caaee?style=flat-square&labelColor=303446" alt="homebrew">
+<p align="center">
+<img src="https://img.shields.io/badge/macOS%20·%20Linux%20·%20WSL2-8caaee?style=flat-square" alt="Platforms">
+<img src="https://img.shields.io/badge/renovate-enabled-8caaee?style=flat-square" alt="Renovate">
 </p>
 
 <p align="center">
 <img src="assets/hero-placeholder.svg" width="80%" alt="Terminal preview placeholder">
 </p>
-
+</p>
 The repository is the source of truth for shell configuration, tool version
 pinning, and the bootstrap installer. `chezmoi apply` renders `home/` into
 `$HOME`.
@@ -284,10 +289,6 @@ Design patterns drawn from these dotfiles repos:
 - [natelandau/dotfiles](https://github.com/natelandau/dotfiles) — chezmoi architecture
 - [Vantesh/dotfiles](https://github.com/Vantesh/dotfiles) — GitHub alerts
 
-[chezmoi-badge]: https://img.shields.io/badge/-chezmoi-8caaee?style=flat-square&labelColor=303446
 [mise-badge]: https://img.shields.io/badge/-mise-8caaee?style=flat-square&labelColor=303446
-[age-badge]: https://img.shields.io/badge/-age-8caaee?style=flat-square&labelColor=303446
 [homebrew-badge]: https://img.shields.io/badge/-homebrew-8caaee?style=flat-square&labelColor=303446
-[ci-badge]: https://img.shields.io/github/actions/workflow/status/CrystalMethod/dotfiles/ci.yml?style=flat-square
 [platforms-badge]: https://img.shields.io/badge/macOS%20·%20Linux%20·%20WSL2-8caaee?style=flat-square
-[renovate-badge]: https://img.shields.io/badge/renovate-enabled-8caaee?style=flat-square&labelColor=303446
