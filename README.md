@@ -28,6 +28,10 @@ target files into `$HOME`.
   ```
 - **Encrypted secrets** — `age`-encrypted files (separate from the public
   source) for sensitive configuration.
+- **Bundled paid fonts** — commercial fonts (e.g. MonoLisa) ship as
+  `age`-encrypted sources; chezmoi decrypts them straight into the platform
+  font directory on every apply (macOS `~/Library/Fonts`, Linux/WSL2
+  `~/.local/share/fonts`).
 
 ## Repository layout
 
@@ -36,6 +40,8 @@ target files into `$HOME`.
 | `home/` | Chezmoi source tree (`.chezmoi.yaml.tmpl`, `dot_zprofile.tmpl`, `dot_zshrc.tmpl`, `dot_config/`) |
 | `home/.chezmoiscripts/` | `run_once_*` / `run_after_*` scripts that install tools and dependencies per OS |
 | `home/.chezmoitemplates/` | Cross-platform templates (e.g. the rbw config with `pinentry` selection) |
+| `home/Library/Fonts/` | Age-encrypted macOS fonts → `~/Library/Fonts/` (ignored off macOS) |
+| `home/private_dot_local/share/fonts/` | Age-encrypted Linux fonts → `~/.local/share/fonts/` (ignored on macOS) |
 | `install/` | Reusable install scripts, shared per OS: `common/`, `macos/`, `ubuntu/` |
 | `scripts/` | Project tooling, e.g. `run_unit_test.sh` |
 | `tests/` | [Bats](https://bats-core.readthedocs.io/)-based unit tests for the install scripts and templates |
@@ -113,6 +119,38 @@ platforms:
   — essential Homebrew packages per OS.
 - `install/common/misc.sh`, `install/macos/common/misc.sh` — optional
   Homebrew packages (`ghostty`, `rbw`, `tmux` on all platforms, extras for macOS).
+- `install/common/fonts.sh` — refreshes the fontconfig cache for the bundled
+  fonts on Linux/WSL2 (see "Bundled paid fonts" below).
+
+### Bundled paid fonts
+
+Homebrew and mise cannot install commercial fonts such as MonoLisa, so the
+repository carries them as `age`-encrypted `.ttf.age` sources. Each platform
+keeps its own encrypted copy under a path that maps directly to the platform
+font directory, and chezmoi decrypts the fonts straight to the right place (no
+copying):
+
+- **macOS** — `home/Library/Fonts/MonoLisa/*.ttf.age` →
+  `~/Library/Fonts/MonoLisa/*.ttf` (CoreText picks these up automatically).
+- **Linux/WSL2** — `home/private_dot_local/share/fonts/MonoLisa/*.ttf.age` →
+  `~/.local/share/fonts/MonoLisa/*.ttf` (the fontconfig directory). A
+  `run_after_30-install-fonts` hook runs `fc-cache -f` so fontconfig picks
+  them up.
+- **Windows (native)** — not yet supported; planned as a stub (WSL2 lateral
+  access does not expose fonts to native Windows applications such as WezTerm).
+
+OS-conditional rules in `home/.chezmoiignore` hide the cross-platform halves:
+`Library/Fonts` off macOS, `.local/share/fonts` on macOS.
+
+To add or update a bundled font, encrypt its `.ttf`/`.otf` files with the repo
+recipient into **both** platform directories:
+
+```sh
+age -r <RECIPIENT> -o home/Library/Fonts/MonoLisa/MonoLisa-Regular.ttf.age \
+  MonoLisa-Regular.ttf
+age -r <RECIPIENT> -o home/private_dot_local/share/fonts/MonoLisa/MonoLisa-Regular.ttf.age \
+  MonoLisa-Regular.ttf
+```
 
 ## Platform support
 

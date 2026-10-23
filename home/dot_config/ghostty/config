@@ -5,9 +5,14 @@
 theme = Catppuccin Frappe
 
 # Font
+# MonoLisa is the primary coding font; JetBrains Mono is the fallback for any
+# codepoint MonoLisa does not cover (repeated font-family lines append fallbacks).
+font-family = "MonoLisa"
 font-family = "JetBrains Mono"
 font-size = 13
-font-feature = "-calt, -liga"
+# MonoLisa features: ss01 = normal asterisk, zero = slashed zero. Ligatures
+# (liga/calt) stay off per previous preference.
+font-feature = "-calt, -liga, ss01, zero"
 
 # Cursor
 cursor-style = block

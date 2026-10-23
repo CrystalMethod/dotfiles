@@ -1,0 +1,13 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+# @file home/.chezmoiscripts/linux/run_after_30-install-fonts.sh.tmpl
+# @brief Refresh the fontconfig cache for bundled fonts on Linux/WSL2.
+# @description
+#   chezmoi decrypts the age-encrypted fonts to `~/.local/share/fonts/MonoLisa`,
+#   which fontconfig already reads on Linux/WSL2. This hook only refreshes the
+#   fontconfig cache so the bundled fonts become available immediately. Runs
+#   idempotently on every apply.
+set -Eeuo pipefail
+{{   include "../install/common/fonts.sh" }}
+refresh_font_cache "$(font_family_dir ".local/share/fonts/MonoLisa")"
+{{ end -}}

@@ -1,8 +1,12 @@
 {{ if ne .chezmoi.os "darwin" -}}
+Library/Fonts
 Library/Application Support/rbw
 {{- end }}
 {{ if ne .chezmoi.os "linux" -}}
 .config/rbw
+{{- end }}
+{{ if eq .chezmoi.os "darwin" -}}
+.local/share/fonts
 {{- end }}
 
 # DOX docs: repo tooling only, never applied to $HOME
