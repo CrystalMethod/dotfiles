@@ -5,20 +5,18 @@ repository is the source of truth for shell configuration, tool version
 pinning, and the bootstrap installer. `chezmoi apply` renders and installs the
 target files into `$HOME`.
 
-## Features
+## 📦 Features
 
-- **Cross-platform by default** — macOS (Apple Silicon and Intel), Linux, and
-  WSL2 share the same chezmoi source while installing OS-specific packages.
-- **Homebrew everywhere** — Homebrew installs system packages on macOS and
-  Linux/WSL2, with an architecture-aware `brew shellenv` in the login profile.
-- **mise-managed tools** — The mise config pins tool versions and
-  auto-installs them after every `chezmoi apply`.
-- **Encrypted secrets** — `age`-encrypted files (separate from the public
-  source) for sensitive configuration.
-- **Bundled paid fonts** — commercial fonts (e.g. MonoLisa) ship as
-  `age`-encrypted sources; chezmoi decrypts them straight into the platform
-  font directory on every apply (macOS `~/Library/Fonts`, Linux/WSL2
-  `~/.local/share/fonts`).
+| Feature | What it gives you | Deep dive |
+| --- | --- | --- |
+| 🍎🐧 **Cross-platform by default** | Shared source, OS-specific installs | [Details](#install-scripts) |
+| ⚡ **mise-managed tools** | Versions pinned, installed on apply | [Details](#install-scripts) |
+| 🔐 **Encrypted secrets** | Secrets stay out of the public repo | [Details](#cross-platform-behavior) |
+| 🎨 **Bundled paid fonts** | MonoLisa shipped age-encrypted | [Details](#bundled-fonts) |
+| 🍺 **Homebrew everywhere** | macOS/Linux/WSL2, arch-aware PATH | [Details](#cross-platform-behavior) |
+
+> [!NOTE]
+> Secrets are age-encrypted; `chezmoi apply` decrypts them only with your age key.
 
 ## Repository layout
 
@@ -42,6 +40,9 @@ target files into `$HOME`.
 ├── setup.sh                            # one-shot bootstrap installer
 └── Makefile                            # dev tasks (make test, lint, format)
 ```
+
+> [!WARNING]
+> This is someone's personal setup. Prefer `chezmoi init` with your own repo over blindly applying this one.
 
 ## 🚀 Quick Start
 
@@ -146,6 +147,9 @@ node = "lts"
 
 ### Bundled fonts
 
+> [!TIP]
+> Encrypt each font with the repo recipient into BOTH platform directories.
+
 Homebrew and mise cannot install commercial fonts such as MonoLisa, so the
 repository carries them as `age`-encrypted sources. Chezmoi decrypts a source
 file when its name starts with `encrypted_`, so each font source uses
@@ -188,6 +192,9 @@ Verify the mapping and decryption with `chezmoi target-path` (must end in
 | 🍎 macOS (x86_64 / Intel) | `/usr/local` | Xcode Command Line Tools |
 | 🐧 Linux (Ubuntu/WSL2) | `~/.linuxbrew` or `/home/linuxbrew/.linuxbrew` | Shared brew packages |
 | 🪟 Windows (native) | — | Planned as a stub; WSL2 is already covered by the Linux scripts |
+
+> [!CAUTION]
+> Native Windows is not yet supported; WSL2 lateral access does not expose fonts to native Windows apps.
 
 <details>
 <summary>🔗 Cross-platform behavior</summary>
