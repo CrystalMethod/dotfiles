@@ -12,8 +12,12 @@
 </p>
 
 The repository is the source of truth for shell configuration, tool version
-pinning, and the bootstrap installer. `chezmoi apply` renders and installs the
-target files into `$HOME`.
+pinning, and the bootstrap installer. `chezmoi apply` renders `home/` into
+`$HOME`.
+
+| OS | Shell | Package manager | Secrets | Fonts |
+| --- | --- | --- | --- | --- |
+| macOS · Linux · WSL2 | zsh | mise + Homebrew | age | MonoLisa |
 
 ## 📦 Features
 
