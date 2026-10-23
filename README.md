@@ -125,15 +125,15 @@ platforms:
 ### Bundled paid fonts
 
 Homebrew and mise cannot install commercial fonts such as MonoLisa, so the
-repository carries them as `age`-encrypted `.ttf.age` sources. Each platform
-keeps its own encrypted copy under a path that maps directly to the platform
-font directory, and chezmoi decrypts the fonts straight to the right place (no
-copying):
+repository carries them as `age`-encrypted sources. Chezmoi decrypts a source
+file when its name starts with `encrypted_`, so each font source uses
+`encrypted_<name>.ttf.age` and maps to `<name>.ttf` in the platform font
+directory on apply (no copying):
 
-- **macOS** — `home/Library/Fonts/MonoLisa/*.ttf.age` →
+- **macOS** — `home/Library/Fonts/MonoLisa/encrypted_*.ttf.age` →
   `~/Library/Fonts/MonoLisa/*.ttf` (CoreText picks these up automatically).
-- **Linux/WSL2** — `home/private_dot_local/share/fonts/MonoLisa/*.ttf.age` →
-  `~/.local/share/fonts/MonoLisa/*.ttf` (the fontconfig directory). A
+- **Linux/WSL2** — `home/private_dot_local/share/fonts/MonoLisa/encrypted_*.ttf.age`
+  → `~/.local/share/fonts/MonoLisa/*.ttf` (the fontconfig directory). A
   `run_after_30-install-fonts` hook runs `fc-cache -f` so fontconfig picks
   them up.
 - **Windows (native)** — not yet supported; planned as a stub (WSL2 lateral
@@ -143,14 +143,18 @@ OS-conditional rules in `home/.chezmoiignore` hide the cross-platform halves:
 `Library/Fonts` off macOS, `.local/share/fonts` on macOS.
 
 To add or update a bundled font, encrypt its `.ttf`/`.otf` files with the repo
-recipient into **both** platform directories:
+recipient into **both** platform directories. Keep the `encrypted_` prefix;
+without it chezmoi copies the ciphertext verbatim:
 
 ```sh
-age -r <RECIPIENT> -o home/Library/Fonts/MonoLisa/MonoLisa-Regular.ttf.age \
+age -r <RECIPIENT> -o home/Library/Fonts/MonoLisa/encrypted_MonoLisa-Regular.ttf.age \
   MonoLisa-Regular.ttf
-age -r <RECIPIENT> -o home/private_dot_local/share/fonts/MonoLisa/MonoLisa-Regular.ttf.age \
+age -r <RECIPIENT> -o home/private_dot_local/share/fonts/MonoLisa/encrypted_MonoLisa-Regular.ttf.age \
   MonoLisa-Regular.ttf
 ```
+
+Verify the mapping and decryption with `chezmoi target-path` (must end in
+`.ttf`) and `chezmoi cat ~/Library/Fonts/MonoLisa/MonoLisa-Regular.ttf`.
 
 ## Platform support
 
