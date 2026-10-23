@@ -9,7 +9,7 @@
 - Root owns: `setup.sh`, `Makefile`, `mise.toml`, `mise.ci.toml`,
   `.github/workflows/`, `renovate.json`, `.pre-commit-config.yaml`,
   `.textlintrc.json`, `.chezmoi*`,
-  `README.md`, `key.txt.age`
+  `README.md`, `key.txt.age`, `assets/` (README hero and screenshot assets)
 - Child docs in the Child DOX Index own all remaining files
 
 ## Local Contracts
