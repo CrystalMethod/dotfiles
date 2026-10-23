@@ -4,7 +4,7 @@
 
 <p align="center">
 ![chezmoi][chezmoi-badge] ![mise][mise-badge] ![age][age-badge]
-![homebrew][homebrew-badge] ![CI][ci-badge] ![platforms][platforms-badge]
+![homebrew][homebrew-badge] ![CI][ci-badge] ![platforms][platforms-badge] ![renovate][renovate-badge]
 </p>
 
 <p align="center">
@@ -274,9 +274,20 @@ make format   # Check shell formatting with shfmt (diff only)
 
 </details>
 
+## 💡 Inspired by
+
+Design patterns drawn from these dotfiles repos:
+
+- [craftzdog/dotfiles-public](https://github.com/craftzdog/dotfiles-public) — hero screenshots
+- [ad1822/hyprdots](https://github.com/ad1822/hyprdots) — badge grids, Catppuccin palette
+- [alrra/dotfiles](https://github.com/alrra/dotfiles) — emoji TOC, OS install matrix
+- [natelandau/dotfiles](https://github.com/natelandau/dotfiles) — chezmoi architecture
+- [Vantesh/dotfiles](https://github.com/Vantesh/dotfiles) — GitHub alerts
+
 [chezmoi-badge]: https://img.shields.io/badge/-chezmoi-8caaee?style=flat-square&labelColor=303446
 [mise-badge]: https://img.shields.io/badge/-mise-8caaee?style=flat-square&labelColor=303446
 [age-badge]: https://img.shields.io/badge/-age-8caaee?style=flat-square&labelColor=303446
 [homebrew-badge]: https://img.shields.io/badge/-homebrew-8caaee?style=flat-square&labelColor=303446
 [ci-badge]: https://img.shields.io/github/actions/workflow/status/CrystalMethod/dotfiles/ci.yml?style=flat-square
 [platforms-badge]: https://img.shields.io/badge/macOS%20·%20Linux%20·%20WSL2-8caaee?style=flat-square
+[renovate-badge]: https://img.shields.io/badge/renovate-enabled-8caaee?style=flat-square&labelColor=303446
