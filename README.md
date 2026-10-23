@@ -43,15 +43,45 @@ target files into `$HOME`.
 └── Makefile                            # dev tasks (make test, lint, format)
 ```
 
-## Setup / install flow
+## 🚀 Quick Start
 
-There are two ways to install the dotfiles: the automated bootstrap
-(`setup.sh`) or the manual chezmoi flow.
+Install via the automated bootstrap (`setup.sh`) or manually with chezmoi.
 
-### Automated bootstrap (`setup.sh`)
+**🚀 Privileged (default)**
 
-`setup.sh` installs the system prerequisites first and then applies the
-dotfiles with chezmoi:
+```bash
+# Interactive, privileged install
+curl -fsSL https://raw.githubusercontent.com/crystalmethod/dotfiles/main/setup.sh | bash
+```
+
+**👤 User-space (no sudo)**
+
+```bash
+# User-space install (no sudo)
+curl -fsSL https://raw.githubusercontent.com/crystalmethod/dotfiles/main/setup.sh \
+  | bash -s -- --mode user
+```
+
+**🔍 Dry-run**
+
+```bash
+# See what would happen without executing anything
+curl -fsSL https://raw.githubusercontent.com/crystalmethod/dotfiles/main/setup.sh \
+  | bash -s -- --dry-run
+```
+
+**Manual**
+
+```bash
+# 1. Install chezmoi, e.g. via Homebrew
+brew install chezmoi
+
+# 2. Init from this repository and apply
+chezmoi init https://github.com/crystalmethod/dotfiles
+chezmoi apply
+```
+
+The automated bootstrap (`setup.sh`) performs the following steps:
 
 1. **Detects the OS** (Darwin or Linux) and validates the run mode.
 2. **Keeps sudo alive** — via the macOS Keychain on Darwin, via `sudo -v` on
@@ -71,30 +101,6 @@ Run modes:
 - `user`: installs Homebrew in user space (`~/.homebrew`) without `sudo`.
   On Linux, install `build-essential`, `procps`, `curl`, and `git` first.
   Custom-prefix installs may build formulae from source instead of using bottles.
-
-```sh
-# Interactive, privileged install
-curl -fsSL https://raw.githubusercontent.com/crystalmethod/dotfiles/main/setup.sh | bash
-
-# User-space install (no sudo)
-curl -fsSL https://raw.githubusercontent.com/crystalmethod/dotfiles/main/setup.sh \
-  | bash -s -- --mode user
-
-# See what would happen without executing anything
-curl -fsSL https://raw.githubusercontent.com/crystalmethod/dotfiles/main/setup.sh \
-  | bash -s -- --dry-run
-```
-
-### Manual
-
-```sh
-# 1. Install chezmoi, e.g. via Homebrew
-brew install chezmoi
-
-# 2. Init from this repository and apply
-chezmoi init https://github.com/crystalmethod/dotfiles
-chezmoi apply
-```
 
 Every `chezmoi apply` re-runs the `run_after_*` scripts, which re-align
 mise-managed tools with the pinned versions in the mise config.
