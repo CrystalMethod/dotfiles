@@ -9,7 +9,7 @@ them during bootstrap.
 ## Ownership
 
 - `install/common/` — OS-agnostic install helpers (`brew.sh`, `mise.sh`,
-  `misc.sh`, `wsl2.sh`).
+  `misc.sh`, `fonts.sh`, `wsl2.sh`).
 - `install/macos/` — macOS-specific installers:
   - `install/macos/common/` — shared across Apple Silicon and Intel.
   - `install/macos/arm64/` — Apple Silicon.
