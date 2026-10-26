@@ -29,7 +29,7 @@ uv = "0.13.5"
 workmux = "0.1.277"
 
 # Aqua tools
-"aqua:joshmedeski/sesh" = { version = "2.33.0", os = ["macos", "linux"] }
+"aqua:joshmedeski/sesh" = { version = "2.34.0", os = ["macos", "linux"] }
 
 "forgejo:gitea/tea" = { version = "v0.15.1", api_url = "https://gitea.com/api/v1" }
 
