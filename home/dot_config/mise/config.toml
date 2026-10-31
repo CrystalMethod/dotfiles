@@ -26,7 +26,7 @@ ripgrep = "15.2.0"
 rtk = "1.1.0"
 television = "0.15.9"
 uv = "0.13.6"
-workmux = "0.1.277"
+workmux = "0.1.278"
 
 # Aqua tools
 "aqua:joshmedeski/sesh" = { version = "2.34.0", os = ["macos", "linux"] }
