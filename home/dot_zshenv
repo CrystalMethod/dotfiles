@@ -1,0 +1,25 @@
+#!/usr/bin/env zsh
+
+# @file home/dot_zshenv
+# @brief Keep mise shims first on PATH for every Zsh process.
+# @description
+#   Runs for every Zsh, including the non-login `zsh -c` children that tmux
+#   starts for panes and window commands. A long-lived tmux server hands those
+#   children a frozen PATH containing versioned mise install paths, so a
+#   `mise upgrade` would not take effect until the server restarts. Shims
+#   resolve through mise at call time; pinning them to the front of PATH makes
+#   upgrades effective for new panes and processes immediately. Interactive
+#   login shells still run `mise activate` from .zprofile, whose direct paths
+#   take precedence over the shims.
+
+_mise_shims="${HOME%/}/.local/share/mise/shims"
+
+if [[ -d "${_mise_shims}" ]]; then
+    _mise_path="${PATH}"
+    _mise_path="${_mise_path//${_mise_shims}:/}"
+    _mise_path="${_mise_path//:${_mise_shims}/}"
+    export PATH="${_mise_shims}:${_mise_path}"
+    unset _mise_path
+fi
+
+unset _mise_shims

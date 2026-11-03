@@ -37,7 +37,7 @@ target files into `$HOME`.
 
 | Path | Purpose |
 | --- | --- |
-| `home/` | Chezmoi source tree (`.chezmoi.yaml.tmpl`, `dot_zprofile.tmpl`, `dot_zshrc.tmpl`, `dot_config/`) |
+| `home/` | Source tree (`.chezmoi.yaml.tmpl`, `dot_zprofile.tmpl`, `dot_zshrc.tmpl`, `dot_zshenv`, `dot_config/`) |
 | `home/.chezmoiscripts/` | `run_once_*` / `run_after_*` scripts that install tools and dependencies per OS |
 | `home/.chezmoitemplates/` | Cross-platform templates (e.g. the rbw config with `pinentry` selection) |
 | `home/Library/Fonts/` | Age-encrypted macOS fonts → `~/Library/Fonts/` (ignored off macOS) |
