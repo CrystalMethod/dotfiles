@@ -23,6 +23,13 @@ function run_template_test() {
 }
 
 #
+# @description Run the shell startup file tests.
+#
+function run_shell_test() {
+    bats -r "tests/shell/"
+}
+
+#
 # @description Run the OS-specific Bats suite for the active target.
 #
 function run_os_specific_test() {
@@ -46,6 +53,7 @@ function run_os_specific_test() {
 function main() {
     run_common_test
     run_template_test
+    run_shell_test
     run_os_specific_test
 }
 

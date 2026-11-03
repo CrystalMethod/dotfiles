@@ -1,30 +1,22 @@
 #!/usr/bin/env zsh
 
 # @file home/dot_config/exact_shell/mise.zsh
-# @brief Expose mise shims and provide guarded Zsh activation.
+# @brief Provide guarded mise activation for login shells.
 # @description
 #   Makes the standalone mise binary available to every Zsh process and
-#   exposes mise shims to non-interactive Zsh, then provides system-specific
-#   activation for interactive startup. The activation guard uses the hook
-#   function or shim PATH as its source of truth so child Zsh processes do not
-#   inherit a stale exported marker.
+#   provides system-specific activation for interactive startup. Shims for
+#   non-login shells are pinned to the front of PATH by `~/.zshenv`. The
+#   activation guard uses the hook function or shim PATH as its source of truth
+#   so child Zsh processes do not inherit a stale exported marker.
 
 _mise_local_bin="${HOME%/}/.local/bin"
 _mise_bin="${_mise_local_bin}/mise"
-_mise_shims="${HOME%/}/.local/share/mise/shims"
 
 if [[ -x "${_mise_bin}" ]]; then
     case ":${PATH}:" in
     *:"${_mise_local_bin}":*) ;;
     *) export PATH="${_mise_local_bin}:${PATH}" ;;
     esac
-
-    if [[ ! -o interactive ]]; then
-        case ":${PATH}:" in
-        *:"${_mise_shims}":*) ;;
-        *) export PATH="${_mise_shims}:${PATH}" ;;
-        esac
-    fi
 fi
 
 # @description Activate mise once for the requested system startup mode.
@@ -60,9 +52,9 @@ function mise_zsh_activate() {
         eval "$(${mise_bin} activate zsh)"
         ;;
     server)
-        # Shims-only activation only exposes PATH, so inherited $path is the source
-        # of truth and child shells must not prepend it again. The top-level helper
-        # usually does this; this covers calls when .zshenv was not read.
+        # Shims-only activation only exposes PATH. ~/.zshenv already pins the
+        # shims to the front for every Zsh, so this is a fallback for shells that
+        # started before the shims directory existed.
         if ((${path[(Ie)${mise_shims}]})); then
             return 0
         fi

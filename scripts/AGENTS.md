@@ -8,7 +8,8 @@ the `Makefile` and CI.
 ## Ownership
 
 - `scripts/run_unit_test.sh` — runs the bats unit test suite for a given
-  `TARGET_OS` (defaults to `macos`).
+  `TARGET_OS` (defaults to `macos`): common install tests, template tests,
+  shell startup file tests, and the OS-specific suite.
 
 ## Local Contracts
 

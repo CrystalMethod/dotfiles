@@ -37,6 +37,10 @@ into `$HOME` on `chezmoi apply`.
   irrelevant half per OS. The Linux `run_after_30-install-fonts` hook refreshes
   `fc-cache`.
 - Declarative bootstrap and tool pinning live in `home/dot_config/mise/config.toml`.
+- `dot_zshenv` pins `~/.local/share/mise/shims` to the front of `PATH` for
+  every Zsh (deduplicated), so non-login `zsh -c` children such as tmux pane
+  commands resolve current mise tool versions after `mise upgrade`;
+  `mise activate` stays in `dot_zprofile.tmpl` for interactive login shells.
 - Linux privileged setup installs Homebrew at `/home/linuxbrew/.linuxbrew`;
   user mode uses `~/.homebrew`.
 - DOX docs are repo tooling, never applied to `$HOME`: `home/.chezmoiignore`
