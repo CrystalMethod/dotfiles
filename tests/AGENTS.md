@@ -13,6 +13,7 @@ the primary regression guard for installer behavior and rendered template output
   - `tests/install/macos/` — macOS installer tests (`common/`, `arm64/`).
   - `tests/install/ubuntu/` — Ubuntu/WSL2 installer tests (`common/`, WSL2 suite).
 - `tests/templates/` — template rendering tests (`dot_zprofile.bats`, `linux-homebrew.bats`, `rbw.bats`).
+- `tests/shell/` — shell startup file behaviour tests (`dot_zshenv.bats`).
 
 ## Local Contracts
 
@@ -33,13 +34,15 @@ the primary regression guard for installer behavior and rendered template output
 
 - When adding an installer, add its test in the matching `tests/install/` path.
 - When adding a template, add/update its test under `tests/templates/`.
+- When adding a shell startup file under `home/`, add its behaviour test under
+  `tests/shell/`.
 - Read the existing tests covering a behavior BEFORE editing that behavior.
 
 ## Verification
 
 - Run a single file: `bats tests/install/common/mise.bats`.
 - Full suite: `TARGET_OS=macos ./scripts/run_unit_test.sh` (common installs,
-  templates, and the OS subtree) → 0 failures.
+  templates, shell startup files, and the OS subtree) → 0 failures.
 - New/changed tests must pass before closing the change.
 
 ## Child DOX Index
