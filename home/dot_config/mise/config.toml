@@ -25,7 +25,7 @@ opencode = "1.19.5"
 ripgrep = "15.2.0"
 rtk = "1.1.0"
 television = "0.15.9"
-uv = "0.13.6"
+uv = "0.13.7"
 workmux = "0.1.278"
 
 # Aqua tools
