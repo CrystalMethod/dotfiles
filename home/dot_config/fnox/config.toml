@@ -7,7 +7,64 @@ auth_command = "rbw unlock"
 ADESSO_AI_HUB_API_KEY = { provider = "bitwarden", value = "ADESSO_AI_HUB_API_KEY" }
 ADESSO_AI_HUB_SOVEREIGN_API_KEY = { provider = "bitwarden", value = "ADESSO_AI_HUB_SOVEREIGN_API_KEY" }
 AI_HUB_API_KEY = { provider = "bitwarden", value = "AI_HUB_API_KEY/password" }
-GROQ_AI_API_KEY = { provider = "bitwarden", value = "GROQ_AI_API_KEY" }
-OPENCODE_ZEN_API_KEY = { provider = "bitwarden", value = "OPENCODE_ZEN_API_KEY" }
-OPENROUTER_AI_API_KEY = { provider = "bitwarden", value = "OPENROUTER_AI_API_KEY" }
+DOCO_CD_API_SECRET = { }
+GROQ_API_KEY = { provider = "bitwarden", value = "GROQ_API_KEY" }
+OPENROUTER_API_KEY = { provider = "bitwarden", value = "OPENROUTER_API_KEY/password"}
+PROMETHEUS_MCP_BEARER_TOKEN = { provider = "bitwarden", value = "PROMETHEUS_MCP_BEARER_TOKEN/password" }
 TAVILY_API_KEY = { provider = "bitwarden", value = "TAVILY_API_KEY/password" }
+UNOROUTER_API_KEY = { provider = "bitwarden", value = "UNOROUTER_API_KEY/password"}
+
+[proxy]
+egress = "strict"
+# sandbox = true
+audit = false
+sandbox_allow_write = ["~/.local/share/opencode", "~/.local/state/opencode", "~/.cache/opencode", "~/.cache/node", "~/.npm", "~/.omo", "~/.config/opencode/node_modules"]
+allow_private = ["127.0.0.1"]
+allow_domains = ["127.0.0.1", "localhost", "models.dev", "models.opencode.ai", "registry.npmjs.org", "*.githubusercontent.com", "github.com", "api.github.com", "mcp.context7.com", "mcp.grep.app", "mcp.exa.ai", "opencode.ai", "ghcr.io", "quay.io", "pypi.org", "*.r2.cloudflarestorage.com"]
+
+[[proxy.rules]]
+secret = "ADESSO_AI_HUB_API_KEY"
+domain = "adesso-ai-hub.3asabc.de"
+header = "authorization"
+
+[[proxy.rules]]
+secret = "ADESSO_AI_HUB_SOVEREIGN_API_KEY"
+domain = "adesso-ai-hub.3asabc.de"
+header = "authorization"
+
+[[proxy.rules]]
+secret = "AI_HUB_API_KEY"
+domain = "ai-hub.smb-tec.com"
+header = "authorization"
+
+[[proxy.rules]]
+secret = "DOCO_CD_API_SECRET"
+domain = "cd.smb-tec.com"
+header = "x-api-key"
+paths = ["/mcp", "/mcp/**"]
+
+[[proxy.rules]]
+secret = "GROQ_API_KEY"
+domain = "api.groq.com"
+header = "authorization"
+
+[[proxy.rules]]
+secret = "OPENROUTER_API_KEY"
+domain = "openrouter.ai"
+header = "authorization"
+
+[[proxy.rules]]
+secret = "PROMETHEUS_MCP_BEARER_TOKEN"
+domain = "monitoring.smb-tec.com"
+header = "authorization"
+paths = ["/prometheus/mcp", "/prometheus/mcp/**"]
+
+[[proxy.rules]]
+secret = "TAVILY_API_KEY"
+domain = "api.tavily.com"
+header = "authorization"
+
+[[proxy.rules]]
+secret = "UNOROUTER_API_KEY"
+domain = "api.unorouter.com"
+header = "authorization"
