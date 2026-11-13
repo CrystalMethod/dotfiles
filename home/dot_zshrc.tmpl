@@ -11,6 +11,8 @@ if [[ -S "${HOME}/.bitwarden-ssh-agent.sock" ]]; then
     export SSH_AUTH_SOCK="${HOME}/.bitwarden-ssh-agent.sock"
 fi
 
+export HOMEBREW_NO_ANALYTICS=1
+
 function opencode() {
-    rbw unlock && fnox exec -- opencode "$@"
+    rbw unlock && fnox files write && fnox proxy run -- opencode "$@"
 }
