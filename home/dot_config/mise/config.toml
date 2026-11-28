@@ -11,7 +11,7 @@ VISUAL = "nvim"
 
 # CLI tools
 age = "1.3.2"
-bat = "0.26.1"
+bat = "0.27.0"
 biome = "2.6.5"
 bun = "1.4.5"
 chezmoi = "2.74.2"
